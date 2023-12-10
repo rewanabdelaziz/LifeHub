@@ -1,0 +1,160 @@
+header{
+  background-color:#FFF2F3;
+  padding: 20px 0;
+  overflow: hidden;
+  width: 100%;
+}
+.container2 , .nav2{
+  padding-left: 30px;
+  padding-right: 15px;
+  width: 100%;
+  justify-content: space-between;
+}
+.navMenue{
+  display: flex;
+  /* width: 65%; */
+  justify-content:flex-end;
+}
+.hidden{
+  display: none;
+}
+.nav2{
+  display: flex;
+}
+.active{
+  background-color: #FFF2F3;
+  border: 1px solid #FFF2F3;
+}
+.logo{
+  display: flex;
+  cursor: pointer;
+}
+.logo img{
+  width: 40px;
+  margin-right: 10px;
+}
+.logo h3{
+  color:#E3031B;
+}
+.menu ul,.join-menue li{
+  padding: 0;
+  margin: 0;
+}
+
+.menu ul li,.join-menue li{
+  font-weight: 600;
+  list-style-type:none;
+  color: #737373;
+  display: inline-block;
+  font-size: 18px;
+  margin-left: 10px;
+}
+.menu ul li a,.join-menue li a{
+  color:#737373;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+}
+.join-menue #join a{
+  color: #E74040;
+}
+.join-menue #book a{
+  background-color:#E74040;
+  color: white;
+}
+
+@media only screen and (max-width: 1215px)
+{
+  .menu{
+    /* position: absolute; */
+    /* right: 80px; */
+    background-color: #FFF2F3;
+  }
+  .menu ul li{
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 999px)
+{
+  .menu{
+    position: fixed;
+    z-index: 100;
+    right: -300px;
+    top: 60px;
+    width: 300px;
+    height: 100%;
+    background-color: #FFF2F3;
+  }
+  .menu ul li{
+    margin-left: 0;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .menu ul li a{
+    padding: 15px 80px;
+  }
+  .menu-icon{
+    display: inline-block;
+    position: relative;
+    right: 20px;
+    top: 5px;
+    cursor: pointer;
+  }
+  .menu-icon span{
+    width: 35px;
+    height: 3px;
+    display: block;
+    background-color: rgb(252, 59, 59);
+  }
+  .menu-icon span:nth-child(2){
+    margin: 5px 0;
+  }
+  .menuClass{
+    right: 0;
+    transition: 0.5s ease-in-out;
+  }
+}
+
+
+@media only screen and (max-width: 780px)
+{
+  /* .navMenue{
+    width: 300px;
+  } */
+  .container2 , .nav2{
+    padding-left: 10px;
+  }
+  .menu-icon{
+    display: inline-block;
+    position: relative;
+    right: 0px;
+    left: 80%;
+    top: 5px;
+    cursor: pointer;
+  }
+  #join a{
+    color: #E74040;
+  }
+  #book a{
+    background-color:#E74040;
+    color: white;
+  }
+
+}
+@media only screen and (max-width: 510px)
+{
+  .container2 , .nav2{
+    padding-left: 20px;
+    padding-right: 25px;
+  }
+  .hidden2{
+    display: none;
+  }
+  .hidden{
+    display: inline;
+  }
+  /* .navMenue{
+    width: 120px;
+  } */
+}

@@ -1,0 +1,40 @@
+<header>
+  <div class="container2">
+    <div class="nav2">
+      <div>
+        <div class="logo">
+          <img src="assets/imgs/blood.jpg" class="logo" alt="" routerLink="/home.component">
+          <h3>LIFEBLOOD</h3>
+        </div>
+      </div>
+      <div class="navMenue">
+        <div>
+          <div class="menu-icon" (click)="openMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu" [class.menuClass]="menuVariable">
+            <ul class="">
+              <li class=""><a class="" href="#home" routerLink="/home.component" routerLinkActive="active">Home</a></li>
+              <li class=""><a class="" href="#patient" routerLink="/Patient" routerLinkActive="active">Patient</a></li>
+              <li class=""><a class="" href="#tests" routerLink="/Tests" routerLinkActive="active">Tests</a></li>
+              <li class=""><a class="" href="#about" routerLink="/About" routerLinkActive="active">About</a></li>
+              <li class=""><a class="" href="#contact" routerLink="/contact" routerLinkActive="active">Contact</a></li>
+              <li id="join" class="hidden"><a class="hidden" href="#join" routerLink="/join" routerLinkActive="active">join</a></li>
+              <li id="book" class="hidden"><a class="hidden" href="#Book" routerLink="/Book" routerLinkActive="active">Book Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="join-menue hidden2">
+          <li id="join"><a class="" href="#join" routerLink="/join" routerLinkActive="active">join</a></li>
+          <li id="book"><a class="" href="#Book" routerLink="/Book" routerLinkActive="active">Book Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
