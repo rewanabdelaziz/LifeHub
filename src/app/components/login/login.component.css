@@ -1,0 +1,21 @@
+#registerLink{
+  color:  #E3031B;
+}
+#loginButton{
+    background-color:  #E3031B;
+}
+#forgetPassword{
+  text-decoration: none;
+}
+.gradient-text {
+  background: linear-gradient(180deg, #EA4444 19.27%, #5E0404 74.48%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.header{
+  display: flex;
+}
+.header img{
+  width: 70px;
+}

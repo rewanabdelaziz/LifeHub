@@ -1,0 +1,25 @@
+#SignUpButton{
+  background-color: #E3031B;
+}
+#loginLink,#register ,#AgreeOnConditions a{
+  color: #E3031B;
+}
+.w-65{
+  width: 65%;
+}
+#AgreeOnConditions{
+  width: 90%;
+  vertical-align: -6px;
+}
+.gradient-text {
+  background: linear-gradient(180deg, #EA4444 19.27%, #5E0404 74.48%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.header{
+  display: flex;
+}
+.header img{
+  width: 70px;
+}
