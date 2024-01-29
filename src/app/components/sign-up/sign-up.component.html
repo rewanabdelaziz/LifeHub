@@ -12,49 +12,85 @@
       <p class="h3 fw-bold">Register</p>
       <p class=" fw-bold">Required field *</p>
     </div>
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
     <div class="d-flex justify-content-between my-3">
       <label class="fw-bold" for="">Do You Have a Donor Number?*</label>
       <div class="d-flex justify-content-between">
         <div class="me-5">
-          <input type="checkbox" name="yes" id="yes">
+          <input type="checkbox" formControlName="donarYes">
           <label class="text-muted ms-2" for="yes">Yes</label>
         </div>
 
         <div class="me-5">
-          <input type="checkbox" name="No" id="No">
+          <input type="checkbox" formControlName="donarNo">
           <label class="text-muted ms-2" for="No">No</label>
         </div>
       </div>
     </div>
-    <input class="form-control p-2" type="email" required name="email" id="email" placeholder="Email*"><br>
-    <input class="form-control p-2" type="password" required name="password" id="password" placeholder="password*"><br>
-    <input class="form-control p-2" type="text" name="name" id="name" placeholder="Name">
+    <input class="form-control p-2" type="email" required formControlName="email" placeholder="Email*" autocomplete="username"><br>
+    <input class="form-control p-2" type="password" required formControlName="password" placeholder="password*" autocomplete="current-password"><br>
+    <input class="form-control p-2" type="password" required formControlName="confirmPassword" placeholder="confirm password*" autocomplete="current-password"><br>
+    <input class="form-control p-2" type="text" formControlName="userName" placeholder="User Name*" > <br>
+    <input class="form-control p-2" type="text" formControlName="BloodBank" placeholder="Blood Bank*" >
     <label class="my-3 text-muted fw-bold" for="">legal name e.g as shown on your national id or passport</label><br>
-    <select name="location" id="location" required class="form-control p-2">
+    <select name="location" id="location" required class="form-control p-2" formControlName="city">
       <option value="" disabled selected>location*</option>
       <option value="Cairo">Cairo</option>
       <option value="Alex">Alex</option>
       <option value="Tanta">Tanta</option>
     </select>
     <label class="my-3 text-muted fw-bold" for="">select the nearest blood donation center in your city</label><br>
-    <input class=" mb-3 p-2 form-control" required type="date" name="date" id="dateOfBirth">
-    <select class="form-control  p-2" name="gender" id="gender">
+    <input class=" mb-3 p-2 form-control" required type="date" formControlName="birthDate">
+    <select class="form-control  p-2" name="gender" id="gender" formControlName="gender">
       <option value="" disabled selected>Gender</option>
       <option value="Male">Male</option>
       <option value="Female">Female</option>
     </select><br>
-    <input class="form-control p-2" type="tel" name="mobileNumber" id="mobileNumber" placeholder="Mobile Number">
+    <input class="form-control p-2" type="tel" formControlName="phoneNumber" placeholder="Mobile Number*"> <br>
+    <input class="form-control p-2" type="tel" formControlName="nationalID" placeholder="National ID*">
     <p class="text-muted mt-2 fw-bold">Do not forget to write code of country</p>
-    <input class="border" type="checkbox" name="AgreeOnTerms" id="AgreeOnTerms">
+    <input class="border" type="checkbox" formControlName="agreeOnTerms">
     <label id="AgreeOnConditions" class="ms-3 fw-bold" for="AgreeOnTerms">I Agree to the Australlian Red Cross lifeblood <a
         href="">Privacy Policy , Terms and Conditions ,</a> and the <a href="">Privacy Collection Statement</a> above.
       *Required</label><br><br>
-    <input type="checkbox" name="notRobot" id="notRobot">
+    <input type="checkbox" formControlName="notRobot">
     <label class=" ms-3 fw-bold" for="notRobot">Iam not robot </label><br>
+
+
+    <!-- Error messages for required fields -->
+    <!-- <div *ngIf="signupForm.get('email')?.hasError('required')" class="error-message">
+      Email is required.
+    </div>
+    <div *ngIf="signupForm.get('password')?.hasError('required')" class="error-message">
+      Password is required.
+    </div>
+    <div *ngIf="signupForm.get('userName')?.hasError('required')" class="error-message">
+      Name is required.
+    </div>
+    <div *ngIf="signupForm.get('city')?.hasError('required')" class="error-message">
+      Location is required.
+    </div>
+    <div *ngIf="signupForm.get('birthDate')?.hasError('required')" class="error-message">
+      Date of birth is required.
+    </div>
+    <div *ngIf="signupForm.get('gender')?.hasError('required')" class="error-message">
+      Gender is required.
+    </div>
+    <div *ngIf="signupForm.get('phoneNumber')?.hasError('required')" class="error-message">
+      Mobile Number is required.
+    </div> -->
+
+    <!-- General error message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <br>
+
+
     <button id="SignUpButton" class="form-control p-2 text-white my-2">Sign Up</button>
+    </form>
     <p class="text-center text-muted lead fw-bold">Already Have Account? <a class=" fw-bold" id="loginLink" routerLink="/login">login Now </a></p>
 
-   </div>
-
+  </div>
   </div>
 </section>

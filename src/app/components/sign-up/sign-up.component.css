@@ -23,3 +23,6 @@
 .header img{
   width: 70px;
 }
+.error-message{
+  color: red;
+}
