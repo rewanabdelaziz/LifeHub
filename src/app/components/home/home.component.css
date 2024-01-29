@@ -225,3 +225,34 @@
     margin-top: 15px;
   }
 }
+
+/* last section and footer */
+.cantain{
+  width: 100%;
+  height: 100px;
+  background-color:red ;
+
+}
+
+.col-3 .layer{
+border-radius: 10px;
+border: 1px;
+background-color: #FAFAFA;
+
+}
+.icon1,#address{
+  color: red;
+}
+.icon2 ,.icon3{
+  color: #96BB7C;
+}
+.top{
+  top: -50%;
+}
+
+.w-65{
+  width: 65%;
+}
+.w-10 {
+  width: 15%;
+}

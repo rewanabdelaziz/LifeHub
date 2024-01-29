@@ -10,6 +10,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VerificationService } from './verification-service.service';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { VerificationComponent } from './components/verification-component/verification-component.component';
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { VerificationComponent } from './components/verification-component/verif
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BsDropdownModule.forRoot(),
   ],
   providers: [VerificationService,],
   bootstrap: [AppComponent]
