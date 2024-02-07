@@ -48,7 +48,7 @@ export class VerificationComponent implements OnInit {
 
   resendCode(): void {
     // Call the service to resend verification code
-    this.verificationService.resendVerificationEmail(this.email).subscribe(
+    this.verificationService.resendVerificationCode(this.email).subscribe(
       (response) => {
         console.log('Resend successful:', response);
         // You can provide feedback to the user that the code has been resent

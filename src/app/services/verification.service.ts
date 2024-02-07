@@ -11,13 +11,13 @@ export class VerificationService {
   constructor(private http: HttpClient) {}
 
   verifyUser(token: string): Observable<any> {
-    const url = `${this.baseUrl}/verify/${token}`;
-    return this.http.get<any>(url);
+    const url = `${this.baseUrl}/verify?token=${token}`;
+    return this.http.post<any>(url, {});
   }
-  resendVerificationEmail(email: string): Observable<any> {
-    const resendUrl = `${this.baseUrl}/resend-code`;
-    const payload = { email };
 
-    return this.http.post(resendUrl, payload);
+  resendVerificationCode(email: string): Observable<any> {
+    const url = `${this.baseUrl}/resend-code`;
+    const payload = { email };
+    return this.http.post<any>(url, payload);
   }
 }

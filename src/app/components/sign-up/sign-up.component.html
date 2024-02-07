@@ -56,30 +56,6 @@
     <input type="checkbox" formControlName="notRobot">
     <label class=" ms-3 fw-bold" for="notRobot">Iam not robot </label><br>
 
-
-    <!-- Error messages for required fields -->
-    <!-- <div *ngIf="signupForm.get('email')?.hasError('required')" class="error-message">
-      Email is required.
-    </div>
-    <div *ngIf="signupForm.get('password')?.hasError('required')" class="error-message">
-      Password is required.
-    </div>
-    <div *ngIf="signupForm.get('userName')?.hasError('required')" class="error-message">
-      Name is required.
-    </div>
-    <div *ngIf="signupForm.get('city')?.hasError('required')" class="error-message">
-      Location is required.
-    </div>
-    <div *ngIf="signupForm.get('birthDate')?.hasError('required')" class="error-message">
-      Date of birth is required.
-    </div>
-    <div *ngIf="signupForm.get('gender')?.hasError('required')" class="error-message">
-      Gender is required.
-    </div>
-    <div *ngIf="signupForm.get('phoneNumber')?.hasError('required')" class="error-message">
-      Mobile Number is required.
-    </div> -->
-
     <!-- General error message -->
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
@@ -87,7 +63,8 @@
     <br>
 
 
-    <button id="SignUpButton" class="form-control p-2 text-white my-2">Sign Up</button>
+    <button id="SignUpButton" class="form-control p-2 text-white my-2" type="button" [disabled]="sendingVerificationCode" (click)="signup()">Sign Up</button>
+    <div *ngIf="sendingVerificationCode">Sending verification code...</div>
     </form>
     <p class="text-center text-muted lead fw-bold">Already Have Account? <a class=" fw-bold" id="loginLink" routerLink="/login">login Now </a></p>
 

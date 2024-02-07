@@ -12,7 +12,7 @@ import { RegisterService } from '../../services/register.service';
 export class SignUpComponent {
   signupForm: FormGroup;
   errorMessage: string = '';
-
+  sendingVerificationCode: boolean = false;
   constructor(private registerService: RegisterService, private verificationService: VerificationService,private fb: FormBuilder,private router: Router) {
     this.signupForm = this.fb.group({
       donorNumber: this.fb.group({
@@ -127,14 +127,28 @@ export class SignUpComponent {
     }
   }
 
+
+
+
   private sendVerificationCode(email: string): void {
-    // Call the resendVerificationEmail method from VerificationService
-    this.verificationService.resendVerificationEmail(email).subscribe(
+    // Set the loading state
+    this.sendingVerificationCode = true;
+
+    this.verificationService.resendVerificationCode(email).subscribe(
       (_) => {
-        console.log('Verification code sent successfully.');
+        console.log('New verification code sent successfully.');
+
+        // Reset the loading state
+        this.sendingVerificationCode = false;
+
+        // Optionally, display a success message to the user
       },
       (error) => {
-        console.error('Error sending verification code:', error);
+        console.error('Error sending new verification code:', error);
+
+        // Reset the loading state
+        this.sendingVerificationCode = false;
+
         // Handle error (e.g., display an error message to the user)
       }
     );
