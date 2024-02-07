@@ -1,7 +1,9 @@
+import { VerificationService } from './../../services/verification.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { RegisterService } from './../../register.service';
+import { RegisterService } from '../../services/register.service';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -11,7 +13,7 @@ export class SignUpComponent {
   signupForm: FormGroup;
   errorMessage: string = '';
 
-  constructor(private registerService: RegisterService, private fb: FormBuilder,private router: Router) {
+  constructor(private registerService: RegisterService, private verificationService: VerificationService,private fb: FormBuilder,private router: Router) {
     this.signupForm = this.fb.group({
       donorNumber: this.fb.group({
         hasDonorNumber: [false],
@@ -90,9 +92,11 @@ export class SignUpComponent {
       this.registerService.register(user).subscribe(
         (_) => {
           this.errorMessage = 'User registered successfully. Please check your email for a verification link.';
-          // this.router.navigate(['/login']);
           this.registerService.setVerificationStatus('unverified');
-          this.router.navigate(['/verification-info']);
+          this.sendVerificationCode(user.email);
+          // this.router.navigate(['/verification', { email: user.email }]);
+          this.router.navigate(['/verification']);
+
         },
         (error) => {
           console.error('Registration error:', error);
@@ -121,5 +125,18 @@ export class SignUpComponent {
         }
       );
     }
+  }
+
+  private sendVerificationCode(email: string): void {
+    // Call the resendVerificationEmail method from VerificationService
+    this.verificationService.resendVerificationEmail(email).subscribe(
+      (_) => {
+        console.log('Verification code sent successfully.');
+      },
+      (error) => {
+        console.error('Error sending verification code:', error);
+        // Handle error (e.g., display an error message to the user)
+      }
+    );
   }
 }

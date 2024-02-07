@@ -15,7 +15,7 @@ export class VerificationService {
     return this.http.get<any>(url);
   }
   resendVerificationEmail(email: string): Observable<any> {
-    const resendUrl = `${this.baseUrl}/resend-verification`; // Update the API endpoint accordingly
+    const resendUrl = `${this.baseUrl}/resend-code`;
     const payload = { email };
 
     return this.http.post(resendUrl, payload);

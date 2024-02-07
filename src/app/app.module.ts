@@ -9,9 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { VerificationService } from './verification-service.service';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { VerificationComponent } from './components/verification-component/verification-component.component';
+import { VerificationService } from './services/verification.service';
+import { VerificationComponent } from './components/verification/verification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +18,6 @@ import { VerificationComponent } from './components/verification-component/verif
     HomeComponent,
     LoginComponent,
     SignUpComponent,
-    LoginComponent,
     VerificationComponent,
     ],
   imports: [
@@ -27,8 +25,7 @@ import { VerificationComponent } from './components/verification-component/verif
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule,
-    BsDropdownModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [VerificationService,],
   bootstrap: [AppComponent]

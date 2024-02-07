@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable , Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
   private verificationStatus: string = 'unknown';
   private apiUrl = 'https://localhost:7105/api/User/register';
+
+  // Create a Subject to hold email information
+  private emailSubject = new Subject<string>();
+  email$ = this.emailSubject.asObservable();
+
 
   constructor(private http: HttpClient) {}
 
@@ -15,6 +20,9 @@ export class RegisterService {
 
     // Set responseType to 'text' to prevent JSON parsing
     const options = { headers, responseType: 'text' as 'json' };
+
+    // Set the email in the Subject when registering
+    this.emailSubject.next(user.email);
 
     return this.http.post(this.apiUrl, user, options);
   }

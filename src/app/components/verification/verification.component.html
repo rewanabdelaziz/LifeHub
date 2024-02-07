@@ -1,0 +1,29 @@
+<!-- verification.component.html -->
+<section>
+  <div class="container p-5 d-flex justify-content-center align-content-center">
+    <div class="p-5 m-5 w-75">
+      <div class="header">
+        <img src="assets/imgs/icon.ico" alt="Life Blood Image">
+        <h2 class="gradient-text mt-3 ms-3">Health Hub</h2>
+      </div>
+      <p class="text-center h2">Check Your Email</p>
+      <p class="text-muted text-center lead h3 px-5 py-2 fs-4">
+        We have sent a code to email {{ email }}
+        please check your email and enter code below
+      </p>
+
+      <!-- error -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <!-- enter code -->
+      <form (ngSubmit)="onSubmit()">
+        <input class="form-control mt-3 p-2" type="text" formControlName="token" placeholder="Enter code *" required><br>
+
+        <button id="doneButton" class="form-control text-white p-2 fs-5" type="submit">Done</button><br>
+        <button id="resendButton" class="form-control  p-2 fs-5" (click)="resendCode()">Resend Code</button><br>
+      </form>
+    </div>
+  </div>
+</section>
