@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VerificationService } from './services/verification.service';
 import { VerificationComponent } from './components/verification/verification.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,7 @@ import { VerificationComponent } from './components/verification/verification.co
     LoginComponent,
     SignUpComponent,
     VerificationComponent,
+    ProfileComponent,
     ],
   imports: [
     BrowserModule,
