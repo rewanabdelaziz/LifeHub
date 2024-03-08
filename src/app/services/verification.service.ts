@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError,of, } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -59,30 +59,41 @@ export class VerificationService {
 
     return throwError(customError);
   }
-  enterTokenVerify(token: string): Observable<any> {
+ enterTokenVerify(token: string): Observable<any> {
     const url = `${this.apiUrl}/Tokenverify/enter_token_verify?token=${token}`;
     return this.http.post(url, null, { responseType: 'text' }).pipe(
       map((response: string) => {
-        try {
-          // Assuming your response is a plain text message
-          const parsedResponse = JSON.parse(response);
-          // Handle the parsed response here, if needed
+        // Assuming your response is a plain text message
+        const trimmedResponse = response.trim();
 
-          // If parsing is successful, you can navigate to the login page
+
+        if (trimmedResponse === 'User verified.') {
+          console.log('User verified successfully.');
           this.router.navigate(['/login']);
-
-          // Return the parsed response if needed
-          return parsedResponse;
-        } catch (error) {
-          // If parsing fails, handle the error here
-          console.error('Error parsing response:', error);
+          // Return a success message if needed
+          return 'User verified successfully.';
+        } else if (trimmedResponse === 'User already verified.') {
+          console.log('User already verified.');
+          this.router.navigate(['/login']);
+          // Return a success message if needed
+          return 'User already verified.';
+        } else {
+          // If the response is neither 'User verified.' nor 'User already verified.'
+          console.error('Unexpected response:', trimmedResponse);
           return throwError('An error occurred while processing the response.');
         }
       }),
-      catchError(error => {
-        // If there's a parsing error or any other error, handle it here
-        console.error('Error parsing response:', error);
-        return throwError('An error occurred while processing the response.');
+      catchError((error: HttpErrorResponse) => {
+        // If there's any error during the request or response processing
+        console.error('Error during token verification:', error);
+
+        if (error.status === 400 && error.error === 'User already verified.') {
+          console.log('User already verified.');
+          this.router.navigate(['/login']);
+          return throwError('User already verified.');
+        } else {
+          return throwError('An error occurred while processing the response.');
+        }
       })
     );
   }
