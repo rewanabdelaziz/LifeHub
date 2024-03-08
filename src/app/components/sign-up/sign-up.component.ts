@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RegisterService } from '../../services/register.service';
-
+import { NgZone } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -13,7 +14,15 @@ export class SignUpComponent {
   signupForm: FormGroup;
   errorMessage: string = '';
   sendingVerificationCode: boolean = false;
-  constructor(private registerService: RegisterService, private verificationService: VerificationService,private fb: FormBuilder,private router: Router) {
+  validationErrors: any[] = [];
+
+
+  constructor(
+    private registerService: RegisterService,
+    private verificationService: VerificationService,
+    private fb: FormBuilder,private router: Router,
+    private ngZone: NgZone,
+    ) {
     this.signupForm = this.fb.group({
       donorNumber: this.fb.group({
         hasDonorNumber: [false],
@@ -45,32 +54,16 @@ export class SignUpComponent {
 
   signup(): void {
     this.signupForm.markAllAsTouched();
-    // Check if there are any required input errors
-    if (
-      this.signupForm.get('email')?.hasError('required') ||
-      this.signupForm.get('password')?.hasError('required') ||
-      this.signupForm.get('confirmPassword')?.hasError('required') ||
-      this.signupForm.get('userName')?.hasError('required') ||
-      this.signupForm.get('city')?.hasError('required') ||
-      this.signupForm.get('birthDate')?.hasError('required') ||
-      this.signupForm.get('gender')?.hasError('required') ||
-      this.signupForm.get('phoneNumber')?.hasError('required') ||
-      this.signupForm.get('nationalID')?.hasError('required') ||
-      this.signupForm.get('BloodBank')?.hasError('required') ||
-      false // Add more conditions here if needed
-    ) {
+
+    if (this.signupForm.invalid) {
       this.errorMessage = 'Please fill in all required fields.';
       return;
     }
+
     if (this.signupForm.get('nationalID')?.hasError('pattern')) {
       this.errorMessage = 'The National ID must be 14 numbers!';
       return;
     }
-
-    // if (this.signupForm.hasError('confirmPassword')) {
-    //   this.errorMessage = 'Password and Confirm Password must match.';
-    //   return;
-    // }
 
     if (!this.signupForm.get('agreeOnTerms')?.value) {
       this.errorMessage = 'Please agree to the terms and conditions.';
@@ -81,76 +74,92 @@ export class SignUpComponent {
       this.errorMessage = 'Please confirm that you are not a robot.';
       return;
     }
+
     if (!this.signupForm.get('donarYes')?.value && !this.signupForm.get('donarNo')?.value) {
-      this.errorMessage = 'Please check if you have donor number or No';
+      this.errorMessage = 'Please check if you have a donor number or not.';
+      return;
+    }
+    if (!this.signupForm.get('phoneNumber')?.value) {
+      this.errorMessage = 'Phone number is required.';
       return;
     }
 
-    if (this.signupForm.valid) {
-      const user = this.signupForm.value;
 
-      this.registerService.register(user).subscribe(
-        (_) => {
-          this.errorMessage = 'User registered successfully. Please check your email for a verification link.';
-          this.registerService.setVerificationStatus('unverified');
-          this.sendVerificationCode(user.email);
-          // this.router.navigate(['/verification', { email: user.email }]);
-          this.router.navigate(['/verification']);
+    const user = this.signupForm.value;
 
-        },
-        (error) => {
-          console.error('Registration error:', error);
+    if (!user.email) {
+      this.errorMessage = 'Please provide an email address.';
+      return;
+    }
+    // Trigger validation for the email field
+    this.signupForm.get('email')?.markAsTouched();
 
+    // Check if the email field has a valid email format
+    if (this.signupForm.get('email')?.invalid) {
+      this.errorMessage = 'Please provide a valid email address.';
+      return;
+    }
+
+    this.registerService.register(user).subscribe(
+      (_) => {
+        const email = this.signupForm.get('email')?.value;
+        console.log('Email value before calling sendVerificationCode:', email);
+        this.sendVerificationCode(email);
+        this.errorMessage = 'User registered successfully. Please check your email for a verification link.';
+        this.registerService.setVerificationStatus('unverified');
+        this.router.navigate(['/verification', { email: email }]);
+      },
+      (error) => {
+        console.error('Registration error:', error);
+        console.log("user",user);
         if (error.error && error.error.errors) {
-          // Handle specific error messages from the API
           const apiErrors = error.error.errors;
 
-          if (apiErrors.Password) {
+          if (apiErrors.PhoneNumber) {
+            this.errorMessage = apiErrors.PhoneNumber[0];
+          } else if (apiErrors.Password) {
             this.errorMessage = apiErrors.Password[0];
           } else if (apiErrors.ConfirmPassword) {
             this.errorMessage = apiErrors.ConfirmPassword[0];
           } else {
             this.errorMessage = 'An error occurred. Please try again.';
           }
-        }else if (error.error && error.error === 'User already exists.') {
+        } else if (error.error && error.error === 'User already exists.') {
           this.errorMessage = 'User already exists. Please log in.';
         } else {
           this.errorMessage = 'An error occurred. Please try again.';
         }
-          // Reset form errors after a delay
-          // setTimeout(() => {
-          //   this.errorMessage = '';
-          //   this.signupForm.setErrors(null);
-          // }, 5000);
-        }
-      );
-    }
+      }
+    );
   }
 
 
-
-
-  private sendVerificationCode(email: string): void {
-    // Set the loading state
-    this.sendingVerificationCode = true;
-
-    this.verificationService.resendVerificationCode(email).subscribe(
-      (_) => {
-        console.log('New verification code sent successfully.');
-
-        // Reset the loading state
-        this.sendingVerificationCode = false;
-
-        // Optionally, display a success message to the user
-      },
-      (error) => {
-        console.error('Error sending new verification code:', error);
-
-        // Reset the loading state
-        this.sendingVerificationCode = false;
-
-        // Handle error (e.g., display an error message to the user)
+  sendVerificationCode(email: string): void {
+      // console.log('Inside sendVerificationCode method.');
+      // console.log('Entering sendVerificationCode with email:', email);
+      if (!email) {
+        console.error('Email address is missing.');
+        return;
       }
-    );
+      // console.log('Email is present, proceeding with verification code send.');
+      this.verificationService.sendVerificationCode(email).subscribe(
+        (_) => {
+          console.log('New verification code sent successfully.');
+        },
+        (error:any) => {
+          if ( error.emailValidationErrors) {
+            this.validationErrors = error.emailValidationErrors;
+            // console.log("email: ",email);
+            // console.log('Validation errors:', this.validationErrors);
+
+          }
+          else {
+            console.error('Error sending verification code:', error);
+          }
+        }
+      );
+      // console.log('After sendVerificationCode method');
+
+
   }
 }

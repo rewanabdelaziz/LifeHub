@@ -6,7 +6,7 @@ import { Observable , Subject } from 'rxjs';
 })
 export class RegisterService {
   private verificationStatus: string = 'unknown';
-  private apiUrl = 'https://localhost:7105/api/User/register';
+  private apiUrl = 'https://localhost:7105/api/Users/Register/register';
 
   // Create a Subject to hold email information
   private emailSubject = new Subject<string>();

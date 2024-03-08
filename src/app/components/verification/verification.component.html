@@ -12,18 +12,37 @@
         please check your email and enter code below
       </p>
 
-      <!-- error -->
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
 
-      <!-- enter code -->
-      <form (ngSubmit)="onSubmit()">
-        <input class="form-control mt-3 p-2" type="text" formControlName="token" placeholder="Enter code *" required><br>
+      <!-- enter code form -->
+        <form [formGroup]="verificationForm">
+          <div class="mb-3">
+            <label for="token" class="form-label">Enter Code *</label>
+            <input class="form-control" type="text" required formControlName="token" placeholder="token*">
+            <div *ngIf="verificationForm.get('token')?.invalid && verificationForm.get('token')?.touched" class="invalid-feedback">
+              Token is required.
+            </div>
+          </div>
 
-        <button id="doneButton" class="form-control text-white p-2 fs-5" type="submit">Done</button><br>
-        <button id="resendButton" class="form-control  p-2 fs-5" (click)="resendCode()">Resend Code</button><br>
-      </form>
+          <!-- error -->
+          <div *ngIf="errorMessage" class="error-message">
+            <p class="text-danger">{{ errorMessage }}</p>
+          </div>
+
+          <!-- resend code message -->
+          <div *ngIf="resendverificationCodeSentMessage" class="verification-message">
+            {{ resendverificationCodeSentMessage }}
+          </div>
+
+
+          <div class="mb-3">
+            <button id="doneButton" class="btn btn-primary" type="button" (click)="enterTokenVerify()">Done</button>
+          </div>
+
+          <div class="mb-3">
+            <button id="resendButton" class="btn btn-secondary" type="button" (click)="resendVerificationCode()">Resend Code</button>
+          </div>
+        </form>
+
     </div>
   </div>
 </section>

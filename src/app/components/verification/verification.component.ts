@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VerificationService } from 'src/app/services/verification.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-verification',
@@ -12,6 +13,8 @@ export class VerificationComponent implements OnInit {
   verificationForm: FormGroup;
   errorMessage: string = '';
   email: string = '';
+  token: string='';
+  resendverificationCodeSentMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -19,6 +22,7 @@ export class VerificationComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
+    // Initialize the form and its controls
     this.verificationForm = this.fb.group({
       token: ['', Validators.required],
     });
@@ -29,33 +33,63 @@ export class VerificationComponent implements OnInit {
     this.email = this.route.snapshot.params['email'];
   }
 
-  onSubmit(): void {
+
+
+
+  public enterTokenVerify(): void {
     const token = this.verificationForm.get('token')?.value;
 
-    // Call the verification service
-    this.verificationService.verifyUser(token).subscribe(
-      (response) => {
-        console.log('Verification successful:', response);
-        this.router.navigate(['/login']); // Redirect to login page
+    if (!token) {
+      console.error('Token is required.');
+      this.verificationForm.markAllAsTouched();
+      return;
+    }
+
+    this.verificationService.enterTokenVerify(token).subscribe(
+      (_) => {
+        console.log('User verified successfully.');
+        this.router.navigate(['/login']);
       },
-      (error) => {
-        console.error('Verification error:', error);
-        this.errorMessage = 'An error occurred during verification. Please try again later.';
-        // You can add more specific error handling based on the error object if needed
+      (error: HttpErrorResponse) => {
+        console.error('Error verifying user:', error);
+
+        switch (error.error) {
+          case 'User already verified.':
+            this.router.navigate(['/login']);
+            break;
+          default:
+            console.error('Unhandled error:', error);
+            break;
+        }
       }
     );
   }
 
-  resendCode(): void {
+
+
+  public resendVerificationCode(): void {
     // Call the service to resend verification code
     this.verificationService.resendVerificationCode(this.email).subscribe(
-      (response) => {
-        console.log('Resend successful:', response);
-        // You can provide feedback to the user that the code has been resent
+      (response: any) => {
+        // Handle successful resend
+        console.log(response);
+        // Check if the response is a string
+        if (typeof response === 'string') {
+
+          this.resendverificationCodeSentMessage= 'New verification code sent successfully.';
+
+        }
+        //  else {
+        //   // Handle other types of responses if needed
+        // }
       },
-      (error) => {
-        console.error('Resend error:', error);
-        // Handle the error, e.g., display a message to the user
+      (error: HttpErrorResponse) => {
+        // Handle errors
+        if (error.status === 200) {
+          this.resendverificationCodeSentMessage =  error.error.text;
+        } else {
+          console.error('Error resending verification code:', error);
+        }
       }
     );
   }
