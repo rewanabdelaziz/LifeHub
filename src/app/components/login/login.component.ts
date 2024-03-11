@@ -15,34 +15,27 @@ export class LoginComponent implements OnInit {
   });
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder,private registerService: RegisterService) {}
+  constructor(private authService: AuthService,
+              private router: Router,
+              private fb: FormBuilder,
+              private registerService: RegisterService) {}
 
   ngOnInit(): void {
 
   }
-  // resendVerification(): void {
-  //   // Call a method from your VerificationService to resend the verification email
-  //   this.authService.resendVerificationEmail(this.loginForm.value.email).subscribe(
-  //     (_) => {
-  //       console.log('Verification email resent successfully');
-  //       // You can display a success message or update the UI accordingly
-  //     },
-  //     (error) => {
-  //       console.error('Resend verification email error:', error);
-  //       // Handle error (e.g., display an error message to the user)
-  //     }
-  //   );
-  // }
+
   login(): void {
     this.loginForm.markAllAsTouched();
-    console.log('Form valid:', this.loginForm.valid);
+    // console.log('Form valid:', this.loginForm.valid);
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
 
       this.authService.login(credentials).subscribe(
         (_) => {
           this.errorMessage ='Login successful';
-          // this.router.navigate(['/profile']);
+          this.authService.setVariable(true);
+          console.log("login variable: ",this.authService.getVariable());
+          this.router.navigate(['/home']);
       },
         (error) => {
           console.error('Login error:', error);

@@ -34,4 +34,15 @@ export class AuthService {
       );
   }
 
+
+  loginSuccess: Boolean = false;
+
+  setVariable(value: Boolean) {
+    this.loginSuccess = value;
+  }
+
+  getVariable(): Boolean{
+    return this.loginSuccess;
+  }
+
 }

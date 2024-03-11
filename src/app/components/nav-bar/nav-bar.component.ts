@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,7 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  constructor(){}
+  loginSuccess:Boolean=false;
+  constructor(private authService: AuthService){
+    this.loginSuccess = this.authService.getVariable();
+  }
+
   menuVariable:boolean = false;
 
   openMenu(){

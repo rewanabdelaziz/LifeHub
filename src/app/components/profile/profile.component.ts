@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-profile',
   // standalone: true,
@@ -8,6 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
+  loginSuccess:Boolean=false;
+  constructor(private authService: AuthService){
+    this.loginSuccess = this.authService.getVariable();
+  }
   isPersonalInfoVisible: boolean = true;
 
   //  dummy values
