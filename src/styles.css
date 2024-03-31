@@ -1,6 +1,12 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~@fortawesome/fontawesome-free/css/all.css';
 body{
-  margin: 0px;
+  /* margin: 0px; */
   width: 100%;
+}
+:root {
+  --main-color: #8C0D0B;
+  --background-color: #E74040;
+  --lighterGrey : #fff6f6d3;
+  --plasma:#FDC500;
 }

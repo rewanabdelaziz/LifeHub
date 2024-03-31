@@ -13,6 +13,9 @@ import { VerificationService } from './services/verification.service';
 import { VerificationComponent } from './components/verification/verification.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CommonModule } from '@angular/common';
+import { DonationComponent } from './components/donation/donation.component';
+import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +25,8 @@ import { CommonModule } from '@angular/common';
     SignUpComponent,
     VerificationComponent,
     ProfileComponent,
+    AuthNavComponent,
+    DonationComponent
     ],
   imports: [
     BrowserModule,
@@ -30,7 +35,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [VerificationService,],
+  providers: [VerificationService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

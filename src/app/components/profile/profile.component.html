@@ -1,5 +1,5 @@
-<app-nav-bar></app-nav-bar>
-<section id="Profile" class="container mt-5 w-75" *ngIf="loginSuccess">
+<app-auth-nav ></app-auth-nav>
+<section id="Profile" class="container mt-5 w-75" *ngIf="loginSuccess || value">
   <div class="container w-75 p-5">
     <div class="header container ms-1">
       <img src="assets/imgs/icon.ico" alt="Life Blood Image">
@@ -22,13 +22,15 @@
         </button>
       </div>
 
-      <div class="container personalInfo" *ngIf="isPersonalInfoVisible">
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ personalInfo.email }}" type="email"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ personalInfo.phone }}" type="tel"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ personalInfo.nationalId }}" type="text"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ personalInfo.nearestHospital }}" type="text"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ personalInfo.gender }}" type="text"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ personalInfo.birthdate }}" type="date"><br>
+      <div class="container personalInfo pb-3" *ngIf="isPersonalInfoVisible">
+
+
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger   mb-3 text-muted lead p-2 ">{{personalEmail}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalPhone}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalNationalId}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalNearestHospital}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalGender}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalBirthDate}}</p>
       </div>
 
       <div class="container medicalInfo" *ngIf="!isPersonalInfoVisible">

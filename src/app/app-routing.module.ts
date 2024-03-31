@@ -7,6 +7,8 @@ import { VerificationComponent } from './components/verification/verification.co
 import { ForgettingPasswordComponent } from './components/forgetting-password/forgetting-password.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
+import { DonationComponent } from './components/donation/donation.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:"full" },
   {path :'home'  , component : HomeComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'verification', component: VerificationComponent },
   { path: 'forgettingPassword', component: ForgettingPasswordComponent},
   { path: 'profile', component: ProfileComponent},
+  {path:"auth-nav", component:AuthNavComponent},
+  {path: "donation",component:DonationComponent}
 ];
 
 @NgModule({
