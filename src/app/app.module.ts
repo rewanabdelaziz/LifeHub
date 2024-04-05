@@ -14,6 +14,7 @@ import { VerificationComponent } from './components/verification/verification.co
 import { ProfileComponent } from './components/profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { DonationComponent } from './components/donation/donation.component';
+import { RequestDonationComponent } from './components/request-donation/request-donation.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { DatePipe } from '@angular/common';
 @NgModule({
@@ -26,7 +27,8 @@ import { DatePipe } from '@angular/common';
     VerificationComponent,
     ProfileComponent,
     AuthNavComponent,
-    DonationComponent
+    DonationComponent,
+    RequestDonationComponent
     ],
   imports: [
     BrowserModule,
