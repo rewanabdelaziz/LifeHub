@@ -135,28 +135,28 @@
               <div class=" col-3  px-2   text-center  ">
                   <div class="  px-5 layer text-center  ">
                       <i class="icon1 fa-solid fa-hand-holding-droplet fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3">{{totalDonars}}</span>
+                      <span class="d-block h2 fw-bold mb-3"  appInView (inView)="onInView('donors')">{{currentDonors}}</span>
                       <p class="fw-light  lead">Happy Donors</p>
                   </div>
               </div>
               <div class="col-3   px-2  text-center ">
                   <div class=" px-5 layer  text-center ">
                       <i class="icon1 group fa-solid fa-user-group fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3">{{totalRecipients}}</span>
+                      <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('recipients')">{{currentRecipients}}</span>
                       <p class="fw-light  lead ">Happy Recipints</p>
                   </div>
               </div>
               <div class="col-3  px-2   text-center ">
                   <div class="  px-5 layer  text-center ">
                       <i class="icon1 fa-regular fa-clipboard fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3">{{totalRegesister}}</span>
+                      <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('registers')">{{currentRegisters}}</span>
                       <p class="fw-light  lead">Total Register</p>
                   </div>
               </div>
               <div class="col-3  px-2   text-center ">
                   <div class="  px-5 layer  text-center ">
                       <i class="icon1 fa-solid fa-droplet fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3">5</span>
+                      <span class="d-block h2 fw-bold mb-3">{{bloodBankValue}}</span>
                       <p class="fw-light  lead  ">Blood Bank</p>
                   </div>
               </div>

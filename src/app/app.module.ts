@@ -17,6 +17,7 @@ import { DonationComponent } from './components/donation/donation.component';
 import { RequestDonationComponent } from './components/request-donation/request-donation.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { DatePipe } from '@angular/common';
+import { InViewDirective } from './directives/in-view.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { DatePipe } from '@angular/common';
     ProfileComponent,
     AuthNavComponent,
     DonationComponent,
-    RequestDonationComponent
+    RequestDonationComponent,
+    InViewDirective
     ],
   imports: [
     BrowserModule,

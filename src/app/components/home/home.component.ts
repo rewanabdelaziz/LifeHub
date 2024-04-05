@@ -1,46 +1,159 @@
+import { Component, HostListener, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
-import { Component } from '@angular/core';
 import { HomeDataService } from 'src/app/services/home-data.service';
+import { Subject } from 'rxjs';
+import { takeUntil, debounceTime } from 'rxjs/operators';
+import { InViewDirective } from 'src/app/directives/in-view.directive';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  loginSuccess: Boolean = false;
-  totalRecipients:number=0;
-  totalDonars:number=0;
-  totalRegesister:number=0;
+  bloodBankValue: number = 5;
+  loginSuccess: boolean = false;
+  totalRecipients: number = 0;
+  totalDonors: number = 0;
+  totalRegisters: number = 0;
   value = sessionStorage.getItem("token") !== null;
 
+  currentRecipients: number = 0;
+  currentDonors: number = 0;
+  currentRegisters: number = 0;
 
-  constructor(private authService: AuthService, private dataService:HomeDataService){
-    this.loginSuccess = this.authService.getVariable();
+  private destroy$: Subject<void> = new Subject<void>();
+  private scrollSubject: Subject<void> = new Subject<void>();
+
+  constructor(
+    private authService: AuthService,
+    private dataService: HomeDataService,
+    private el: ElementRef
+  ) {
+    this.loginSuccess = !this.authService.getVariable();
   }
+
   ngOnInit(): void {
-    this.fetchTotalRecipients();
-    this.fetchTotalDonars();
-    this.fetchTotalRegesiters();
+    this.scrollSubject.pipe(
+      debounceTime(200), // Adjust debounce time as needed
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.checkInView();
+    });
+
+    this.fetchData();
   }
 
-  fetchTotalRecipients(): void {
-    this.dataService.getTotalRecipients().subscribe(response => {
-      this.totalRecipients = response.total_Recipints;
-      // console.log(this.totalRecipients);
-    });
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
-  fetchTotalDonars(): void {
-    this.dataService.getTotalDonars().subscribe(response => {
-      this. totalDonars = response.total_Donners;
-      // console.log(this.totalDonars);
+
+  fetchData(): void {
+    this.dataService.getTotalRecipients().pipe(
+        takeUntil(this.destroy$)
+    ).subscribe(response => {
+        this.totalRecipients = response.total_Recipints;
+        console.log("from fetch re method ", this.totalRecipients);
+        this.checkInView();
+        this.animateCount('recipients'); // Call animateCount here
     });
-  }
-  fetchTotalRegesiters(): void {
-    this.dataService.getTotalRegeisters().subscribe(response => {
-      this. totalRegesister = response.totalRegisters;
-      // console.log(this.totalRegesister);
+
+    this.dataService.getTotalDonars().pipe(
+        takeUntil(this.destroy$)
+    ).subscribe(response => {
+        this.totalDonors = response.total_Donners;
+        console.log("from fetch donor method", this.totalDonors);
+        this.checkInView();
+        this.animateCount('donors'); // Call animateCount here
     });
+
+    this.dataService.getTotalRegeisters().pipe(
+        takeUntil(this.destroy$)
+    ).subscribe(response => {
+        this.totalRegisters = response.totalRegisters;
+        console.log("from fetch reg method", this.totalRegisters);
+        this.checkInView();
+        this.animateCount('registers'); // Call animateCount here
+    });
+}
+
+  private animationTriggered: boolean = false;
+
+  @HostListener("window:scroll", ["$event"])
+  checkInView(): void {
+      console.log("checkInView() triggered"); // Add debug log
+      if (!this.animationTriggered) {
+          const rect = this.el.nativeElement.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          if (rect.top >= 0 && rect.bottom <= windowHeight) {
+              this.startCountAnimation();
+              this.animationTriggered = true; // Set the flag to true to indicate that animation has been triggered
+          }
+      }
   }
+
+  startCountAnimation(): void {
+    console.log("from startCountAnimation");
+    this.animateCount('recipients');
+    this.animateCount('donors');
+    this.animateCount('registers');
+    this.animateBloodBank() // Call animateBloodBank here
+    console.log("after animateBloodBank()")
+  }
+
+  animateCount(type: 'recipients' | 'donors' | 'registers'): void {
+    const finalCount = type === 'recipients' ? this.totalRecipients :
+        type === 'donors' ? this.totalDonors :
+        this.totalRegisters;
+
+    console.log(type, finalCount);
+
+    let currentValue = 0;
+    const interval = setInterval(() => {
+        if (currentValue < finalCount) {
+            currentValue++;
+            this.updateCurrentCount(type, currentValue);
+        } else {
+            clearInterval(interval);
+        }
+    }, 70);
+}
+
+animateBloodBank(): void {
+  console.log("animateBloodBank() called"); // Add debug log
+  const finalCount = this.bloodBankValue; // Use bloodBankValue as final count
+  console.log('bloodBank', finalCount); // Add debug log
+
+  let currentValue = 0;
+  const interval = setInterval(() => {
+      if (currentValue < finalCount) {
+          currentValue++;
+          this.bloodBankValue = currentValue; // Update bloodBankValue
+      } else {
+          clearInterval(interval);
+      }
+  }, 70);
+}
+
+
+  updateCurrentCount(type: 'recipients' | 'donors' | 'registers', value: number): void {
+    switch (type) {
+      case 'recipients':
+        this.currentRecipients = value;
+        break;
+      case 'donors':
+        this.currentDonors = value;
+        break;
+      case 'registers':
+        this.currentRegisters = value;
+        break;
+    }
+  }
+
+  onInView(type: 'recipients' | 'donors' | 'registers'): void {
+    console.log(`${type} is in view`);
+  }
+
 
 }
