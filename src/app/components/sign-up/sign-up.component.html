@@ -1,0 +1,74 @@
+<section>
+  <div class="container d-flex justify-content-center align-content-center">
+   <div class="container  w-65 ">
+    <div class="header">
+      <img src="assets/imgs/icon.ico" alt="Life Blood Image">
+      <h2 class="gradient-text mt-3  ms-3">LIFEBLOOD</h2>
+    </div>
+    <p class="h2 text-center">Welcome! </p>
+    <p class="text-mute lead fs-4  text-center py-2">To Our Secure online booking process .You can manage all your
+      appointment details in one convenient place.</p>
+    <div id="register" class="d-flex justify-content-between mx-3">
+      <p class="h3 fw-bold">Register</p>
+      <p class=" fw-bold">Required field *</p>
+    </div>
+    <!-- <form [formGroup]="signupForm" (ngSubmit)="signup()"> -->
+    <form [formGroup]="signupForm">
+    <div class="d-flex justify-content-between my-3">
+      <label class="fw-bold" for="">Do You Have a Donor Number?*</label>
+      <div class="d-flex justify-content-between">
+        <div class="me-5">
+          <input type="checkbox" formControlName="donarYes">
+          <label class="text-muted ms-2" for="yes">Yes</label>
+        </div>
+
+        <div class="me-5">
+          <input type="checkbox" formControlName="donarNo">
+          <label class="text-muted ms-2" for="No">No</label>
+        </div>
+      </div>
+    </div>
+    <input class="form-control p-2" type="email" required formControlName="email" placeholder="Email*" autocomplete="username"><br>
+    <input class="form-control p-2" type="password" required formControlName="password" placeholder="password*" autocomplete="current-password"><br>
+    <input class="form-control p-2" type="password" required formControlName="confirmPassword" placeholder="confirm password*" autocomplete="current-password"><br>
+    <input class="form-control p-2" type="text" formControlName="userName" placeholder="User Name*" > <br>
+    <input class="form-control p-2" type="text" formControlName="BloodBank" placeholder="Blood Bank*" >
+    <label class="my-3 text-muted fw-bold" for="">legal name e.g as shown on your national id or passport</label><br>
+    <select name="location" id="location" required class="form-control p-2" formControlName="city">
+      <option value="" disabled selected>location*</option>
+      <option value="Cairo">Cairo</option>
+      <option value="Alex">Alex</option>
+      <option value="Tanta">Tanta</option>
+    </select>
+    <label class="my-3 text-muted fw-bold" for="">select the nearest blood donation center in your city</label><br>
+    <input class=" mb-3 p-2 form-control" required type="date" formControlName="birthDate">
+    <select class="form-control  p-2" name="gender" id="gender" formControlName="gender">
+      <option value="" disabled selected>Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select><br>
+    <input class="form-control p-2" type="tel" formControlName="phoneNumber" placeholder="Mobile Number*"> <br>
+    <input class="form-control p-2" type="tel" formControlName="nationalID" placeholder="National ID*">
+    <p class="text-muted mt-2 fw-bold">Do not forget to write code of country</p>
+    <input class="border" type="checkbox" formControlName="agreeOnTerms">
+    <label id="AgreeOnConditions" class="ms-3 fw-bold" for="AgreeOnTerms">I Agree to the Australlian Red Cross lifeblood <a
+        href="">Privacy Policy , Terms and Conditions ,</a> and the <a href="">Privacy Collection Statement</a> above.
+      *Required</label><br><br>
+    <input type="checkbox" formControlName="notRobot">
+    <label class=" ms-3 fw-bold" for="notRobot">Iam not robot </label><br>
+
+    <!-- General error message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <br>
+
+
+    <button id="SignUpButton" class="form-control p-2 text-white my-2" type="button" [disabled]="sendingVerificationCode" (click)="signup()">Sign Up</button>
+    <div *ngIf="sendingVerificationCode">Sending verification code...</div>
+    </form>
+    <p class="text-center text-muted lead fw-bold">Already Have Account? <a class=" fw-bold" id="loginLink" routerLink="/login">login Now </a></p>
+
+  </div>
+  </div>
+</section>

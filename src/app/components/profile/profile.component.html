@@ -1,0 +1,46 @@
+<app-auth-nav ></app-auth-nav>
+<section id="Profile" class="container mt-5 w-75" *ngIf="loginSuccess || value">
+  <div class="container w-75 p-5">
+    <div class="header container ms-1">
+      <img src="assets/imgs/icon.ico" alt="Life Blood Image">
+      <h2 class="gradient-text mt-3 ms-3 h3">Health Hub</h2>
+    </div>
+
+    <div class="container profileContainer w-90">
+      <div class="text-center border-bottom mb-4">
+        <img src="https://cdn.onlinewebfonts.com/svg/img_228845.png" class="w-25" alt="">
+        <h3>Your Name</h3>
+        <p><i class="fa-solid locationIcon fa-location-dot fs-4 me-2"></i>Location/type</p>
+      </div>
+
+      <div class="mb-4 profileButtons px-5 text-center">
+        <button (click)="showPersonalInfo()" [class.button1]="isPersonalInfoVisible" [class.button2]="!isPersonalInfoVisible" class="btnLeft">
+          Personal Info
+        </button>
+        <button (click)="showMedicalInfo()" [class.button1]="!isPersonalInfoVisible" [class.button2]="isPersonalInfoVisible" class="btnRight">
+          Medical Info
+        </button>
+      </div>
+
+      <div class="container personalInfo pb-3" *ngIf="isPersonalInfoVisible">
+
+
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger   mb-3 text-muted lead p-2 ">{{personalEmail}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalPhone}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalNationalId}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalNearestHospital}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalGender}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalBirthDate}}</p>
+      </div>
+
+      <div class="container medicalInfo" *ngIf="!isPersonalInfoVisible">
+        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.bloodType }}" type="text"><br>
+        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.lastDonate }}" type="text"><br>
+        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.totalDonate }}" type="text"><br>
+        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.donateBlood }}" type="text"><br>
+        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.donatePlasma }}" type="text"><br>
+      </div>
+    </div>
+  </div>
+</section>
+
