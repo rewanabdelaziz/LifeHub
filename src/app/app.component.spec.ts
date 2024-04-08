@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'LifeBloodUser'`, () => {
+  it(`should have as title 'HemoGivers'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('LifeBloodUser');
+    expect(app.title).toEqual('HemoGivers');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('LifeBloodUser app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('HemoGivers app is running!');
   });
 });

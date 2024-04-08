@@ -10,6 +10,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { DonationComponent } from './components/donation/donation.component';
 import { RequestDonationComponent } from './components/request-donation/request-donation.component';
+import { ServicesComponent } from './components/services/services.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:"full" },
   {path :'home'  , component : HomeComponent },
@@ -21,6 +22,8 @@ const routes: Routes = [
   {path:"auth-nav", component:AuthNavComponent},
   {path: "donation",component:DonationComponent},
   {path: "requestDonation",component:RequestDonationComponent},
+  {path: "service",component:ServicesComponent},
+
 
 ];
 

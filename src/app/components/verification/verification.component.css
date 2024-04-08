@@ -15,7 +15,7 @@
 
 }
 #doneButton{
-  background-color: #EA4444;
+  background-color: var(--main-color);
 }
 #resendButton{
   color: black;

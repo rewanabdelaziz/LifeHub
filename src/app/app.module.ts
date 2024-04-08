@@ -18,6 +18,8 @@ import { RequestDonationComponent } from './components/request-donation/request-
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { DatePipe } from '@angular/common';
 import { InViewDirective } from './directives/in-view.directive';
+import { FooterComponent } from './components/footer/footer.component';
+import { ServicesComponent } from './components/services/services.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,11 @@ import { InViewDirective } from './directives/in-view.directive';
     AuthNavComponent,
     DonationComponent,
     RequestDonationComponent,
-    InViewDirective
+    InViewDirective,
+    FooterComponent,
+    ServicesComponent
+
+
     ],
   imports: [
     BrowserModule,

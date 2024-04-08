@@ -1,4 +1,4 @@
-.donation-container {
+/* .donation-container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -6,9 +6,13 @@
   transform: translate(-50%, -50%);
   width: 70%;
   padding: 20px;
-  /* border: 2px solid var(--main-color);; */
+   //border: 2px solid var(--main-color);;
   border-radius: 10px;
   background-color: #FFFFFF;
+} */
+.donation-container{
+  text-align: center;
+  padding: 40px;
 }
 .btnLeft{
   border-radius: 15px 0px 0px 15px;
