@@ -5,12 +5,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../../services/register.service';
 import { Token } from '@angular/compiler';
 import { LoginProfileService } from '../../services/login-profile.service';
- @Component({
+@Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
- export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup = this.fb.group({  // Initialize loginForm here
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
@@ -28,12 +28,20 @@ import { LoginProfileService } from '../../services/login-profile.service';
   private _LoginProfileService: LoginProfileService) { }
 
   ngOnInit(): void {
-
+     // Check for existing session
+    const token = sessionStorage.getItem('Log In');
+    if (token) {
+       // Optionally, check if the token is still valid
+       // If valid, set login state
+      this.authService.setLoggedIn(true);
+       // Redirect to the home page
+      this.router.navigate(['/home']);
+    }
   }
 
 
 
-   login(): void {
+  login(): void {
   this.loginForm.markAllAsTouched();
 
   if (this.loginForm.valid) {
@@ -44,10 +52,11 @@ import { LoginProfileService } from '../../services/login-profile.service';
         console.log(response);
         console.log(response.theEmail);
         this.EmailData = response.theEmail;
-        sessionStorage.setItem("token", "SaraToken");
+        sessionStorage.setItem("Log In", "Success");
+        sessionStorage.setItem("Email", this.EmailData);
         this.errorMessage = 'Login successful';
-        this.authService.setVariable(true);
-        console.log("login variable: ", this.authService.getVariable());
+        this.authService.setLoggedIn(true);
+        console.log("login variable: ",this.authService.isLoggedIn);
 
         await this.sendDataToComponentB(); // Wait for sendDataToComponentB() to complete
 

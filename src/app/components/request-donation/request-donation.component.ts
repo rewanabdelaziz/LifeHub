@@ -16,8 +16,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./request-donation.component.css']
 })
 export class RequestDonationComponent implements OnInit {
-  loginSuccess: Boolean = false;
-  value = sessionStorage.getItem("token") !== null;
+  loginSuccess;
+  // value = sessionStorage.getItem("token") !== null;
 
   receivedEmail:string="";
   donationType: string="Blood"; // 'blood' (default) or 'plasma'
@@ -44,23 +44,23 @@ export class RequestDonationComponent implements OnInit {
     private datePipe: DatePipe,
     private profileService: ProfileService )
     {
-    this.loginSuccess = this.authService.getVariable();
+    this.loginSuccess = this.authService.isLoggedIn;
     }
 
 
   ngOnInit(): void {
     // Initialize form with validators
 
-    this._LoginProfileService.getData().subscribe(data => {
-      this.receivedEmail = data;
-    })
-    console.log(this.receivedEmail)
-    // Subscribe to city changes
-    this.profileService.GetProfileInfo(this.receivedEmail).subscribe(city => {
-      this.city = city;
-      // Fetch hospitals based on city
-      // this.fetchHospitals(this.city);
-    });
+    // this._LoginProfileService.getData().subscribe(data => {
+    //   this.receivedEmail = data;
+    // })
+    // console.log(this.receivedEmail)
+    // // Subscribe to city changes
+    // this.profileService.GetProfileInfo(this.receivedEmail).subscribe(city => {
+    //   this.city = city;
+    //   // Fetch hospitals based on city
+    //   // this.fetchHospitals(this.city);
+    // });
 
     // this.donationForm = this.formBuilder.group({
     //   hospitalCenter: [null] // Initialize the form control with a null value

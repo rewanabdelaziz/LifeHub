@@ -17,7 +17,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./donation.component.css']
 })
 export class DonationComponent implements OnInit {
-  loginSuccess: Boolean = false;
+  loginSuccess;
   value = sessionStorage.getItem("token") !== null;
 
   receivedEmail:string="";
@@ -44,23 +44,23 @@ export class DonationComponent implements OnInit {
     private datePipe: DatePipe,
     private profileService: ProfileService )
     {
-    this.loginSuccess = this.authService.getVariable();
+    this.loginSuccess = this.authService.isLoggedIn$;
     }
 
 
   ngOnInit(): void {
     // Initialize form with validators
 
-    this._LoginProfileService.getData().subscribe(data => {
-      this.receivedEmail = data;
-    })
-    console.log(this.receivedEmail)
+    // this._LoginProfileService.getData().subscribe(data => {
+    //   this.receivedEmail = data;
+    // })
+    // console.log(this.receivedEmail)
     // Subscribe to city changes
-    this.profileService.GetProfileInfo(this.receivedEmail).subscribe(city => {
-      this.city = city;
-      // Fetch hospitals based on city
-      // this.fetchHospitals(this.city);
-    });
+    // this.profileService.GetProfileInfo(this.receivedEmail).subscribe(city => {
+    //   this.city = city;
+    //   // Fetch hospitals based on city
+    //   // this.fetchHospitals(this.city);
+    // });
 
     // this.donationForm = this.formBuilder.group({
     //   hospitalCenter: [null] // Initialize the form control with a null value

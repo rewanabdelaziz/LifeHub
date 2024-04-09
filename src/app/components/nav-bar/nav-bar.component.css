@@ -142,6 +142,9 @@ header{
   }
 
 }
+#profile{
+  color: var(--main-color);
+}
 @media only screen and (max-width: 516px)
 {
   .container2 , .nav2{

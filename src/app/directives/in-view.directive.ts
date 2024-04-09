@@ -14,7 +14,7 @@ export class InViewDirective {
     const rect = this.elementRef.nativeElement.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
     const isVisible = rect.top >= 0 && rect.bottom <= windowHeight;
-    console.log("from the onwindow scroll");
+    // console.log("from the onwindow scroll");
     if (isVisible) {
       this.inView.emit();
     }

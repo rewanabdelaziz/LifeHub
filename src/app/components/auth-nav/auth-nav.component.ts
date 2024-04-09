@@ -8,9 +8,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AuthNavComponent {
 
-  loginSuccess:Boolean=false;
+  loginSuccess;
   constructor(private authService: AuthService){
-    this.loginSuccess = this.authService.getVariable();
+    this.loginSuccess = this.authService.isLoggedIn$;
   }
 
   menuVariable:boolean = false;

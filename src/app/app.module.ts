@@ -20,6 +20,7 @@ import { DatePipe } from '@angular/common';
 import { InViewDirective } from './directives/in-view.directive';
 import { FooterComponent } from './components/footer/footer.component';
 import { ServicesComponent } from './components/services/services.component';
+import { ReportComponent } from './components/report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { ServicesComponent } from './components/services/services.component';
     RequestDonationComponent,
     InViewDirective,
     FooterComponent,
-    ServicesComponent
+    ServicesComponent,
+    ReportComponent
 
 
     ],

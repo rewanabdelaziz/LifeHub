@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,35 +15,37 @@ export class AuthService {
     const url = `${this.apiUrl}/login`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.http.post(url, credentials, { headers, responseType: 'text' as 'json' })
-      .pipe(
-        map(response=> {
-          // Try parsing the response as JSON
-          try {
-            const jsonResponse = JSON.parse(response as string);
-            return jsonResponse;
-          } catch (jsonError) {
-            // If parsing as JSON fails, return the response as is
-            return response;
-          }
-        }),
-        catchError(error => {
-          // Handle error
-          console.error('Login error:', error);
-          return throwError('An error occurred during login.');
-        })
-      );
+    return this.http.post(url, credentials, { headers, responseType: 'text' as 'json' }).pipe(
+      map((response: any) => {
+        try {
+          const jsonResponse = JSON.parse(response);
+          return jsonResponse;
+        } catch (jsonError) {
+          return response;
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'An error occurred during login.';
+        if (error.status === 401) {
+          errorMessage = 'Invalid credentials. Please try again.';
+        } else if (error.status === 500) {
+          errorMessage = 'Internal server error. Please try again later.';
+        }
+        console.error('Login error:', error);
+        return throwError(errorMessage);
+      })
+    );
   }
 
-
-  loginSuccess: Boolean = false;
-
-  setVariable(value: Boolean) {
-    this.loginSuccess = value;
+  isLoggedIn(): boolean {
+    const token = sessionStorage.getItem('token');
+    return !!token;
   }
 
-  getVariable(): Boolean{
-    return this.loginSuccess;
-  }
+  private isLoggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+  isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
+  setLoggedIn(value: boolean) {
+    this.isLoggedInSubject.next(value);
+  }
 }

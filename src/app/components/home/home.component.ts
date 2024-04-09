@@ -12,11 +12,11 @@ import { InViewDirective } from 'src/app/directives/in-view.directive';
 export class HomeComponent implements OnInit, OnDestroy {
 
   bloodBankValue: number = 5;
-  loginSuccess: boolean = false;
+  loginSuccess;
   totalRecipients: number = 0;
   totalDonors: number = 0;
   totalRegisters: number = 0;
-  value = sessionStorage.getItem("token") !== null;
+  value = sessionStorage.getItem("Log In") !== null;
 
   currentRecipients: number = 0;
   currentDonors: number = 0;
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private dataService: HomeDataService,
     private el: ElementRef
   ) {
-    this.loginSuccess = !this.authService.getVariable();
+    this.loginSuccess = this.authService.isLoggedIn$;
   }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.checkInView();
     });
-
+    // console.log(this.value)
     this.fetchData();
   }
 
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
     ).subscribe(response => {
         this.totalRecipients = response.total_Recipints;
-        console.log("from fetch re method ", this.totalRecipients);
+        // console.log("from fetch re method ", this.totalRecipients);
         this.checkInView();
         this.animateCount('recipients'); // Call animateCount here
     });
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
     ).subscribe(response => {
         this.totalDonors = response.total_Donners;
-        console.log("from fetch donor method", this.totalDonors);
+        // console.log("from fetch donor method", this.totalDonors);
         this.checkInView();
         this.animateCount('donors'); // Call animateCount here
     });
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
     ).subscribe(response => {
         this.totalRegisters = response.totalRegisters;
-        console.log("from fetch reg method", this.totalRegisters);
+        // console.log("from fetch reg method", this.totalRegisters);
         this.checkInView();
         this.animateCount('registers'); // Call animateCount here
     });
@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @HostListener("window:scroll", ["$event"])
   checkInView(): void {
-      console.log("checkInView() triggered"); // Add debug log
+      // console.log("checkInView() triggered"); // Add debug log
       if (!this.animationTriggered) {
           const rect = this.el.nativeElement.getBoundingClientRect();
           const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -94,12 +94,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   startCountAnimation(): void {
-    console.log("from startCountAnimation");
+    // console.log("from startCountAnimation");
     this.animateCount('recipients');
     this.animateCount('donors');
     this.animateCount('registers');
     this.animateBloodBank() // Call animateBloodBank here
-    console.log("after animateBloodBank()")
+    // console.log("after animateBloodBank()")
   }
 
   animateCount(type: 'recipients' | 'donors' | 'registers'): void {
@@ -107,7 +107,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         type === 'donors' ? this.totalDonors :
         this.totalRegisters;
 
-    console.log(type, finalCount);
+    // console.log(type, finalCount);
 
     let currentValue = 0;
     const interval = setInterval(() => {
@@ -121,9 +121,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 }
 
 animateBloodBank(): void {
-  console.log("animateBloodBank() called"); // Add debug log
+  // console.log("animateBloodBank() called"); // Add debug log
   const finalCount = this.bloodBankValue; // Use bloodBankValue as final count
-  console.log('bloodBank', finalCount); // Add debug log
+  // console.log('bloodBank', finalCount); // Add debug log
 
   let currentValue = 0;
   const interval = setInterval(() => {
@@ -152,7 +152,7 @@ animateBloodBank(): void {
   }
 
   onInView(type: 'recipients' | 'donors' | 'registers'): void {
-    console.log(`${type} is in view`);
+    // console.log(`${type} is in view`);
   }
 
 

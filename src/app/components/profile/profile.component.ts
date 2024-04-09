@@ -15,18 +15,20 @@ import { LoginProfileService } from '../../services/login-profile.service';
 })
 export class ProfileComponent implements OnInit {
   receivedEmail: string = "";
-  loginSuccess: Boolean = false;
+  isLoggedIn;
   personalEmail: string = "";
   personalPhone: string = "";
   personalNationalId: string = "";
   personalNearestHospital: string = "";
   personalGender: string = "";
   personalBirthDate: string = "";
-
-value = sessionStorage.getItem("token") !== null;
-
-  constructor(private authService: AuthService,private _: RegisterService ,private _ProfileServiceService:ProfileService,private _LoginProfileServiceService: LoginProfileService ){
-    this.loginSuccess = this.authService.getVariable();
+  email=sessionStorage.getItem("Email");
+  value = sessionStorage.getItem("Log In") !== null;
+  UserName=sessionStorage.getItem("UserName")
+  constructor(private authService: AuthService,private _: RegisterService,
+              private _ProfileServiceService:ProfileService,
+              private _LoginProfileServiceService: LoginProfileService ){
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
   ngOnInit(): void {
 
@@ -37,20 +39,24 @@ value = sessionStorage.getItem("token") !== null;
 
 
     console.log(this.receivedEmail);
-
-    this._ProfileServiceService.GetProfileInfo(this.receivedEmail).subscribe({
-      next: (r) => {
-        console.log(r);
-        this.personalBirthDate = r.birthDate;
-        this.personalNearestHospital = r.bloodBank;
-        this.personalEmail = r.email;
-        this.personalGender = r.gender;
-        this.personalNationalId = r.nationalID;
-        this.personalPhone = r.phoneNumber;
-
-
-      }
-    })
+    console.log(this.email)
+    if (this.email) {
+      this._ProfileServiceService.GetProfileInfo(this.email).subscribe({
+        next: (r) => {
+          console.log(r);
+          this.personalBirthDate = r.birthDate;
+          this.personalNearestHospital = r.bloodBank;
+          this.personalEmail = r.email;
+          this.personalGender = r.gender;
+          this.personalNationalId = r.nationalID;
+          this.personalPhone = r.phoneNumber;
+          // this.UserName=r.userName;
+          // sessionStorage.setItem("UserName",this.UserName)
+        }
+      });
+    } else {
+      console.error("Email is null");
+    }
 
 
 

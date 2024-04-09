@@ -1,5 +1,6 @@
-<app-auth-nav ></app-auth-nav>
-<section id="Profile" class="container mt-5 w-75" *ngIf="loginSuccess || value">
+<!-- <app-auth-nav ></app-auth-nav> -->
+<app-nav-bar></app-nav-bar>
+<section id="Profile" class="container mt-5 w-75" *ngIf="isLoggedIn || value">
   <div class="container w-75 p-5">
     <div class="header container ms-1">
       <img src="assets/imgs/icon.ico" alt="Life Blood Image">
@@ -9,7 +10,7 @@
     <div class="container profileContainer w-90">
       <div class="text-center border-bottom mb-4">
         <img src="https://cdn.onlinewebfonts.com/svg/img_228845.png" class="w-25" alt="">
-        <h3>Your Name</h3>
+        <h3>{{UserName}}</h3>
         <p><i class="fa-solid locationIcon fa-location-dot fs-4 me-2"></i>Location/type</p>
       </div>
 

@@ -13,10 +13,10 @@ export class ServicesComponent {
   num4: Boolean = false;
   num5: Boolean = false;
 
-  loginSuccess: Boolean = false;
+  // loginSuccess: Boolean = false;
 
 
-  value = sessionStorage.getItem("token") !== null;
+  value = sessionStorage.getItem("Log In") !== null;
 
 
   constructor(){
