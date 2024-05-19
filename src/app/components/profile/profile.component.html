@@ -3,15 +3,23 @@
 <section id="Profile" class="container mt-5 w-75" *ngIf="isLoggedIn || value">
   <div class="container w-75 p-5">
     <div class="header container ms-1">
-      <img src="assets/imgs/icon.ico" alt="Life Blood Image">
-      <h2 class="gradient-text mt-3 ms-3 h3">Health Hub</h2>
+      <img
+        src="https://s3-alpha-sig.figma.com/img/9e1b/d7aa/7d07f331b50fc08957ccf68462e6da10?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IG46BDgQLIAmnSPt8rFvwAXd~raWpjYK7sJNLi78ds80KcfVWN7kmiMpcRgOcdvXKgZZFecGvmP6N4QZwwp~x0c-ut7xudvzp4-xQMZGQ9M0mJg1NA1n6OngBjTSKecBrwR~U4Hel9ICtY0Ok4xz6lcUeYZ3Y7uBy8O2WS62tyXJNPXRuF66UMBdwfj46a2YJvwiK9TEpXfgR0WEQGzqULIUp71gJ7atWLMI2cYYeGwKSYeHVJt6209Fj4LLTtqQvlufHqGG8AtK3lU9gkbxsJYwhr3wu4tCHAM3uzXmQr00D4wJ3UvPs~w44Ynxh7SkWyYzJ5GeNNORIdzHX7TDFQ__"
+        class="logo" alt="" routerLink="/home.component">
+      <h2 class=" mt-3 ms-3 h3">Life<span>h</span>ub</h2>
+      <!-- <h2 class="gradient-text mt-3 ms-3 h3">Health Hub</h2> -->
     </div>
 
-    <div class="container profileContainer w-90">
+    <div class="container bg-light shadow-lg mt-4 w-90">
       <div class="text-center border-bottom mb-4">
-        <img src="https://cdn.onlinewebfonts.com/svg/img_228845.png" class="w-25" alt="">
-        <h3>{{UserName}}</h3>
-        <p><i class="fa-solid locationIcon fa-location-dot fs-4 me-2"></i>Location/type</p>
+        <!-- <img src="https://vectorified.com/images/person-icon-white-29.png" class="w-25" alt=""> -->
+        <!-- <img src="http://www.clker.com/cliparts/g/c/W/l/H/m/people-icon-hi.png" class="w-25" alt=""> -->
+        <!-- <img src="https://www.freeiconspng.com/thumbs/communication-icon-png/communication-people-person-user-icon-2.png" class="w-25" alt=""> -->
+        <!-- <img src="https://icon-library.com/images/female-person-icon/female-person-icon-20.jpg" class="w-25" alt=""> -->
+        <img src="https://www.freeiconspng.com/uploads/search-icon-png-22.png" class="w-25" alt="">
+
+        <h3 class="ProfileInfo">{{UserName}}</h3>
+        <p class="ProfileInfo"><i class="fa-solid locationIcon fa-location-dot fs-4 me-2"></i>Location/type</p>
       </div>
 
       <div class="mb-4 profileButtons px-5 text-center">
@@ -26,20 +34,20 @@
       <div class="container personalInfo pb-3" *ngIf="isPersonalInfoVisible">
 
 
-        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger   mb-3 text-muted lead p-2 ">{{personalEmail}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalPhone}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalNationalId}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalNearestHospital}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalGender}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3  border border-danger  mb-3 text-muted lead p-2 ">{{personalBirthDate}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3      mb-3 text-muted lead p-2 ">{{personalEmail}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3      mb-3 text-muted lead p-2 ">{{personalPhone}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalNationalId}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalNearestHospital}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalGender}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalBirthDate}}</p>
       </div>
 
       <div class="container medicalInfo" *ngIf="!isPersonalInfoVisible">
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.bloodType }}" type="text"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.lastDonate }}" type="text"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.totalDonate }}" type="text"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.donateBlood }}" type="text"><br>
-        <input class="form-control fs-5 border-danger mb-3 text-muted lead" placeholder="{{ medicalInfo.donatePlasma }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.bloodType }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.lastDonate }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.totalDonate }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.donateBlood }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.donatePlasma }}" type="text"><br>
       </div>
     </div>
   </div>

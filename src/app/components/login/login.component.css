@@ -1,11 +1,12 @@
 #registerLink{
-  color:  #E3031B;
+  color: var(--main-color);
 }
 #loginButton{
-    background-color:  #E3031B;
+    background-color:  var(--main-color);
 }
 #forgetPassword{
   text-decoration: none;
+  color: var(--main-color);
 }
 .gradient-text {
   background: linear-gradient(180deg, #EA4444 19.27%, #5E0404 74.48%);
@@ -20,6 +21,6 @@
   width: 70px;
 }
 .error-message{
-  color:red;
+  color:var(--main-color);
 
 }

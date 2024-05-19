@@ -34,7 +34,7 @@ header{
   margin-right: 10px;
 }
 .logo h3{
-  color:#E3031B;
+  color:var(--main-color);
 }
 .menu ul,.join-menue li{
   padding: 0;
@@ -56,10 +56,10 @@ header{
   border-radius: 10px;
 }
 .join-menue #join a{
-  color: #E74040;
+  color: var(--main-color);
 }
 .join-menue #book a{
-  background-color:#E74040;
+  background-color:var(--main-color);
   color: white;
 }
 
@@ -134,10 +134,10 @@ header{
     cursor: pointer;
   }
   #join a{
-    color: #E74040;
+    color: var(--main-color);
   }
   #book a{
-    background-color:#E74040;
+    background-color:var(--main-color);
     color: white;
   }
 

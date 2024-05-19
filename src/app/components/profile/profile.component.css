@@ -11,6 +11,7 @@
 
 .locationIcon {
   vertical-align: -3px;
+  color: #C0C0C0;
 }
 .btnLeft{
   border-radius: 15px 0px 0px 15px;
@@ -19,16 +20,19 @@
   border-radius: 0px 15px 15px 0px;
 }
 .button1{
-  background-color: #EA4444;
+  background-color: var(--main-color);
   color: white;
   padding: 10px 80px;
-  border: 1px solid #EA4444;
+  border: 1px solid var(--main-color);
 }
 .button2 {
   background-color: #D9D9D9;
-  color: #EA4444;
+  color: var(--main-color);
   padding: 10px 80px;
   border: 1px solid #D9D9D9;
+}
+.personalInfo p , .medicalInfo input{
+  border: var(--main-color) 1px solid;
 }
 
 .header {
@@ -43,6 +47,6 @@
   width: 90%;
 }
 
-.profileContainer {
-  background-color: #A6D6F626;
+span , .ProfileInfo{
+  color: var(--main-color);
 }

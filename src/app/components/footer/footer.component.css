@@ -1,9 +1,6 @@
 
-.cantain{
-  width: 100%;
-  height: 100px;
-  background-color:red ;
-
+span{
+  color: var(--main-color);
 }
 
 .col-3 .layer{
@@ -13,7 +10,7 @@ background-color: #FAFAFA;
 
 }
 .icon1,#address{
-  color: red;
+  color: var(--main-color);
 }
 .icon2 ,.icon3{
   color: #96BB7C;
@@ -29,26 +26,11 @@ background-color: #FAFAFA;
   width: 15%;
 }
 
-.cantain{
-  width: 100%;
-  height: 100px;
-  background-color:red ;
 
-}
-
-.col-3 .layer{
-border-radius: 10px;
-border: 1px;
-background-color: #FAFAFA;
-
-}
-.icon1,#address{
-  color: red;
-}
 .icon2 ,.icon3{
   /* color: #96BB7C; */
    /* color: #CC3745; */
-    color: #0055A3;
+    color: var(--main-color);
 }
 .top{
   top: -50%;

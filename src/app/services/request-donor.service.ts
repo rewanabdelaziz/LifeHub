@@ -12,11 +12,11 @@ export class RequestDonorService {
   constructor(private http: HttpClient) { }
 
   requestBlood(data: any): Observable<string> {
-    return this.http.post<any>(this.apiUrl + 'bloodRequest/blood_request', data);
+    return this.http.post<any>(this.apiUrl + 'RequestBlood/Request_bloodOr', data);
   }
 
   requestPlasma(data: any): Observable<string> {
-    return this.http.post<any>(this.apiUrl + 'plasmaRequest/plasma_request', data);
+    return this.http.post<any>(this.apiUrl + 'RequestPlasma/RequesPlasma', data);
   }
 
   getHospitals(city: string): Observable<string[]> {

@@ -1,6 +1,6 @@
 <!-- <app-nav-bar *ngIf="value==false"></app-nav-bar>
 <app-auth-nav *ngIf="value"></app-auth-nav> -->
-<div class="donation-container bg-light shadow p-3 w-100  mb-5" >
+<div class="donation-container bg-light shadow-lg p-4 w-100  mb-5" >
   <div class="mb-4  px-5 text-center">
         <button (click)="requestBlood()"  class="btnLeft bloodbtn">
         Request Blood
@@ -10,18 +10,17 @@
         </button>
       </div>
 
-      <div class="header" *ngIf="BloodHeader">
+      <div class="header mb-4 " *ngIf="BloodHeader">
         <div class="title">
-        <img src="assets/imgs/icon.ico" alt="Life Blood Image">
-        <h1 class="gradient-text mt-3  ms-3"><span class="BloodTitle">Blood</span> Donor</h1>
+        <!-- <img src="assets/imgs/icon.ico" alt="Life Blood Image"> -->
+        <h1 class="gradient-text  ms-3"><span class="BloodTitle">Blood</span> Donor</h1>
         </div>
-        <!-- <p>Note that if you donate now you can not donate again for at least 3 monthes.</p> -->
       </div>
 
-      <div class="header" *ngIf="!BloodHeader">
-        <div class="title">
-        <img src="assets/imgs/icon.ico" alt="Life Blood Image">
-        <h1 class="gradient-text mt-3  ms-3"><span class="PlasmaTitle">Plasma</span> Donor</h1>
+      <div class="header mb-4" *ngIf="!BloodHeader">
+        <div class="title ">
+        <!-- <img src="assets/imgs/icon.ico" alt="Life Blood Image"> -->
+        <h1 class="gradient-text  ms-3"><span class="PlasmaTitle">Plasma</span> Donor</h1>
         </div>
         <!-- <p>Note that if you donate now you can not donate again for at least 2 weeks.</p> -->
       </div>

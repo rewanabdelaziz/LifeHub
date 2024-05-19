@@ -1,8 +1,8 @@
 #SignUpButton{
-  background-color: #E3031B;
+  background-color: var(--main-color);
 }
 #loginLink,#register ,#AgreeOnConditions a{
-  color: #E3031B;
+  color: var(--main-color);
 }
 .w-65{
   width: 65%;
@@ -23,6 +23,6 @@
 .header img{
   width: 70px;
 }
-.error-message{
-  color: red;
+.error-message , .createAccount{
+  color: var(--main-color);
 }

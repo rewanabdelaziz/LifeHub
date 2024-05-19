@@ -1,15 +1,4 @@
-/* .donation-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  padding: 20px;
-   //border: 2px solid var(--main-color);;
-  border-radius: 10px;
-  background-color: #FFFFFF;
-} */
+
 .donation-container{
   text-align: center;
   padding: 40px;
@@ -21,30 +10,30 @@
   border-radius: 0px 15px 15px 0px;
 }
 .bloodbtn{
-  background-color:var(--background-color);
+  background-color:var(--main-color);
   color: white;
   padding: 10px 25px;
   width: 40%;
-  border: 1px solid #EA4444;
+  border: 1px solid var(--main-color);
 }
 .plasmabtn {
-  background-color: var(--plasma);
-  color: white;
+  background-color: white;
+  color: var(--plasma);
   padding: 10px 25px;
   width: 40%;
   border: 1px solid var(--plasma);
 }
-.gradient-text {
+/* .gradient-text {
   background: linear-gradient(180deg, #EA4444 19.27%, #5E0404 74.48%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
+} */
 .PlasmaTitle{
   color:var(--plasma);
 }
 .BloodTitle{
-  color:var(--background-color)
+  color:var(--main-color)
 }
 .header{
   display: flex;
@@ -92,7 +81,7 @@ input,select {
   cursor: pointer;
 }
 .button1{
-  background-color: var(--background-color);
+  background-color: var(--main-color);
 }
 .button2{
   background-color: var(--plasma);
@@ -114,7 +103,7 @@ input,select {
 
 .error-message {
   background-color: #F2DEDE;
-  color: red;
+  color: var(--main-color);
 }
 
 

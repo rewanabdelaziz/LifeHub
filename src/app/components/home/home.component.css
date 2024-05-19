@@ -12,7 +12,7 @@
   width: 90%;
 }
 .left-section h3{
-  color: #E74040;
+  color: var(--main-color);
 }
 .left-section h1{
   font-weight: 500;
@@ -31,15 +31,15 @@
 .left-section .login{
   text-decoration: none;
   border-radius: 5px;
-  background-color:#E74040;
+  background-color:var(--main-color);
   color: white;
   padding:15px 30px;
 }
 .left-section .more{
   text-decoration: none;
   border-radius: 5px;
-  color: #E74040;
-  border: 1px solid #E74040;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
   background-color:#ffffff;
   padding:15px 30px;
   margin-left: 20px;
@@ -54,15 +54,24 @@
 }
 .left-overview hr,.donate hr{
   width: 94px;
-  border-top: 3px solid red;
+  border-top: 3px solid  var(--main-color);
   height: 50px;
-  color:red;
+  color: var(--main-color);
 }
 .left-overview p.donate p{
   margin-bottom: 30px;
 }
+#arrow{
+  color: gray;
+}
+
+#TypesOfBlood{
+  font-weight: 900;
+  font-size: large;
+}
+
 .left-overview a,.donate a{
-  color: var(--primary-text-color, #96BB7C);
+  color: var(--primary-text-color, var(--main-color));
   font-family: Montserrat;
   text-decoration: none;
   font-size: 20px;
@@ -100,11 +109,11 @@
 .blood hr,.plasma hr{
   width: 50px;
   height: 2px;
-  background: var(--danger-color, #E74040);
+  background: var(--danger-color, var(--main-color));
 }
 .icon{
   border-radius: 10px;
-  background: var(--primary-color, #96BB7C);
+  background: var(--primary-color, var(--main-color));
   display: flex;
   padding: 22px 19px;
   flex-direction: column;
@@ -223,11 +232,20 @@
   }
 }
 
+
+
+
+
+
+
 /* last section and footer */
 .cantain{
   width: 100%;
   height: 100px;
-  background-color:red ;
+  /* transform: scaleY(0.5); */
+
+  background-color:var(--main-color) ;
+  place-items:center;
 
 }
 
@@ -238,10 +256,10 @@ background-color: #FAFAFA;
 
 }
 .icon1,#address{
-  color: red;
+  color: var(--main-color);
 }
 .icon2 ,.icon3{
-  color: #96BB7C;
+  color: var(--main-color);
 }
 .top{
   top: -50%;

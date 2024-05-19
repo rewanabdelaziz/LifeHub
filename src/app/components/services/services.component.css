@@ -6,6 +6,32 @@ body {
   font-size: 100%;
 }
 
+.w-35{
+  width: 35%;
+}
+
+span{
+  color: var(--main-color);
+}
+.w-48{
+  width: 48%;
+}
+
+.submitBtn{
+  background-color: var(--main-color);
+}
+
+
+.success-message {
+  background-color: #DFF0D8;
+  color: #3C763D;
+}
+
+.error-message {
+  background-color: #F2DEDE;
+  color: var(--main-color);
+}
+
 
 
 
@@ -35,8 +61,11 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 2px solid#5E0404;
+  border: 2px solid var(--main-color);
 
+}
+h3{
+  color: var(--main-color);
 }
 
 .file-upload-input {

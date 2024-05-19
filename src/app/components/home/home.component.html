@@ -197,18 +197,26 @@
 
 </div>
 </div>
+
+
+
+
+
+
 <!-- Overview section -->
-<div class="overview" >
+<div class="overview d-flex justify-content-around " >
   <div class="left-overview col-md-5">
     <hr>
     <h1>Blood Overview</h1>
-    <p>We are creating a blood donation website where people can donate
+    <p class="lead text-muted">We are creating a blood donation website where people can donate
       blood to their nearest blood centers or they can denote blood to a
       blood case emergency in a near by hospital </p>
-      <a href="">Types of blood ></a>
+      <a id="TypesOfBlood"  href="">Types of blood <span id="arrow">></span> </a>
   </div>
-  <div class="right-overview col-md-6 d-flex">
-    <div class="blood col-md-3">
+
+
+  <div class="right-overview col-md-6 d-flex ">
+    <div class="blood col-md-3  shadow ">
       <div class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
           <g clip-path="url(#clip0_275_482)">
@@ -225,12 +233,12 @@
       </div>
       <hr>
       <h3>Blood</h3>
-      <p>The gradual
+      <p class="lead text-muted fs-6" >The gradual
         accumulation of
         information about </p>
     </div>
-    <div class="plasma col-md-3">
-      <div class="icon">
+    <div class="plasma col-md-3  shadow">
+      <div class="icon bg-warning">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
           <g clip-path="url(#clip0_275_493)">
             <path d="M13.5947 12.4945C13.6323 12.4649 13.6716 12.4383 13.7105 12.4103C13.8096 12.3389 13.9131 12.2744 14.0207 12.2171C14.0629 12.194 14.1038 12.171 14.1472 12.1506C15.1515 11.6629 16.3506 11.8273 17.1867 12.567C17.2308 12.6054 17.2668 12.6491 17.3085 12.6897C17.3925 12.7707 17.4716 12.8566 17.5451 12.9471C17.5868 12.9993 17.6217 13.0556 17.6576 13.1107C17.7175 13.1975 17.7726 13.2875 17.8223 13.3805C17.8544 13.4412 17.8824 13.5029 17.9099 13.5661C17.951 13.6602 17.9867 13.7568 18.0172 13.8548C18.0375 13.9207 18.0567 13.9855 18.0735 14.0521C18.0965 14.1545 18.1138 14.2577 18.1253 14.362C18.133 14.4271 18.1426 14.4913 18.1459 14.5569C18.15 14.6713 18.147 14.7858 18.1371 14.9C18.133 14.956 18.1336 15.0122 18.1264 15.0685C18.1036 15.2326 18.0658 15.3946 18.0139 15.5518C18.0139 15.5603 18.0112 15.5683 18.0084 15.5765L19.5177 16.448L22.3282 11.5756L6.7539 2.58191L3.94336 7.45369L13.2417 12.8212C13.3496 12.7023 13.4679 12.5931 13.5947 12.4945Z" fill="white"/>
@@ -248,71 +256,88 @@
       </div>
       <hr>
       <h3>Plasma</h3>
-      <p>The gradual
+      <p class="lead text-muted fs-6">The gradual
         accumulation of
         information about </p>
     </div>
   </div>
 </div>
+
+
+
+
 <!-- Why Donate Section -->
 <div class="whyDonate d-flex">
   <div class="container">
-    <div class="row d-flex">
+    <div class="row d-flex justify-content-around">
       <div class="imgSec col-md-4">
         <img src="assets/imgs/Placeholder.png" alt="placeholder">
       </div>
       <div class="donate col-md-5">
         <hr>
         <h1>Why Donate?</h1>
-        <p>Donating blood is an act of pure altruism. It's a chance to save lives, offer hope, and make a profound difference in the world. Your donation can provide the lifeline someone desperately needs during a medical crisis. Join us in this noble mission and be the reason behind a smile, a recovery, and a second chance at life.</p>
+        <p class="lead text-muted fs-5">Donating blood is an act of pure altruism. It's a chance to save lives, offer hope, and make a profound difference in the world. Your donation can provide the lifeline someone desperately needs during a medical crisis. Join us in this noble mission and be the reason behind a smile, a recovery, and a second chance at life.</p>
         <a href="">Donate Now ></a>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
 <!-- numbers section -->
-<section>
+<section class="mt-5">
   <h4 class="text-center h1 fw-bold "><span id="address">LifeBlood </span>Family Today</h4>
   <div class="p-5 mt-5 mb-5  d-flex align-content-center w-65 text-center m-auto container">
-      <!-- <div class=" container border border-dark  mt-5 mb-5  "> -->
+    <!-- <div class=" container border border-dark  mt-5 mb-5  "> -->
 
-      <div class=" position-relative   d-flex justify-content-center cantain ">
-          <div class="row  gx-5 position-absolute   top container  ">
-              <div class=" col-3  px-2   text-center  ">
-                  <div class="  px-5 layer text-center  ">
-                      <i class="icon1 fa-solid fa-hand-holding-droplet fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3"  appInView (inView)="onInView('donors')">{{currentDonors}}</span>
-                      <p class="fw-light  lead">Happy Donors</p>
-                  </div>
-              </div>
-              <div class="col-3   px-2  text-center ">
-                  <div class=" px-5 layer  text-center ">
-                      <i class="icon1 group fa-solid fa-user-group fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('recipients')">{{currentRecipients}}</span>
-                      <p class="fw-light  lead ">Happy Recipints</p>
-                  </div>
-              </div>
-              <div class="col-3  px-2   text-center ">
-                  <div class="  px-5 layer  text-center ">
-                      <i class="icon1 fa-regular fa-clipboard fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('registers')">{{currentRegisters}}</span>
-                      <p class="fw-light  lead">Total Register</p>
-                  </div>
-              </div>
-              <div class="col-3  px-2   text-center ">
-                  <div class="  px-5 layer  text-center ">
-                      <i class="icon1 fa-solid fa-droplet fs-1 my-4"></i>
-                      <span class="d-block h2 fw-bold mb-3">{{bloodBankValue}}</span>
-                      <p class="fw-light  lead  ">Blood Bank</p>
-                  </div>
-              </div>
+    <div class="d-flex justify-content-center cantain ">
+      <div class="row  gx-5    top container  ">
+        <div class=" col px-2   text-center  ">
+          <div class="bg-light shadow-lg card border-0 px-5 pb-1 layer text-center  ">
+            <i class="icon1 fa-solid fa-hand-holding-droplet fs-1 my-4"></i>
+            <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('donors')">{{currentDonors}}</span>
+            <p class="fw-bold text-muted  lead">Happy Donors</p>
           </div>
+        </div>
+        <div class="col   px-2  text-center ">
+          <div class="bg-light shadow-lg card border-0 px-5 pb-1 layer  text-center ">
+            <i class="icon1 group fa-solid fa-user-group fs-1 my-4"></i>
+            <span class="d-block h2 fw-bold mb-3" appInView
+              (inView)="onInView('recipients')">{{currentRecipients}}</span>
+            <p class="fw-bold text-muted  lead">Happy Recipints</p>
+          </div>
+        </div>
+        <div class="col   px-2   text-center ">
+          <div class=" bg-light shadow-lg card border-0 pb-1 px-5 layer  text-center ">
+            <i class="icon1 fa-regular fa-clipboard fs-1 my-4"></i>
+            <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('registers')">{{currentRegisters}}</span>
+            <p class="fw-bold text-muted  lead">Total Register</p>
+          </div>
+        </div>
+        <div class="col   px-2   text-center ">
+          <div class="bg-light shadow-lg card border-0 pb-1  px-5 layer  text-center ">
+            <i class="icon1 fa-solid fa-droplet fs-1 my-4"></i>
+            <span class="d-block h2 fw-bold mb-3">{{bloodBankValue}}</span>
+            <p class="fw-bold text-muted  lead">Blood Bank</p>
+          </div>
+        </div>
       </div>
-      <!-- </div> -->
+    </div>
+    <!-- </div> -->
 
 
   </div>
 </section>
+
+
+
+
+
+
+
 
 
 
