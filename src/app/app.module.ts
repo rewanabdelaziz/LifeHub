@@ -21,6 +21,7 @@ import { InViewDirective } from './directives/in-view.directive';
 import { FooterComponent } from './components/footer/footer.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ReportComponent } from './components/report/report.component';
+import { DiseaseTestsComponent } from './components/disease-tests/disease-tests.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { ReportComponent } from './components/report/report.component';
     InViewDirective,
     FooterComponent,
     ServicesComponent,
-    ReportComponent
+    ReportComponent,
+    DiseaseTestsComponent,
 
 
     ],
