@@ -15,13 +15,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { DonationComponent } from './components/donation/donation.component';
 import { RequestDonationComponent } from './components/request-donation/request-donation.component';
-import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { DatePipe } from '@angular/common';
 import { InViewDirective } from './directives/in-view.directive';
 import { FooterComponent } from './components/footer/footer.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ReportComponent } from './components/report/report.component';
-import { DiseaseTestsComponent } from './components/disease-tests/disease-tests.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +29,6 @@ import { DiseaseTestsComponent } from './components/disease-tests/disease-tests.
     SignUpComponent,
     VerificationComponent,
     ProfileComponent,
-    AuthNavComponent,
     DonationComponent,
     RequestDonationComponent,
     InViewDirective,
@@ -39,7 +36,6 @@ import { DiseaseTestsComponent } from './components/disease-tests/disease-tests.
     ServicesComponent,
     ReportComponent,
     NavBarComponent,
-    DiseaseTestsComponent
 
 
     ],

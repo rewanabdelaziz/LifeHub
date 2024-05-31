@@ -1,7 +1,6 @@
 #Profile .header img {
   width: 70px;
 }
-
 .gradient-text {
   background: linear-gradient(180deg, #EA4444 19.27%, #5E0404 74.48%);
   -webkit-background-clip: text;
@@ -49,4 +48,10 @@
 
 span , .ProfileInfo{
   color: var(--main-color);
+}
+#profileIcon{
+  font-size: 100px;
+  color: var(--main-color);
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
