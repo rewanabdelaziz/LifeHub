@@ -13,7 +13,6 @@ import { RequestDonationComponent } from './components/request-donation/request-
 import { ServicesComponent } from './components/services/services.component';
 import { AuthGuard } from './auth.guard';
 import { ReportComponent } from './components/report/report.component';
-import { DiseaseTestsComponent } from './components/disease-tests/disease-tests.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:"full" },
   {path :'home'  , component : HomeComponent },
@@ -22,10 +21,10 @@ const routes: Routes = [
   { path: 'verification', component: VerificationComponent },
   { path: 'forgettingPassword', component: ForgettingPasswordComponent},
   { path: 'profile', component: ProfileComponent},
-  {path:"auth-nav", component:AuthNavComponent},
   {path: "donation",component:DonationComponent},
+  {path:"auth-nav", component:AuthNavComponent},
+  {path:"nav-bar", component:NavBarComponent},
   {path: "requestDonation",component:RequestDonationComponent},
-  {path: "disease-tests",component:DiseaseTestsComponent},
   {path: "service",component:ServicesComponent,canActivate: [AuthGuard] },
   {path: "report",component:ReportComponent,canActivate: [AuthGuard]},
 

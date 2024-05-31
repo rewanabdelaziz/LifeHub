@@ -38,7 +38,8 @@ import { DiseaseTestsComponent } from './components/disease-tests/disease-tests.
     FooterComponent,
     ServicesComponent,
     ReportComponent,
-    DiseaseTestsComponent,
+    NavBarComponent,
+    DiseaseTestsComponent
 
 
     ],

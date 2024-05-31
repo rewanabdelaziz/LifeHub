@@ -44,6 +44,7 @@ span{
 }
 
 .menu ul li,.join-menue li{
+  position: relative;
   font-weight: 600;
   list-style-type:none;
   color: #737373;
@@ -51,12 +52,33 @@ span{
   font-size: 18px;
   margin-left: 10px;
 }
+ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--main-color);
+  transition: width 0.3s, background-color 0.3s;
+}
 
+ul li:hover a::after,
+ul li a.active::after {
+  width: 100%;
+}
+
+ul li a.active::after {
+  background-color: var(--main-color);
+}
 .menu ul li a,.join-menue li a{
   color:#737373;
   text-decoration: none;
   padding: 8px 18px;
   border-radius: 10px;
+  color: inherit;
+  padding-bottom: 5px;
+  position: relative;
 }
 .join-menue #join a{
   color: var(--main-color);

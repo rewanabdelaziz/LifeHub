@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, ElementRef, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
 import { HomeDataService } from 'src/app/services/home-data.service';
 import { Subject } from 'rxjs';
@@ -11,7 +11,7 @@ import { InViewDirective } from 'src/app/directives/in-view.directive';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  bloodBankValue: number = 5;
+  bloodBankValue: number = 0;
   loginSuccess;
   totalRecipients: number = 0;
   totalDonors: number = 0;
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentRecipients: number = 0;
   currentDonors: number = 0;
   currentRegisters: number = 0;
+  currentBanks:number=0;
 
   private destroy$: Subject<void> = new Subject<void>();
   private scrollSubject: Subject<void> = new Subject<void>();
@@ -28,7 +29,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private dataService: HomeDataService,
-    private el: ElementRef
+    private el: ElementRef,
+    private cdr: ChangeDetectorRef
   ) {
     this.loginSuccess = this.authService.isLoggedIn$;
   }
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     // console.log(this.value)
     this.fetchData();
+    this.countBloodBank();
   }
 
   ngOnDestroy(): void {
@@ -98,8 +101,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.animateCount('recipients');
     this.animateCount('donors');
     this.animateCount('registers');
-    this.animateBloodBank() // Call animateBloodBank here
+    this.countBloodBank();
+    // this.animateBloodBank() // Call animateBloodBank here
     // console.log("after animateBloodBank()")
+  }
+  countBloodBank(): void {
+    let currentValue = 0;
+
+    const interval = setInterval(() => {
+        if (currentValue < 5) {
+            currentValue++;
+            this.bloodBankValue = currentValue;
+            this.updateCurrentCount('banks', currentValue);
+            this.cdr.detectChanges();
+        } else {
+            clearInterval(interval);
+        }
+    }, 150);
   }
 
   animateCount(type: 'recipients' | 'donors' | 'registers'): void {
@@ -120,24 +138,24 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, 70);
 }
 
-animateBloodBank(): void {
-  // console.log("animateBloodBank() called"); // Add debug log
-  const finalCount = this.bloodBankValue; // Use bloodBankValue as final count
-  // console.log('bloodBank', finalCount); // Add debug log
+// animateBloodBank(): void {
+//   // console.log("animateBloodBank() called"); // Add debug log
+//   const finalCount = this.bloodBankValue; // Use bloodBankValue as final count
+//   // console.log('bloodBank', finalCount); // Add debug log
 
-  let currentValue = 0;
-  const interval = setInterval(() => {
-      if (currentValue < finalCount) {
-          currentValue++;
-          this.bloodBankValue = currentValue; // Update bloodBankValue
-      } else {
-          clearInterval(interval);
-      }
-  }, 70);
-}
+//   let currentValue = 0;
+//   const interval = setInterval(() => {
+//       if (currentValue < finalCount) {
+//           currentValue++;
+//           this.bloodBankValue = currentValue; // Update bloodBankValue
+//       } else {
+//           clearInterval(interval);
+//       }
+//   }, 70);
+// }
 
 
-  updateCurrentCount(type: 'recipients' | 'donors' | 'registers', value: number): void {
+  updateCurrentCount(type: 'recipients' | 'donors' | 'registers' |'banks', value: number): void {
     switch (type) {
       case 'recipients':
         this.currentRecipients = value;
@@ -148,6 +166,9 @@ animateBloodBank(): void {
       case 'registers':
         this.currentRegisters = value;
         break;
+      case 'banks':
+      this.currentBanks = value;
+      break;
     }
   }
 
