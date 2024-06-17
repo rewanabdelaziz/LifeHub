@@ -31,6 +31,20 @@ export class AuthService {
         } else if (error.status === 500) {
           errorMessage = 'Internal server error. Please try again later.';
         }
+        if (error.error === 'User not found.') {
+            errorMessage = 'User not found.';
+          } else if (error.error === 'Not verified!') {
+              errorMessage = 'Not verified!';
+
+          } else if (error.error === 'Password is incorrect.') {
+              errorMessage = 'Password is incorrect.';
+
+          }
+          else {
+
+              errorMessage = 'An error occurred. Please try again.';
+
+          }
         console.error('Login error:', error);
         return throwError(errorMessage);
       })

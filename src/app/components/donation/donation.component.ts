@@ -6,6 +6,7 @@ import { LoginProfileService } from 'src/app/services/login-profile.service';
 import { DonationRegesisterService } from 'src/app/services/donation-regesister.service';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { LanguageService } from 'src/app/services/language.service';
 
 // import { HomeDataService } from 'src/app/services/home-data.service';
 
@@ -19,7 +20,7 @@ import { DatePipe } from '@angular/common';
 export class DonationComponent implements OnInit {
   loginSuccess;
   value = sessionStorage.getItem("token") !== null;
-
+  currentLanguage:string='';
   receivedEmail:string="";
   donationType: string="Blood"; // 'blood' (default) or 'plasma'
   BloodHeader:boolean=true;
@@ -42,7 +43,8 @@ export class DonationComponent implements OnInit {
     private _LoginProfileService:LoginProfileService,
     private _DonationRegesisterService:DonationRegesisterService,
     private datePipe: DatePipe,
-    private profileService: ProfileService )
+    private profileService: ProfileService,
+    private languageService: LanguageService )
     {
     this.loginSuccess = this.authService.isLoggedIn$;
     }
@@ -72,6 +74,11 @@ export class DonationComponent implements OnInit {
     hospitalCenterControl.patchValue(null);
   }
 
+  // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
 }
 
 
@@ -86,7 +93,11 @@ export class DonationComponent implements OnInit {
   onSubmit(): void {
     if (this.donationForm.invalid) {
       this.markAllFieldsAsTouched(this.donationForm);
-      this.errorMessage = 'please fill all fields';
+      if(this.applyArabicClass()){
+        this.errorMessage='من فضلك تأكد من ادخال كل الحقول'
+      }else{
+        this.errorMessage = 'please fill all fields';
+      }
       return; // Exit early if the form is invalid
     }
     const formData = this.donationForm.value;
@@ -103,7 +114,12 @@ export class DonationComponent implements OnInit {
     // Check if the selectedDate is invalid
     if (isNaN(selectedDate.getTime())) {
       // Invalid date entered by the user
-      this.errorMessage = 'Invalid date. Please select a valid date.';
+      if(this.applyArabicClass()){
+        this.errorMessage="خطأ في اختيار الوقت"
+      }else{
+        this.errorMessage = 'Invalid date. Please select a valid date.';
+      }
+
       return;
     }
     // Convert the date to ISO string format
@@ -122,20 +138,37 @@ export class DonationComponent implements OnInit {
       response => {
         // Handle success response
         console.log(response); // Log the response for demonstration
-        this.message = 'Donation registered successfully.';
-        this.errorMessage = ""; // Reset error message
+        if(this.applyArabicClass()){
+          this.message = 'تم التسجيل بنجح';
+          this.errorMessage = ""; // Reset error message
+        }else{
+          this.message = 'Donation registered successfully.';
+          this.errorMessage = ""; // Reset error message
+        }
+
       },
       error => {
         // Handle error response
         if(error.text="Blood Register successfully!"){
-          this.message = 'Donation registered successfully.';
-          this.errorMessage = ""
+          if(this.applyArabicClass()){
+            this.message = 'تم التسجيل بنجح';
+            this.errorMessage = ""; // Reset error message
+          }else{
+            this.message = 'Donation registered successfully.';
+            this.errorMessage = ""; // Reset error message
+          }
         }
         else{
           console.error(error); // Log the error for debugging
           console.error(error.text); // Log the error for debugging
-          this.errorMessage = 'An error occurred while registering donation. Please try again later.';
+          if(this.applyArabicClass()){
+            this.message = "خطأ في التسجيل ! حاول مره أخرى";
+            this.errorMessage = ""; // Reset error message
+          }else{
+            this.errorMessage = 'An error occurred while registering donation. Please try again later.';
           this.message = ""; // Reset success message
+          }
+
         }
 
       }
@@ -168,6 +201,14 @@ markAllFieldsAsTouched(formGroup: FormGroup): void {
     // console.log("from medical"+this.isPersonalInfoVisible);
   }
 
+
+// language
+switchLanguage(language: string) {
+  this.languageService.setLanguage(language);
+}
+applyArabicClass(): boolean {
+  return this.currentLanguage === 'ar';
+}
 
 }
 

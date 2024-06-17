@@ -1,6 +1,10 @@
 #registerLink{
   color: var(--main-color);
 }
+.arabic-content {
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
 #loginButton{
     background-color:  var(--main-color);
 }

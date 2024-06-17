@@ -42,3 +42,7 @@ background-color: #FAFAFA;
 .w-10 {
   width: 15%;
 }
+.arabic-content{
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}

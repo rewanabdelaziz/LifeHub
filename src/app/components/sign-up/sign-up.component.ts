@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors }
 import { RegisterService } from '../../services/register.service';
 import { NgZone } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LanguageService } from 'src/app/services/language.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -15,13 +16,14 @@ export class SignUpComponent {
   errorMessage: string = '';
   sendingVerificationCode: boolean = false;
   validationErrors: any[] = [];
-
+  currentLanguage:string='';
 
   constructor(
     private registerService: RegisterService,
     private verificationService: VerificationService,
     private fb: FormBuilder,private router: Router,
     private ngZone: NgZone,
+    private languageService: LanguageService,
     ) {
     this.signupForm = this.fb.group({
       donorNumber: this.fb.group({
@@ -44,7 +46,13 @@ export class SignUpComponent {
       donarNo:[false]
     });
   }
-
+  ngOnInit(): void {
+    // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
+  }
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
@@ -161,5 +169,12 @@ export class SignUpComponent {
       // console.log('After sendVerificationCode method');
 
 
+  }
+  switchLanguage(language: string) {
+    this.languageService.setLanguage(language);
+    console.log(this.applyArabicClass());
+  }
+  applyArabicClass(): boolean {
+    return this.currentLanguage === 'ar';
   }
 }

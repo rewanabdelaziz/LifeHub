@@ -1,25 +1,23 @@
 <section>
-  <div class="container p-5  d-flex justify-content-center align-content-center">
+  <div class="container p-5  d-flex justify-content-center align-content-center" [ngClass]="{ 'arabic-content': applyArabicClass()}">
     <div class="p-5 m-5 w-75 shadow-lg bg-light ">
       <!-- <div class="header">
         <img src="assets/imgs/icon.ico" alt="Life Blood Image">
         <h2 class="gradient-text mt-3  ms-3">LIFEBLOOD</h2>
       </div> -->
-      <p class="text-center h2">Welcome Back!</p>
-    <p class="text-muted text-center lead h3 px-5 py-2 fs-4 ">To Our Secure online booking process .You can manage all your appointment
-      details in one convenient place.
-    </p>
+      <p class="text-center h2">{{ 'WELCOME BACK' | translate }}</p>
+    <p class="text-muted text-center lead h3 px-5 py-2 fs-4 ">{{ 'WELCOME STATEMENT' | translate }}</p>
     <!-- log in form  -->
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <input class="form-control mt-3 p-2 border-0" type="email" formControlName="email"  placeholder="Email *" autocomplete="username" required><br>
-      <input class="form-control p-2 border-0 " type="password" formControlName="password"  placeholder="password *" autocomplete="current-password" required><br>
+      <input class="form-control mt-3 p-2 border-0" type="email" formControlName="email" [placeholder]="!applyArabicClass() ? 'Email *': 'البريد الالكتروني *'" autocomplete="username" required><br>
+      <input class="form-control p-2 border-0 " type="password" formControlName="password"  [placeholder]="!applyArabicClass() ? 'Password *': 'كلمة المرور *'" autocomplete="current-password" required><br>
 
     <div class="d-flex justify-content-between mx-2">
-      <div>
+      <!-- <div>
         <input type="checkbox" name="rememberMe" id="rememberMe">
         <label class="ms-2" for="rememberMe">Remember Me</label>
-      </div>
-      <a id="forgetPassword" class="fw-bolder" routerLink="/forgettingPassword">Forget Password?</a>
+      </div> -->
+      <a id="forgetPassword" class="fw-bolder" routerLink="/forgettingPassword">{{ 'FORGET PASSWORED' | translate }}</a>
     </div><br>
     <!-- dont have account -->
     <div *ngIf="errorMessage" class="error-message">
@@ -29,14 +27,14 @@
     <br>
     <!-- required error -->
     <div *ngIf="loginForm?.get('email')?.hasError('required') || loginForm?.get('password')?.hasError('required')" class="error-message">
-      Email and password are required *.
+      {{ 'Email and password are required' | translate }}
     </div>
     <br>
-    <button id="loginButton" class="form-control text-white p-2 fs-5 " type="submit">Log In</button><br>
+    <button id="loginButton" class="form-control text-white p-2 fs-5 " type="submit">{{ 'Log In' | translate }}</button><br>
     </form>
 
 
-    <p class="text-center text-muted lead fw-bold">Do not have an account? <a id="registerLink" routerLink="/signUp" class="fw-bold">Register Now</a></p></div>
+    <p class="text-center text-muted lead fw-bold">{{ 'Do not have an account' | translate }} <a id="registerLink" routerLink="/signUp" class="fw-bold">{{ 'Register Now' | translate }}</a></p></div>
 
   </div>
 </section>

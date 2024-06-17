@@ -5,6 +5,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { RegisterService } from '../../services/register.service';
 import { LoginProfileService } from '../../services/login-profile.service';
 import { DatePipe } from '@angular/common';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-profile',
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
   personalBirthDate: string = "";
   email=sessionStorage.getItem("Email");
   value = sessionStorage.getItem("Log In") !== null;
-  UserName=sessionStorage.getItem("UserName")
+  UserName=sessionStorage.getItem("UserName");
+  currentLanguage:string='';
 
   // medical info
   blood_count: string = "";
@@ -37,11 +39,17 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService,private _: RegisterService,
               private _ProfileServiceService:ProfileService,
               private _LoginProfileServiceService: LoginProfileService,
-              private datePipe: DatePipe ){
+              private datePipe: DatePipe,
+              private languageService: LanguageService ){
     this.isLoggedIn = this.authService.isLoggedIn;
   }
   ngOnInit(): void {
 
+    // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
 
     this._LoginProfileServiceService.getData().subscribe(data => {
       this.receivedEmail = data;
@@ -113,5 +121,13 @@ export class ProfileComponent implements OnInit {
   showMedicalInfo() {
     this.isPersonalInfoVisible = false;
     // console.log("from medical"+this.isPersonalInfoVisible);
+  }
+
+  switchLanguage(language: string) {
+    this.languageService.setLanguage(language);
+    console.log(this.applyArabicClass());
+  }
+  applyArabicClass(): boolean {
+    return this.currentLanguage === 'ar';
   }
 }

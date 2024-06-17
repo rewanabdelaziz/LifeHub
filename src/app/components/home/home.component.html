@@ -1,13 +1,13 @@
 <!-- <app-nav-bar *ngIf="value==false"></app-nav-bar> -->
 <!-- <app-auth-nav *ngIf="value"></app-auth-nav> -->
 <app-nav-bar></app-nav-bar>
-<div class="home ">
+<div class="home "  [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="left-section ">
-    <h3>welcome</h3>
-    <h1>Our Blood Community</h1>
-    <h4>Our goal is to make online and easy Blood Donation for everyone</h4>
-    <a routerLink="/login" class="login">Join Us</a>
-    <a href="more" class="more">Learn More</a>
+    <h3>{{ 'WELCOME' | translate }}</h3>
+    <h1>{{ 'OUR_BLOOD_COMMUNITY' | translate }}</h1>
+    <h4>{{ 'GOAL' | translate }}</h4>
+    <a routerLink="/login" class="login">{{ 'JOIN_US' | translate }}</a>
+    <!-- <a href="more" class="more">Learn More</a> -->
   </div>
   <div class="right-section">
       <svg width="400" height="700" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -204,18 +204,16 @@
 
 
 <!-- Overview section -->
-<div class="overview d-flex justify-content-around " >
+<div class="overview d-flex justify-content-around " [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="left-overview col-md-5">
     <hr>
-    <h1>Blood Overview</h1>
-    <p class="lead text-muted">We are creating a blood donation website where people can donate
-      blood to their nearest blood centers or they can denote blood to a
-      blood case emergency in a near by hospital </p>
-      <a id="TypesOfBlood"  href="">Types of blood <span id="arrow">></span> </a>
+    <h1>{{ 'BLOOD OVERVIEW' | translate }}</h1>
+    <p class="lead text-muted">{{ 'OVERVIEW' | translate }} </p>
+      <!-- <a id="TypesOfBlood"  href="">Types of blood <span id="arrow">></span> </a> -->
   </div>
 
 
-  <div class="right-overview col-md-6 d-flex ">
+  <div class="right-overview col-md-6 d-flex">
     <div class="blood col-md-3  shadow ">
 
       <div class="icon">
@@ -226,10 +224,8 @@
           </svg>
       </div>
       <hr>
-      <h3>Blood</h3>
-      <p class="lead text-muted fs-6" >The gradual
-        accumulation of
-        information about </p>
+      <h3>{{ 'BLOOD' | translate }}</h3>
+      <p class="lead text-muted fs-6" >{{ 'BLOOD SCRIPT' | translate }}</p>
     </div>
     <div class="plasma col-md-3  shadow">
       <div class="icon bg-warning">
@@ -240,10 +236,8 @@
           </svg>
       </div>
       <hr>
-      <h3>Plasma</h3>
-      <p class="lead text-muted fs-6">The gradual
-        accumulation of
-        information about </p>
+      <h3>{{ 'PLASMA' | translate }}</h3>
+      <p class="lead text-muted fs-6">{{ 'PLASMA SCRIPT' | translate }}</p>
     </div>
   </div>
 </div>
@@ -252,7 +246,7 @@
 
 
 <!-- Why Donate Section -->
-<div class="whyDonate d-flex">
+<div class="whyDonate d-flex" [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="container">
     <div class="row d-flex justify-content-between">
       <div class="imgSec col-md-4">
@@ -260,9 +254,9 @@
       </div>
       <div class="donate col-md-5">
         <hr>
-        <h1>Why Donate?</h1>
-        <p class="lead text-muted fs-5">Donating blood is an act of pure altruism. It's a chance to save lives, offer hope, and make a profound difference in the world. Your donation can provide the lifeline someone desperately needs during a medical crisis. Join us in this noble mission and be the reason behind a smile, a recovery, and a second chance at life.</p>
-        <a href="">Donate Now ></a>
+        <h1>{{ 'WHY DONATE' | translate }}</h1>
+        <p class="lead text-muted fs-5">{{ 'REASON OF DONATE' | translate }}</p>
+        <a href="">{{ 'DONATE NOW' | translate }}</a>
       </div>
     </div>
   </div>

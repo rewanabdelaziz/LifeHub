@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../../services/register.service';
 import { Token } from '@angular/compiler';
 import { LoginProfileService } from '../../services/login-profile.service';
+import { LanguageService } from 'src/app/services/language.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,14 +19,15 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
 
   EmailData: string = "";
-
+  currentLanguage:string='';
 
 
   constructor(private authService: AuthService,
               private router: Router,
               private fb: FormBuilder,
-    private registerService: RegisterService,
-  private _LoginProfileService: LoginProfileService) { }
+              private registerService: RegisterService,
+              private _LoginProfileService: LoginProfileService,
+              private languageService: LanguageService) { }
 
   ngOnInit(): void {
      // Check for existing session
@@ -37,6 +39,11 @@ export class LoginComponent implements OnInit {
        // Redirect to the home page
       this.router.navigate(['/home']);
     }
+    // language
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.currentLanguage=language;
+      console.log('Current language:', this.currentLanguage);
+    });
   }
 
 
@@ -64,12 +71,32 @@ export class LoginComponent implements OnInit {
       },
       error: (error) => {
         console.error('Login error:', error);
-        if (error.error === 'User not found.') {
-          this.errorMessage = 'User not found. Please sign up.';
-        } else if (error.error === 'Not verified!') {
-          this.errorMessage = 'Your account is not verified. Please check your email for verification instructions.';
-        } else {
-          this.errorMessage = 'An error occurred. Please try again.';
+        if (error === 'User not found.') {
+          if(this.applyArabicClass()){
+            this.errorMessage='.المستخدم غير موجود! من فضلك قم بالتسجيل أولا'
+          }else{
+            this.errorMessage = 'User not found. Please sign up.';
+          }
+
+        } else if (error === 'Not verified!') {
+          if(this.applyArabicClass()){
+            this.errorMessage="حسابك غير مفعل من فضلك انظر الي البريد الالكتروني الخاص بك من أجل خطوات التفعيل"
+          }else{
+            this.errorMessage = 'Your account is not verified. Please check your email for verification instructions.';
+          }
+        } else if (error === 'Password is incorrect.') {
+          if(this.applyArabicClass()){
+            this.errorMessage="خطأ في كلمة المرور";
+          }else{
+            this.errorMessage = 'Password is incorrect.';
+          }
+        }
+        else {
+          if(this.applyArabicClass()){
+            this.errorMessage="حدث خطأ يرجى اعادة المحاولة";
+          }else{
+            this.errorMessage = 'An error occurred. Please try again.';
+          }
         }
       }
     });
@@ -86,7 +113,13 @@ sendDataToComponentB() {
 
 
 
-
+// language
+switchLanguage(language: string) {
+  this.languageService.setLanguage(language);
+}
+applyArabicClass(): boolean {
+  return this.currentLanguage === 'ar';
+}
 
 
 

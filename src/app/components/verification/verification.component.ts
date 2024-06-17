@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VerificationService } from 'src/app/services/verification.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-verification',
@@ -15,12 +16,13 @@ export class VerificationComponent implements OnInit {
   email: string = '';
   token: string='';
   resendverificationCodeSentMessage: string = '';
-
+  currentLanguage:string='';
   constructor(
     private fb: FormBuilder,
     private verificationService: VerificationService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private languageService: LanguageService
   ) {
     // Initialize the form and its controls
     this.verificationForm = this.fb.group({
@@ -31,6 +33,11 @@ export class VerificationComponent implements OnInit {
   ngOnInit(): void {
     // Retrieve email from the route parameters
     this.email = this.route.snapshot.params['email'];
+    // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
   }
 
 
@@ -92,5 +99,13 @@ export class VerificationComponent implements OnInit {
         }
       }
     );
+  }
+
+  switchLanguage(language: string) {
+    this.languageService.setLanguage(language);
+    console.log(this.applyArabicClass());
+  }
+  applyArabicClass(): boolean {
+    return this.currentLanguage === 'ar';
   }
 }

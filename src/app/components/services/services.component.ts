@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { finalize } from 'rxjs';
 import { BloodFiltrationService } from 'src/app/services/blood-filtration.service';
 import { BloodTestsService } from 'src/app/services/blood-tests.service';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-services',
@@ -11,12 +12,7 @@ import { BloodTestsService } from 'src/app/services/blood-tests.service';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit{
-
-
-
-
-
-
+  currentLanguage:string='';
 
   message: string="";
   errorMessage: string = "";
@@ -43,14 +39,23 @@ export class ServicesComponent implements OnInit{
   selectedFile: File | null = null;
 
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private zone: NgZone, private bloodFiltrationService: BloodFiltrationService,private _BloodTestsService:BloodTestsService) {
+  constructor(private formBuilder: FormBuilder,
+              private http: HttpClient, private zone: NgZone,
+              private bloodFiltrationService: BloodFiltrationService,
+              private _BloodTestsService:BloodTestsService,
+              private languageService: LanguageService) {
 
 
 
   }
 
 
-  ngOnInit() {
+  ngOnInit(): void  {
+    // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
     this.washedRbcsForm = this.formBuilder.group({
       hospitalCenter: ['', Validators.required], // 'hospitalCenter', not 'hospital'
       date: [''],
@@ -357,7 +362,13 @@ formData.append('ImageFile', this.selectedFile);
 
 
 
-
+  switchLanguage(language: string) {
+    this.languageService.setLanguage(language);
+    console.log(this.applyArabicClass());
+  }
+  applyArabicClass(): boolean {
+    return this.currentLanguage === 'ar';
+  }
 
 
 

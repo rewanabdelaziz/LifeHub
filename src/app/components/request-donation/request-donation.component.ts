@@ -7,6 +7,7 @@ import { RequestDonorService } from 'src/app/services/request-donor.service';
 //import { DonationRegesisterService } from 'src/app/services/donation-regesister.service';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-request-donation',
@@ -18,7 +19,7 @@ import { DatePipe } from '@angular/common';
 export class RequestDonationComponent implements OnInit {
   loginSuccess;
   // value = sessionStorage.getItem("token") !== null;
-
+  currentLanguage:string='';
   receivedEmail:string="";
   donationType: string="Blood"; // 'blood' (default) or 'plasma'
   BloodHeader:boolean=true;
@@ -42,13 +43,19 @@ export class RequestDonationComponent implements OnInit {
     private _LoginProfileService:LoginProfileService,
     private _RequestDonorService:RequestDonorService,
     private datePipe: DatePipe,
-    private profileService: ProfileService )
+    private profileService: ProfileService,
+    private languageService: LanguageService )
     {
     this.loginSuccess = this.authService.isLoggedIn;
     }
 
 
   ngOnInit(): void {
+     // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
     // Initialize form with validators
 
     // this._LoginProfileService.getData().subscribe(data => {
@@ -130,21 +137,37 @@ export class RequestDonationComponent implements OnInit {
       response => {
         // Handle success response
         console.log(response); // Log the response for demonstration
-        this.message = 'Donation Requested successfully.';
-        this.errorMessage = ""; // Reset error message
+        if(this.applyArabicClass()){
+          this.message = 'تم التسجيل بنجح';
+          this.errorMessage = ""; // Reset error message
+        }else{
+          this.message = 'Donation registered successfully.';
+          this.errorMessage = ""; // Reset error message
+        }
       },
       error => {
         // Handle error response
         console.log(error);
         if(error.text="Blood Request successfully!"){
-          this.message = 'Donation Requested successfully.';
-          this.errorMessage = ""
+          if(this.applyArabicClass()){
+            this.message = 'تم التسجيل بنجح';
+            this.errorMessage = ""; // Reset error message
+          }else{
+            this.message = 'Donation registered successfully.';
+            this.errorMessage = ""; // Reset error message
+          }
         }
         else{
           console.error(error); // Log the error for debugging
           console.error(error.text); // Log the error for debugging
-          this.errorMessage = 'An error occurred while registering donation. Please try again later.';
+          if(this.applyArabicClass()){
+            this.message = "خطأ في التسجيل ! حاول مره أخرى";
+            this.errorMessage = ""; // Reset error message
+          }else{
+            this.errorMessage = 'An error occurred while registering donation. Please try again later.';
           this.message = ""; // Reset success message
+          }
+
         }
 
       }
@@ -185,6 +208,15 @@ markAllFieldsAsTouched(formGroup: FormGroup): void {
     // console.log("from medical"+this.isPersonalInfoVisible);
   }
 
+
+  // language
+switchLanguage(language: string) {
+  this.languageService.setLanguage(language);
+  console.log(this.applyArabicClass());
+}
+applyArabicClass(): boolean {
+  return this.currentLanguage === 'ar';
+}
 
 }
 

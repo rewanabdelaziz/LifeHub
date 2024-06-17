@@ -7,6 +7,10 @@
 .w-65{
   width: 65%;
 }
+.arabic-content{
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
 #AgreeOnConditions{
   width: 90%;
   vertical-align: -6px;

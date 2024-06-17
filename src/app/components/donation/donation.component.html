@@ -1,36 +1,35 @@
 
-<div class="donation-container bg-light shadow-lg w-100  mb-5" >
-  <div class="mb-2  px-5 text-center">
+<div class="donation-container bg-light shadow-lg w-100  mb-5" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <div class="mb-2  px-5 text-center" [ngClass]="{ 'd-flex flex-row-reverse justify-content-center': applyArabicClass()}">
         <button (click)="donateBlood()"  class="btnLeft bloodbtn">
-          Donate Blood
+          {{ 'DONATE_BLOOD' | translate }}
         </button>
         <button (click)="donatePlasma()"  class="btnRight plasmabtn">
-          Donate Plasma
+          {{ 'DONATE_PLASMA' | translate }}
         </button>
       </div>
 
       <div class="header" *ngIf="BloodHeader">
         <div class="title my-2">
         <!-- <img src="assets/imgs/icon.ico" alt="Life Blood Image"> -->
-        <h1 class=" mt-3  ms-3"><span class="BloodTitle">Blood</span> Donation</h1>
-
+        <h1 class=" mt-3  ms-3" [innerHTML]="'BLOOD_DONATION_TITLE' | translate"></h1>
         </div>
-        <p class="lead text-muted fs-5">Note that if you donate now you can not donate again for at least 3 monthes.</p>
+        <p class="lead text-muted fs-5">{{ 'BLOOD_NOTE' | translate }}</p>
       </div>
 
       <div class="header" *ngIf="!BloodHeader">
         <div class="title my-2">
         <!-- <img src="assets/imgs/icon.ico" alt="Life Blood Image"> -->
-        <h1 class=" mt-3  ms-3"><span class="PlasmaTitle">Plasma</span> Donation</h1>
+        <h1 class=" mt-3  ms-3" [innerHTML]="'PLASMA_DONATION_TITLE' | translate"></h1>
         </div>
-        <p class="lead text-muted fs-5">Note that if you donate now you can not donate again for at least 2 weeks.</p>
+        <p class="lead text-muted fs-5">{{ 'PLASMA_NOTE' | translate }}</p>
       </div>
 
   <form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <!-- <label for="hospitalCenter">Hospital Center:</label> -->
       <select formControlName="hospitalCenter" id="hospitalCenter">
-        <option [ngValue]="null" selected disabled>Hospital Name</option>
+        <option [ngValue]="null" selected disabled>{{ 'HOSPITAL_NAME' | translate }}</option>
         <option *ngFor="let hospital of hospitals" [value]="hospital">{{ hospital }}</option>
       </select>
 
@@ -43,7 +42,7 @@
       <!-- <label for="hour">Hour:</label> -->
       <input type="time" formControlName="hour" id="hour">
     </div>
-    <button type="submit" class="submitbtn"  [class.button1]="BloodHeader" [class.button2]="!BloodHeader">Donate</button>
+    <button type="submit" class="submitbtn"  [class.button1]="BloodHeader" [class.button2]="!BloodHeader"> {{ 'DONATE_BUTTON' | translate }}</button>
   </form>
   <div *ngIf="message" class="success-message">{{ message }}</div>
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>

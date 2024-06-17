@@ -7,7 +7,10 @@
   background-clip: text;
   color: transparent;
 }
-
+.arabic-content{
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
 .locationIcon {
   vertical-align: -3px;
   color: #C0C0C0;

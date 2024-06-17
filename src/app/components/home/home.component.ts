@@ -4,6 +4,7 @@ import { HomeDataService } from 'src/app/services/home-data.service';
 import { Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { InViewDirective } from 'src/app/directives/in-view.directive';
+import { LanguageService } from 'src/app/services/language.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentDonors: number = 0;
   currentRegisters: number = 0;
   currentBanks:number=0;
-
+  currentLanguage:string="";
   private destroy$: Subject<void> = new Subject<void>();
   private scrollSubject: Subject<void> = new Subject<void>();
 
@@ -30,12 +31,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private dataService: HomeDataService,
     private el: ElementRef,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private languageService: LanguageService
   ) {
     this.loginSuccess = this.authService.isLoggedIn$;
   }
 
   ngOnInit(): void {
+    // Subscribe to language changes if needed language
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.currentLanguage=language;
+      console.log('Current language:', this.currentLanguage);
+    });
+
+
+
+    // numbers count
     this.scrollSubject.pipe(
       debounceTime(200), // Adjust debounce time as needed
       takeUntil(this.destroy$)
@@ -47,6 +58,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.countBloodBank();
   }
 
+
+  // language
+  applyArabicClass(): boolean {
+    return this.currentLanguage === 'ar';
+  }
+
+  // numbers
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

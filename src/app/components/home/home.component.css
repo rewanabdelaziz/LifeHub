@@ -5,6 +5,11 @@
   justify-content: center;
   align-items: center;
 }
+.arabic-content {
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
+
 .left-section, .right-section{
   width: 45%;
 }

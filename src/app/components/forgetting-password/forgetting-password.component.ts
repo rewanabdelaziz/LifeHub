@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ForgotPasswordService } from 'src/app/services/forgot-password.service';
+import { LanguageService } from 'src/app/services/language.service';
 import { VerificationService } from 'src/app/services/verification.service';
 
 
@@ -19,12 +20,13 @@ export class ForgettingPasswordComponent  {
 
   constructor(private _ForgotPasswordService:ForgotPasswordService ,
               private _Router:Router,
-              private fb:FormBuilder) {
+              private fb:FormBuilder,
+              private languageService: LanguageService) {
 
 
   }
 
-
+  currentLanguage:string='';
   step1: boolean = true;
   step2: boolean = false;
   // step3: boolean = false;
@@ -102,6 +104,22 @@ resetCode(): void {
 
 goToLogin():void{
   this._Router.navigate(['/login']);
+}
+
+ngOnInit(): void {
+  // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
+}
+
+switchLanguage(language: string) {
+  this.languageService.setLanguage(language);
+  console.log(this.applyArabicClass());
+}
+applyArabicClass(): boolean {
+  return this.currentLanguage === 'ar';
 }
 }
 

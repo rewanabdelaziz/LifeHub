@@ -1,5 +1,5 @@
 <app-nav-bar></app-nav-bar>
-<div class="container mt-5">
+<div class="container mt-5" [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
@@ -14,20 +14,20 @@
               <image id="image0_1527_1447" width="128" height="128" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAG1BMVEVMaXG6GBW6FxW6FxW6FxW6FxW6FxW5FxW6GBbmulIfAAAACHRSTlMAF8qoXoPrOyGaBy8AAAAJcEhZcwAAA+gAAAPoAbV7UmsAAAMBSURBVHic7VvtkqQgDDRfhPd/4itxVp0bdYAEuK2j/2zNrmOSTicBZZdlYmJiYmLid0NilJH2OcYYeZx9Xe0P9ADC5kDQQQ7ganx1IsAQ+5ToT2nAYQKU42dv6GqXDiaGCBDh0EJvGdDJ6OZMX/vyRrt2l4H+ZfHdn/aAD87PGekA/DDXVwayEq53Vdkeeim5jjLAa7a7yYBuDPWSgd5S3WcoQLgXWxoKrdcG9JTpG3V4gh+DbN+SITxbuOoQrsBvHDdOAn8NsG0S4EsCmieBcnpdwyRwVnDtkgAPLegjCS1mAuUOm0xH/WZA/ZVFwPy4EldNFAh+5VoKKLpnibdLE1YL8pWHUl2pdz+k0ojItx9qcUDgW4pYnlLxLEWuEHUqG3YkQEq/5EgBV+04HLsR1t3JjQKu3XJ5qQBrqRSfXqDVe06nQqB6LblQAIbBBh4TQSxzrXiEXCBYgqjXz1sNoq2CeJQEHfxfTBL0+P7CVhUZGVzImkNrDqJ1dWvMAdtbma0OxD7SbSpCeysFC4ngsaRYW6mlk6LVAQuL7LGqE4MKxWNBYYmCPDZ4aigD/BccAKsDljrE/94B8mKAfmsV0Og+wKM7oXo867LkEbyGEVhGKdjs20Y62VVoWxGxXQS2GODY2wHxiJ0J7v5TnZat62rev891ybDuTuF4xBBqKLDvz2WXIddwWf2A64oCLL9XeshtbCS0q0DL0+nx3gKOJ65c6kF6VmpeUMiRhMKtotfrOzziSE+9ckNyO9SipyNKidTMoPxOlPDJA05h5bjgecyRTi/EIX0IojnScXtzh+dX8pw+xUDCCo/2/V6bAb7Fo5sLDzYSTa8Dn44e4H5HYHodaoaMq/08CGdRAbNcLhKSUJ3tLy8PMrrAptL8dpGPpKsY5fHO8HPV0gC6pT3cuwDyuqTROR7Y2I2R+Oo84as+m9D/WYAo5yYAKsdf2h7o46MHxIBIRISnX+W1aRv0JxEXoD7/6gB7GzojXCqjGVQIdy8C0tfpNDExMTExsdzgDzmiISjGNEmrAAAAAElFTkSuQmCC"/>
               </defs>
               </svg>
-            <h3 class="d-inline">Liver Disease Prediction</h3>
+            <h3 class="d-inline"> {{ 'Liver Disease Prediction' | translate }}</h3>
             </div>
 
           <form (submit)="uploadImage(); $event.preventDefault();">
             <div class="form-group">
-              <label for="image">Upload Medical Report Image</label>
+              <label for="image"> {{ 'Upload Medical Report Image' | translate }}</label>
               <input type="file" class="form-control" id="image" (change)="onFileChange($event)" accept="image/*" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+            <button type="submit" class="btn btn-primary btn-block"> {{ 'Predict' | translate }}</button>
           </form>
           <div *ngIf="imageUrl" class="text-center mt-3">
             <img [src]="imageUrl" alt="Uploaded Image" class="img-thumbnail">
           </div>
-          <div *ngIf="result" class="alert mt-3" [ngClass]="{'alert-success': !result.startsWith('Positive'), 'alert-danger': result.startsWith('Positive')}">
+          <div *ngIf="result" class="alert mt-3" [ngClass]="{'alert-success': !result.startsWith('Positive') || !result.startsWith('نتيجة ايجابية'), 'alert-danger': result.startsWith('Positive') || result.startsWith('نتيجة ايجابية')}">
             {{ result }}
           </div>
         </div>

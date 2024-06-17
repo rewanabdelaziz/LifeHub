@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     if (sessionStorage.getItem("Log In")) {
       return true; // Allow navigation
     } else {
-      alert('You need to log in first.'); // Show pop-up message
+      // alert('You need to log in first.'); // Show pop-up message
       this.router.navigate(['/login']); // Redirect to login page
       return false; // Prevent navigation
     }

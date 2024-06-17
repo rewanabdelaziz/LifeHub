@@ -5,12 +5,36 @@ header{
   overflow: hidden;
   width: 100%;
 }
+.arabic-content {
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
+.menu-icon{
+  margin-left: 30px;
+}
+.language-switcher{
+border: solid 2px var(--main-color);
+border-radius: 10px;
+background-color: white;
+/* margin-right: 20px; */
+}
+.language-switcher button{
+  border: none;
+  /* background-color: white; */
+  border-radius: 10px;
+}
+.language-active{
+background-color: var(--main-color);
+}
+.language-switcher button:active{
+background-color: var(--main-color);
+}
 span{
   color: var(--main-color);
 }
 .container2 , .nav2{
-  padding-left: 30px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 5px;
   width: 100%;
   justify-content: space-between;
 }
@@ -168,7 +192,7 @@ ul li a.active::after {
 #profile{
   color: var(--main-color);
 }
-@media only screen and (max-width: 516px)
+@media only screen and (max-width: 620px)
 {
   .container2 , .nav2{
     padding-left: 20px;
@@ -180,5 +204,8 @@ ul li a.active::after {
   .hidden{
     display: inline;
   }
-
+  .container2 , .nav2{
+    padding-left: 10px;
+    padding-right: 5px;
+  }
 }

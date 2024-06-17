@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-report',
@@ -12,8 +13,10 @@ export class ReportComponent {
   selectedFile: File | null = null;
   result: string | null = null;
   imageUrl: string | null = null;
-
-  constructor(private http: HttpClient) {}
+  currentLanguage:string='';
+  constructor(private http: HttpClient,
+    private languageService: LanguageService
+  ) {}
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -38,17 +41,52 @@ export class ReportComponent {
 
         this.http.post('http://localhost:5000/predict', payload).subscribe(
           (response: any) => {
-            this.result = response.result;
+
+            if(this.applyArabicClass()){
+              if(response.result=="Positive outcome for patient test (likely to have the disease)"){
+                this.result="نتيجة ايجابية (لديك مشكلة يرجى مراجعة الطبيب)"
+              }else if(response.result== "Negative outcome for patient test (unlikely to have the disease)"){
+                this.result='نتيجة سلبية (ليس لديك أمراض)'
+              }
+            }else{
+              this.result = response.result;
+            }
           },
           (error) => {
             console.error('Error uploading image:', error);
-            this.result = 'Error uploading image: ' + error.message;
+            if(this.applyArabicClass()){
+              this.result="مشكلة في رفع الملف حاول مره أخرى"
+            }else{
+              this.result = 'Error uploading image: ' + error.message;
+            }
+
           }
         );
       };
       reader.readAsDataURL(this.selectedFile);
     } else {
-      this.result = 'No file selected';
+      if(this.applyArabicClass()){
+        this.result='لم يتم اختيار ملف'
+      }else{
+        this.result = 'No file selected';
+      }
+
     }
+  }
+
+  ngOnInit(): void {
+    // language
+  this.languageService.currentLanguage$.subscribe(language => {
+    this.currentLanguage=language;
+    console.log('Current language:', this.currentLanguage);
+  });
+  }
+
+  switchLanguage(language: string) {
+    this.languageService.setLanguage(language);
+    console.log(this.applyArabicClass());
+  }
+  applyArabicClass(): boolean {
+    return this.currentLanguage === 'ar';
   }
 }

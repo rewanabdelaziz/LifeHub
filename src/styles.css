@@ -10,4 +10,9 @@ body{
   --lighterGrey : #fff6f6d3;
   --plasma:#FDC500;
 }
-
+.PlasmaTitle{
+  color:var(--plasma);
+}
+.BloodTitle{
+  color:var(--main-color)
+}
