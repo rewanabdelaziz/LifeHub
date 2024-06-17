@@ -22,4 +22,15 @@ export class ProfileService {
       })
     );
 }
+// https://localhost:7105/api/Users/GetMedicalProfile/medical?email=rewanabdelaziz9634%40gmail.com
+
+GetMedicalInfo(UserEmail:string): Observable < any > {
+  return this._HttpClient.get(`https://localhost:7105/api/Users/GetMedicalProfile/medical?email=${UserEmail}`).pipe(
+    catchError(error => {
+      // Handle error
+      console.error('Error fetching profile data:', error);
+      return throwError('Error fetching profile data');
+    })
+  );
+}
 }

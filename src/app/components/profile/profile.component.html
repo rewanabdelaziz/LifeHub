@@ -49,11 +49,17 @@
       </div>
 
       <div class="container medicalInfo" *ngIf="!isPersonalInfoVisible">
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.bloodType }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.lastDonate }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.totalDonate }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.donateBlood }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ medicalInfo.donatePlasma }}" type="text"><br>
+        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">Blood Type : {{bloodType}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">Last date of Donate: {{dateOfDonate}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">number of Plasma Donate: {{plasma_count}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">number of blood Donate: {{blood_count}}</p>
+        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">Total number of donation: {{sum}}</p>
+        <!--  -->
+        <!-- <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ bloodType }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ dateOfDonate }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ sum }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ blood_count }}" type="text"><br>
+        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ plasma_count }}" type="text"><br> -->
       </div>
     </div>
   </div>

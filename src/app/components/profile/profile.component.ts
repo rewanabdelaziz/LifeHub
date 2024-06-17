@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { RegisterService } from '../../services/register.service';
 import { LoginProfileService } from '../../services/login-profile.service';
-
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +12,7 @@ import { LoginProfileService } from '../../services/login-profile.service';
   // imports: [],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
+  providers: [DatePipe],
 })
 export class ProfileComponent implements OnInit {
   receivedEmail: string = "";
@@ -25,9 +26,18 @@ export class ProfileComponent implements OnInit {
   email=sessionStorage.getItem("Email");
   value = sessionStorage.getItem("Log In") !== null;
   UserName=sessionStorage.getItem("UserName")
+
+  // medical info
+  blood_count: string = "";
+  plasma_count: string = "";
+  sum : string = "";
+  bloodType: string = "";
+  dateOfDonate?:null;
+
   constructor(private authService: AuthService,private _: RegisterService,
               private _ProfileServiceService:ProfileService,
-              private _LoginProfileServiceService: LoginProfileService ){
+              private _LoginProfileServiceService: LoginProfileService,
+              private datePipe: DatePipe ){
     this.isLoggedIn = this.authService.isLoggedIn;
   }
   ngOnInit(): void {
@@ -36,20 +46,31 @@ export class ProfileComponent implements OnInit {
     this._LoginProfileServiceService.getData().subscribe(data => {
       this.receivedEmail = data;
     })
-
-
-    console.log(this.receivedEmail);
+    // console.log(this.receivedEmail);
     console.log(this.email)
     if (this.email) {
       this._ProfileServiceService.GetProfileInfo(this.email).subscribe({
         next: (r) => {
-          console.log(r);
+          console.log("response of profile info: ",r);
           this.personalBirthDate = r.birthDate;
           this.personalNearestHospital = r.bloodBank;
           this.personalEmail = r.email;
           this.personalGender = r.gender;
           this.personalNationalId = r.nationalID;
           this.personalPhone = r.phoneNumber;
+          // this.UserName=r.userName;
+          // sessionStorage.setItem("UserName",this.UserName)
+        }
+      });
+      this._ProfileServiceService.GetMedicalInfo(this.email).subscribe({
+        next: (r) => {
+          console.log("response of medical info: ",r);
+          this.blood_count = r.blood_count;
+          this.plasma_count = r.plasma_count;
+          this.sum = r.sum ;
+          this.bloodType = r.bloodType;
+          this.dateOfDonate = r.dateOfDonate;
+          this.dateOfDonate = this.datePipe.transform(this.dateOfDonate, 'yyyy-MM-dd');
           // this.UserName=r.userName;
           // sessionStorage.setItem("UserName",this.UserName)
         }
@@ -64,23 +85,23 @@ export class ProfileComponent implements OnInit {
   }
   isPersonalInfoVisible: boolean = true;
 
-  //  dummy values
-  personalInfo = {
-    email: 'anyEmail@gmail.com',
-    phone: '+201111111110',
-    nationalId: 'YourNationalID',
-    nearestHospital: 'Nearest Hospital',
-    gender: 'Gender',
-    birthdate: '00/00/0000'
-  };
+//  dummy values
+  // personalInfo = {
+  //   email: 'anyEmail@gmail.com',
+  //   phone: '+201111111110',
+  //   nationalId: 'YourNationalID',
+  //   nearestHospital: 'Nearest Hospital',
+  //   gender: 'Gender',
+  //   birthdate: '00/00/0000'
+  // };
 
-  medicalInfo = {
-    bloodType: 'Blood Type',
-    lastDonate: 'Last Donate',
-    totalDonate: 'Total Number of Donate',
-    donateBlood: 'Number of Donate Blood',
-    donatePlasma: 'Number of Donate Plasma'
-  };
+  // medicalInfo = {
+  //   bloodType: 'Blood Type',
+  //   lastDonate: 'Last Donate',
+  //   totalDonate: 'Total Number of Donate',
+  //   donateBlood: 'Number of Donate Blood',
+  //   donatePlasma: 'Number of Donate Plasma'
+  // };
 
 
 

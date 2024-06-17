@@ -6,17 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DonationRegesisterService {
-
+//  https://localhost:7105/api/Users/BookBlood/BloodRegister?
   private apiUrl = 'https://localhost:7105/api/Users/';
 
   constructor(private http: HttpClient) { }
 
   registerBloodDonation(data: any): Observable<string> {
-    return this.http.post<any>(this.apiUrl + 'bloodRegister/blood_register', data);
+    return this.http.post<any>(this.apiUrl + 'BookBlood/BloodRegister', data);
   }
 
   registerPlasmaDonation(data: any): Observable<string> {
-    return this.http.post<any>(this.apiUrl + 'plasmaRegister/plasma_register', data);
+    return this.http.post<any>(this.apiUrl + 'BookPlasma/PlasmaRegister', data);
   }
 
   getHospitals(city: string): Observable<string[]> {
