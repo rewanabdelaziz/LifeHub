@@ -1,46 +1,60 @@
+/* General Styles */
 #Profile .header img {
   width: 70px;
 }
+
 .gradient-text {
   background: linear-gradient(180deg, #EA4444 19.27%, #5E0404 74.48%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.arabic-content{
-  direction: rtl;
-  font-family: 'Arial', sans-serif;
-}
+
 .locationIcon {
   vertical-align: -3px;
   color: #C0C0C0;
 }
-.btnLeft{
+
+.btnLeft {
   border-radius: 15px 0px 0px 15px;
 }
-.btnRight{
+
+.btnRight {
   border-radius: 0px 15px 15px 0px;
 }
-.button1{
+
+.button1 {
   background-color: var(--main-color);
   color: white;
-  padding: 10px 80px;
+  padding: 10px 40px; /* Adjust padding for better responsiveness */
   border: 1px solid var(--main-color);
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflow text */
 }
+
 .button2 {
   background-color: #D9D9D9;
   color: var(--main-color);
-  padding: 10px 80px;
+  padding: 10px 40px; /* Adjust padding for better responsiveness */
   border: 1px solid #D9D9D9;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflow text */
 }
-.personalInfo p , .medicalInfo p{
+
+.personalInfo p, .medicalInfo p {
   border: var(--main-color) 1px solid;
+  padding: 10px; /* Added padding */
+  margin-bottom: 10px; /* Ensure space between elements */
+  word-wrap: break-word; /* Ensure long words break */
+  overflow-wrap: break-word; /* Support for other browsers */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
-.medicalInfo{
-  padding-bottom: 50px;
-}
+
 .header {
   display: flex;
+  align-items: center;
 }
 
 .w-80 {
@@ -51,12 +65,137 @@
   width: 90%;
 }
 
-span , .ProfileInfo{
+span, .ProfileInfo {
   color: var(--main-color);
 }
-#profileIcon{
+
+#profileIcon {
   font-size: 100px;
   color: var(--main-color);
   margin-top: 50px;
   margin-bottom: 20px;
 }
+
+/* Responsive Styles */
+@media (max-width: 1435px) {
+  .button1, .button2 {
+    padding: 10px 30px;
+  }
+
+  .header h2 {
+    font-size: 1.5rem;
+  }
+
+  #profileIcon {
+    font-size: 80px;
+  }
+}
+@media (max-width:980px){
+  p{
+    font-size: small !important;
+  }
+
+
+}
+
+
+@media (max-width: 992px) {
+  .container {
+    width: 90%;
+  }
+
+  .header img {
+    width: 50px;
+  }
+
+  .button1, .button2 {
+    padding: 10px 20px;
+  }
+
+  .header h2 {
+    font-size: 1.25rem;
+  }
+
+  #profileIcon {
+    font-size: 60px;
+  }
+
+  .personalInfo p, .medicalInfo input {
+    padding: 8px;
+    font-size: 0.95rem; /* Adjust font size for smaller screens */
+  }
+
+  .button1, .button2 {
+    padding: 10px 20px;
+    font-size: 0.9rem; /* Adjust font size for buttons on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header h2 {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+
+  .btnLeft, .btnRight {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+
+  .button1, .button2 {
+    padding: 10px;
+    width: 100%;
+    font-size: 0.85rem; /* Further adjust font size for very small screens */
+  }
+
+  .personalInfo p, .medicalInfo input {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 0.875rem; /* Further adjust font size */
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+
+  .header img {
+    width: 40px;
+  }
+
+  .header h2 {
+    font-size: 0.875rem;
+  }
+
+  #profileIcon {
+    font-size: 50px;
+  }
+
+  .personalInfo p, .medicalInfo p {
+    font-size: 0.75rem; /* Smaller font size for very small screens */
+  }
+
+  .button1, .button2 {
+    font-size: 0.75rem; /* Further adjust font size for very small screens */
+  }
+}
+
+
+
+
+
+
+
+
+

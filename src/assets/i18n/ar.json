@@ -47,11 +47,25 @@
   "SUCCESS_MESSAGE": "شكرًا لتبرعك!",
   "ERROR_MESSAGE": "حدث خطأ أثناء التبرع.",
   "BLOODTYPE":"فصيلة الدم",
-  "PlasmaTYPE":"فصيلة الدم",
+  "PLASMATYPE":"فصيلة الدم",
 
 
   "Liver Disease Prediction":"مراجعة تحليل وظائف الكبد",
   "Upload Medical Report Image":"قم برفع صوره للتحليل",
-  "Predict":"مراجعة"
+  "Predict":"مراجعة",
+
+  "OURSERVICES":"خدمات<span class='BloodTitle'>نا</span>",
+  "DONATE":"التبرع",
+  "DONATEOVERVIEW":"يمكنك التبرع بالدم أو البلازما",
+  "REQUEST":"طلب",
+  "REQUESTOVERVIEW":"يمكنك طلب الدم أو البلازما",
+  "Blood Tests":"تحاليل الدم",
+  "BLOODTESTOVERVIEW":"لدينا أكثر من تحليل طبي ",
+  "BloodFilteration":"فلترة الدم",
+  "BloodFilterationOVERVIEW":"يمكنك فلترة الدم والسموم",
+  "WashedRBCS":"WashedRBCS",
+  "WashedRBCSOVERview":"غسيل الدم",
+
+  "CREATEACCOUNT":"انشاء حساب جديد"
 }
 

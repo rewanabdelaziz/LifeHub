@@ -1,7 +1,7 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { finalize } from 'rxjs';
+import { finalize, map } from 'rxjs';
 import { BloodFiltrationService } from 'src/app/services/blood-filtration.service';
 import { BloodTestsService } from 'src/app/services/blood-tests.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -72,17 +72,17 @@ export class ServicesComponent implements OnInit{
     testType: ['', Validators.required],
     date: ['', Validators.required],
     nationalId: ['', Validators.required],
-    ImageFile: [null] // Ensure this control is required
+    // ImageFile: [null] // Ensure this control is required
     });
 
 
     this.bloodTestsForm=this.formBuilder.group({
-     hospitalCenter: ['', Validators.required],
-     typeOfTest: ['' , Validators.required],
-     date: ['' , Validators.required],
+      hospitalCenter: ['', Validators.required],
+      typeOfTest: ['' , Validators.required],
+      date: ['' , Validators.required],
       bloodType: ['' , Validators.required],
       nationalId: ['' , Validators.required],
-      ImageFile: [null] // Ensure this control is required
+      // ImageFile: [null] // Ensure this control is required
     });
 
 
@@ -90,8 +90,8 @@ export class ServicesComponent implements OnInit{
 }
 
 
-  submitForm() {
-     const hospitalControl = this.washedRbcsForm.get('hospitalCenter');
+submitForm() {
+    const hospitalControl = this.washedRbcsForm.get('hospitalCenter');
 
   // Check if the form control exists and is valid
   if (hospitalControl && hospitalControl.valid) {
@@ -107,9 +107,19 @@ export class ServicesComponent implements OnInit{
     };
 
     // Send formData to your API using HttpClient
-    this.http.post<any>('https://localhost:7003/api/User/WashedRbcs/Washed_Rbcs', formData).subscribe(
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.post<any>('https://localhost:7105/api/Users/WashedRbcs/Washed_Rbcs', formData,{ headers, responseType: 'text' as 'json' }).pipe(
+      map((response: any) => {
+        try {
+          const jsonResponse = JSON.parse(response);
+          return jsonResponse;
+        } catch (jsonError) {
+          return response;
+        }
+      }),
+    ).subscribe(
       (response) => {
-        console.log('Response', response);
+        console.log('Response', response as JSON);
         this.zone.run(() => {
           this.message = 'Registering Washed RBCS Is Done';
           this.errorMessage = '';
@@ -168,38 +178,51 @@ onFileSelected(event: any) {
   submitForm2() {
 
 
-    if (!this.selectedFile) {
-      this.zone.run(() => {
-          this.errorMessage = 'There Is No image Selected';
-          this.message = '';
-        });
+    // if (!this.selectedFile) {
+    //   this.zone.run(() => {
+    //       this.errorMessage = 'There Is No image Selected';
+    //       this.message = '';
+    //     });
 
-        // Automatically clear the error message after 2 seconds (1 minute)
-        setTimeout(() => {
-          this.zone.run(() => {
-            this.errorMessage = '';
-          });
-        }, 2000);
-      return;
-    }
-
+    //     // Automatically clear the error message after 2 seconds (1 minute)
+    //     setTimeout(() => {
+    //       this.zone.run(() => {
+    //         this.errorMessage = '';
+    //       });
+    //     }, 2000);
+    //   return;
+    // }
+// console.log("form before:",this.bloodFiltrationForm.value);
     if (this.bloodFiltrationForm.valid) {
-      const formData = new FormData();
-formData.append('hospitalCenter', this.bloodFiltrationForm.get('hospitalCenter')!.value);
-formData.append('bloodType', this.bloodFiltrationForm.get('bloodType')!.value);
-formData.append('testType', this.bloodFiltrationForm.get('testType')!.value);
-formData.append('date', this.bloodFiltrationForm.get('date')!.value);
-formData.append('nationalId', this.bloodFiltrationForm.get('nationalId')!.value);
-formData.append('ImageFile', this.selectedFile);
+//       const formData = new FormData();
+// formData.append('hospitalCenter', this.bloodFiltrationForm.get('hospitalCenter')!.value);
+// formData.append('bloodType', this.bloodFiltrationForm.get('bloodType')!.value);
+// formData.append('testType', this.bloodFiltrationForm.get('testType')!.value);
+// formData.append('date', this.bloodFiltrationForm.get('date')!.value);
+// formData.append('nationalId', this.bloodFiltrationForm.get('nationalId')!.value);
+// formData.append('ImageFile', this.selectedFile);
+// const formData = {
+//   hospitalCenter: this.bloodFiltrationForm.get('hospitalCenter')!.value,
+//   bloodType: this.bloodFiltrationForm.get('bloodType')!.value,
+//   testType: this.bloodFiltrationForm.get('testType')!.value,
+//   date: this.bloodFiltrationForm.get('date')!.value,
+//   nationalId: this.bloodFiltrationForm.get('nationalId')!.value,
+//   // hasNoBloodBag: this.washedRbcsForm.get('hasNoBloodBag')!.value
+// };
 
-
-      this.bloodFiltrationService.submitForm(formData)
+      this.bloodFiltrationService.submitForm(this.bloodFiltrationForm.value)
         .subscribe(
     (response) => {
             console.log('Response:', response);
             this.zone.run(() => {
-          this.message = 'Filteration Register Is Done';
-          this.errorMessage = '';
+              if(response=="An entry with the same NationalId already exists."){
+                this.message = 'you recorded before with same nationalID';
+                this.errorMessage = '';
+              }else{
+                this.message = 'Filteration Register Is Done';
+                this.errorMessage = '';
+              }
+
         });
 
         // Automatically clear the message after 60 seconds (1 minute)
@@ -211,7 +234,13 @@ formData.append('ImageFile', this.selectedFile);
       // Handle the plain text response here
           },
           (error) => {
-            console.error('API Error:', error);
+            if(error.error=="An entry with the same NationalId already exists."){
+              this.errorMessage = 'you recorded before with same nationalID';
+              this.message = '';
+            }else{
+              console.error('API Error:', error);
+            }
+
 
 
           // Handle error response
@@ -220,6 +249,7 @@ formData.append('ImageFile', this.selectedFile);
 
 
       this.zone.run(() => {
+
           this.errorMessage = 'An error occurred while registering in Blood Filtration. Please try again.';
           this.message = '';
         });
@@ -237,35 +267,37 @@ formData.append('ImageFile', this.selectedFile);
 
   submitForm3() {
 
+    // console.log("form before:",this.bloodTestsForm.value);
+    // if (!this.selectedFile) {
+    //   this.zone.run(() => {
+    //       this.errorMessage = 'There Is No image Selected';
+    //       this.message = '';
+    //     });
 
-    if (!this.selectedFile) {
-      this.zone.run(() => {
-          this.errorMessage = 'There Is No image Selected';
-          this.message = '';
-        });
-
-        // Automatically clear the error message after 2 seconds (1 minute)
-        setTimeout(() => {
-          this.zone.run(() => {
-            this.errorMessage = '';
-          });
-        }, 2000);
-      return;
-    }
+    //     // Automatically clear the error message after 2 seconds (1 minute)
+    //     setTimeout(() => {
+    //       this.zone.run(() => {
+    //         this.errorMessage = '';
+    //       });
+    //     }, 2000);
+    //   return;
+    // }
 
     if (this.bloodTestsForm.valid) {
-      const formData = new FormData();
-    formData.append('hospitalCenter', this.bloodTestsForm.get('hospitalCenter')!.value);
-    formData.append('typeOfTest', this.bloodTestsForm.get('typeOfTest')!.value);
-    formData.append('date', this.bloodTestsForm.get('date')!.value);
-    formData.append('bloodType', this.bloodTestsForm.get('bloodType')!.value);
-    formData.append('nationalId', this.bloodTestsForm.get('nationalId')!.value);
-    formData.append('ImageFile', this.selectedFile);
+    //   const formData = new FormData();
+    // formData.append('hospitalCenter', this.bloodTestsForm.get('hospitalCenter')!.value);
+    // formData.append('typeOfTest', this.bloodTestsForm.get('typeOfTest')!.value);
+    // formData.append('date', this.bloodTestsForm.get('date')!.value);
+    // formData.append('bloodType', this.bloodTestsForm.get('bloodType')!.value);
+    // formData.append('nationalId', this.bloodTestsForm.get('nationalId')!.value);
+    // // formData.append('ImageFile', this.selectedFile);
+
+    // console.error('data:', formData);
+    console.error('testdata:', this.bloodTestsForm);
 
 
 
-
-      this._BloodTestsService.submitForm(formData)
+      this._BloodTestsService.submitForm(this.bloodTestsForm.value)
         .pipe(
         finalize(() => {
           // Reset the form and selected file after submission
@@ -291,6 +323,7 @@ formData.append('ImageFile', this.selectedFile);
           },
           (error) => {
             console.error('API Error:', error);
+            // console.error('data:', formData);
 
           // Handle error response
         });

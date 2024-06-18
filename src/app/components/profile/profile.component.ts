@@ -23,7 +23,8 @@ export class ProfileComponent implements OnInit {
   personalNationalId: string = "";
   personalNearestHospital: string = "";
   personalGender: string = "";
-  personalBirthDate: string = "";
+  personalLocation: string = "";
+  personalBirthDate?: null;
   email=sessionStorage.getItem("Email");
   value = sessionStorage.getItem("Log In") !== null;
   UserName=sessionStorage.getItem("UserName");
@@ -63,9 +64,11 @@ export class ProfileComponent implements OnInit {
           this.personalBirthDate = r.birthDate;
           this.personalNearestHospital = r.bloodBank;
           this.personalEmail = r.email;
+          this.personalLocation=r.city;
           this.personalGender = r.gender;
           this.personalNationalId = r.nationalID;
           this.personalPhone = r.phoneNumber;
+          this.personalBirthDate = this.datePipe.transform(this.personalBirthDate, 'yyyy-MM-dd');
           // this.UserName=r.userName;
           // sessionStorage.setItem("UserName",this.UserName)
         }

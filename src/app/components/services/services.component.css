@@ -5,10 +5,7 @@ body {
   background-color: #d9d9d9;
   font-size: 100%;
 }
-.arabic-content{
-  direction: rtl;
-  font-family: 'Arial', sans-serif;
-}
+
 .w-35{
   width: 35%;
 }
@@ -48,6 +45,16 @@ span{
   width: 36.5%;
 
 }
+.w-80{
+
+  width: 85%;
+
+}
+
+
+.w-73{
+  width: 69%;
+}
 
 .bg-gray{
   background-color:  #D9D9D966;
@@ -78,6 +85,13 @@ h3{
   z-index: -1;
 }
 
+
+@media(max-width:575px){
+
+  img{
+    width:60% !important;
+  }
+}
 
 
 

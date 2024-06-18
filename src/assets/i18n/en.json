@@ -51,5 +51,19 @@
 
   "Liver Disease Prediction":"Liver Disease Prediction",
   "Upload Medical Report Image":"Upload Medical Report Image",
-  "Predict":"Predict"
+  "Predict":"Predict",
+
+  "OURSERVICES":"<span class='BloodTitle'>Our</span> Services",
+  "DONATE":"Donate",
+  "DONATEOVERVIEW":"You can Donate blood or Donate plasma",
+  "REQUEST":"Request",
+  "REQUESTOVERVIEW":"You can Request blood or Request plasma",
+  "Blood Tests":"Blood Tests",
+  "BLOODTESTOVERVIEW":"we have more than one test to help you.",
+  "BloodFilteration":"BloodFilteration",
+  "BloodFilterationOVERVIEW":"you can filter your blood and Detoxfication",
+  "WashedRBCS":"WashedRBCS",
+  "WashedRBCSOVERview":"Washing away bad blood with clean blood.",
+
+  "CREATEACCOUNT":"Create Account"
 }

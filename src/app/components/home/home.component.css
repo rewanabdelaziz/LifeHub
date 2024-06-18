@@ -254,10 +254,12 @@
 
 }
 
-.col-3 .layer{
+.col-md  .layer{
 border-radius: 10px;
 border: 1px;
 background-color: #FAFAFA;
+height: 197px;
+
 
 }
 .icon1,#address{
@@ -277,6 +279,27 @@ background-color: #FAFAFA;
   width: 15%;
 }
 
+
+@media (min-width:993px){
+
+  .show{
+
+    display: none;
+  }
+
+}
+
+@media (max-width:992px){
+
+
+  .cantain{
+  display: none !important;}
+
+  .show{
+    display: flex;
+  }
+
+}
 
 
 
