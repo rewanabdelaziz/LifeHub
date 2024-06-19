@@ -42,6 +42,7 @@
       <!-- <label for="hour">Hour:</label> -->
       <input type="time" formControlName="hour" id="hour">
     </div>
+    <input class="fs-5 w-100 ps-3 p-2 bg-gray rounded border-0 d-none" type="text" formControlName="nationalId" value="{{personalNationalId}}" [innerText]="personalNationalId">
     <button type="submit" class="submitbtn"  [class.button1]="BloodHeader" [class.button2]="!BloodHeader"> {{ 'DONATE_BUTTON' | translate }}</button>
   </form>
   <div *ngIf="message" class="success-message">{{ message }}</div>

@@ -19,6 +19,7 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class DonationComponent implements OnInit {
   loginSuccess;
+  personalNationalId :string="";
   value = sessionStorage.getItem("token") !== null;
   currentLanguage:string='';
   receivedEmail:string="";
@@ -30,11 +31,12 @@ export class DonationComponent implements OnInit {
   message: string="";
   errorMessage: string="";
   hospitals: string[] = ['Hospital 1', 'Hospital 2', 'Hospital 3'];
-
+  email=sessionStorage.getItem("Email");
   donationForm: FormGroup = this.formBuilder.group({
     hospitalCenter: ['', Validators.required],
     date: ['', Validators.required],
-    hour: ['', Validators.required]
+    hour: ['', Validators.required],
+    nationalId:['']
   });
 
   constructor(
@@ -51,6 +53,16 @@ export class DonationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.email) {
+      this.profileService.GetProfileInfo(this.email).subscribe({
+        next: (r) => {
+          console.log("response of profile info: ",r);
+          this.personalNationalId = r.nationalID;
+        }
+      });
+    } else {
+      console.error("Email is null");
+    }
     // Initialize form with validators
 
     // this._LoginProfileService.getData().subscribe(data => {
@@ -77,7 +89,7 @@ export class DonationComponent implements OnInit {
   // language
   this.languageService.currentLanguage$.subscribe(language => {
     this.currentLanguage=language;
-    console.log('Current language:', this.currentLanguage);
+    // console.log('Current language:', this.currentLanguage);
   });
 }
 
@@ -91,6 +103,12 @@ export class DonationComponent implements OnInit {
   // }
 
   onSubmit(): void {
+
+    // get national id
+
+
+
+    this.donationForm.value.nationalId=this.personalNationalId;
     if (this.donationForm.invalid) {
       this.markAllFieldsAsTouched(this.donationForm);
       if(this.applyArabicClass()){
@@ -139,16 +157,30 @@ export class DonationComponent implements OnInit {
         // Handle success response
         console.log(response); // Log the response for demonstration
         if(this.applyArabicClass()){
-          this.message = 'تم التسجيل بنجح';
-          this.errorMessage = ""; // Reset error message
-        }else{
-          this.message = 'Donation registered successfully.';
-          this.errorMessage = ""; // Reset error message
-        }
+          if(response=="Donor can donate plasma"){
+            this.errorMessage = "";
+            this.message="تم الحجز"
+          }else if (response.startsWith("You have")) {
+            this.message = "";
+            this.errorMessage="لم تمر المده المحدده من تاربخ أخر تبرع لك"
 
+          }else{
+            this.message = 'تم التسجيل بنجح';
+            this.errorMessage = ""; // Reset error message
+          }
+        }else{
+          if(response.startsWith("You have")){
+            this.errorMessage =response;
+            this.message=""
+          }else{
+            this.message = response;
+            this.errorMessage = ""; // Reset error message
+          }
+        }
       },
       error => {
         // Handle error response
+        console.log(error);
         if(error.text="Blood Register successfully!"){
           if(this.applyArabicClass()){
             this.message = 'تم التسجيل بنجح';
@@ -189,6 +221,14 @@ markAllFieldsAsTouched(formGroup: FormGroup): void {
   }
 
 
+// national ID
+
+
+
+
+
+
+
   donateBlood() {
     this.donationType ="Blood";
     this.BloodHeader=true;
@@ -202,6 +242,7 @@ markAllFieldsAsTouched(formGroup: FormGroup): void {
   }
 
 
+
 // language
 switchLanguage(language: string) {
   this.languageService.setLanguage(language);
@@ -209,6 +250,8 @@ switchLanguage(language: string) {
 applyArabicClass(): boolean {
   return this.currentLanguage === 'ar';
 }
+
+
 
 }
 

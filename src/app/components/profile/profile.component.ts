@@ -69,6 +69,7 @@ export class ProfileComponent implements OnInit {
           this.personalNationalId = r.nationalID;
           this.personalPhone = r.phoneNumber;
           this.personalBirthDate = this.datePipe.transform(this.personalBirthDate, 'yyyy-MM-dd');
+          // sessionStorage.setItem("NationalID",this.personalNationalId);
           // this.UserName=r.userName;
           // sessionStorage.setItem("UserName",this.UserName)
         }

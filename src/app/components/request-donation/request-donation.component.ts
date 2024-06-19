@@ -29,12 +29,14 @@ export class RequestDonationComponent implements OnInit {
   errorMessage: string="";
   hospitals: string[] = ['Hospital 1', 'Hospital 2', 'Hospital 3'];
   BloodTypes: string[] =['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-
+  personalNationalId :string="";
+  email=sessionStorage.getItem('Email');
   requestDonationForm: FormGroup = this.formBuilder.group({
     hospitalCenter: ['', Validators.required],
     date: ['', Validators.required],
     bloodType: [''],
-    plasmaType: ['']
+    plasmaType: [''],
+    nationalId:['']
   });
 
   constructor(
@@ -44,18 +46,31 @@ export class RequestDonationComponent implements OnInit {
     private _RequestDonorService:RequestDonorService,
     private datePipe: DatePipe,
     private profileService: ProfileService,
-    private languageService: LanguageService )
+    private languageService: LanguageService, )
     {
     this.loginSuccess = this.authService.isLoggedIn;
     }
 
 
   ngOnInit(): void {
+  // get nationalID
+    if (this.email) {
+      this.profileService.GetProfileInfo(this.email).subscribe({
+        next: (r) => {
+          console.log("response of profile info: ",r);
+          this.personalNationalId = r.nationalID;
+        }
+      });
+    } else {
+      console.error("Email is null");
+    }
+
      // language
   this.languageService.currentLanguage$.subscribe(language => {
     this.currentLanguage=language;
     console.log('Current language:', this.currentLanguage);
   });
+
     // Initialize form with validators
 
     // this._LoginProfileService.getData().subscribe(data => {
@@ -99,6 +114,7 @@ export class RequestDonationComponent implements OnInit {
   // }
 
   onSubmit(): void {
+    this.requestDonationForm.value.nationalId=this.personalNationalId;
     if (this.requestDonationForm.invalid) {
       this.markAllFieldsAsTouched(this.requestDonationForm);
       this.errorMessage = 'please fill all fields';
@@ -138,11 +154,21 @@ export class RequestDonationComponent implements OnInit {
         // Handle success response
         console.log(response); // Log the response for demonstration
         if(this.applyArabicClass()){
-          this.message = 'تم التسجيل بنجح';
-          this.errorMessage = ""; // Reset error message
+          if(response=="Patient already exist"){
+            this.errorMessage = "لقد قمت بالتسجيل من قبل";
+            this.message=""
+          }else{
+            this.message = 'تم التسجيل بنجح';
+            this.errorMessage = ""; // Reset error message
+          }
         }else{
-          this.message = 'Donation registered successfully.';
-          this.errorMessage = ""; // Reset error message
+          if(response=="Patient already exist"){
+            this.errorMessage =response;
+            this.message=""
+          }else{
+            this.message = response;
+            this.errorMessage = ""; // Reset error message
+          }
         }
       },
       error => {

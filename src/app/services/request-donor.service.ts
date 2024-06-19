@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +8,34 @@ import { Observable } from 'rxjs';
 export class RequestDonorService {
 
   private apiUrl = 'https://localhost:7105/api/Users/';
-
+ // https://localhost:7105/api/Users/plasmaRequest/Request_Plasma
+ // https://localhost:7105/api/Users/bloodRequest/Request_blood
   constructor(private http: HttpClient) { }
 
   requestBlood(data: any): Observable<string> {
-    return this.http.post<any>(this.apiUrl + 'RequestBlood/Request_bloodOr', data);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.apiUrl + 'bloodRequest/Request_blood', data,{ headers, responseType: 'text' as 'json' }).pipe(
+      map((response: any) => {
+        try {
+          const jsonResponse = JSON.parse(response);
+          return jsonResponse;
+        } catch (jsonError) {
+          return response;
+        }
+      }),)
   }
 
   requestPlasma(data: any): Observable<string> {
-    return this.http.post<any>(this.apiUrl + 'RequestPlasma/RequesPlasma', data);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.apiUrl + 'plasmaRequest/Request_Plasma', data,{ headers, responseType: 'text' as 'json' }).pipe(
+      map((response: any) => {
+        try {
+          const jsonResponse = JSON.parse(response);
+          return jsonResponse;
+        } catch (jsonError) {
+          return response;
+        }
+      }),)
   }
 
   getHospitals(city: string): Observable<string[]> {
