@@ -66,6 +66,7 @@
   "WashedRBCS":"WashedRBCS",
   "WashedRBCSOVERview":"غسيل الدم",
 
-  "CREATEACCOUNT":"انشاء حساب جديد"
+  "CREATEACCOUNT":"انشاء حساب جديد",
+  "LOADING_MESSAGE":"من فضلك انتظر ثواني جاري البحث عن أقرب مكان للتبرع لك"
 }
 

@@ -1,6 +1,9 @@
 <!-- <app-nav-bar *ngIf="value==false"></app-nav-bar>
 <app-auth-nav *ngIf="value"></app-auth-nav> -->
-<div class="donation-container bg-light shadow-lg p-4 w-100  mb-5" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+<div *ngIf="loading" class="loading-message">
+  {{ 'LOADING_MESSAGE' | translate }}
+</div>
+<div *ngIf="!loading" class="donation-container bg-light shadow-lg p-4 w-100  mb-5" [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="mb-4  px-5 text-center" [ngClass]="{ 'd-flex flex-row-reverse justify-content-center': applyArabicClass()}">
         <button (click)="requestBlood()"  class="btnLeft bloodbtn">
           {{ 'REQUEST_BLOOD' | translate }}
@@ -30,7 +33,9 @@
       <!-- <label for="hospitalCenter">Hospital Center:</label> -->
       <select formControlName="hospitalCenter" id="hospitalCenter" >
         <option [ngValue]="null" selected disabled >{{ 'HOSPITAL_NAME' | translate }}</option>
-        <option *ngFor="let hospital of hospitals" [value]="hospital">{{ hospital }}</option>
+        <option *ngFor="let hospital of hospitals" [ngValue]="hospital.name.ar" [ngClass]="{ 'd-none': !applyArabicClass()}">{{ hospital.name.ar }}</option>
+        <option *ngFor="let hospital of hospitals" [ngValue]="hospital.name.en" [ngClass]="{ 'd-none': applyArabicClass()}">{{ hospital.name.en }}</option>
+        <!-- <option *ngFor="let hospital of hospitals" [value]="hospital">{{ hospital }}</option> -->
       </select>
     </div>
     <div class="form-group">

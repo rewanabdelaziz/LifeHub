@@ -7,8 +7,17 @@ import { DonationRegesisterService } from 'src/app/services/donation-regesister.
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { LanguageService } from 'src/app/services/language.service';
-
-// import { HomeDataService } from 'src/app/services/home-data.service';
+import { GeolocationService } from 'src/app/services/geolocation.service';
+interface Hospital {
+  id: number;
+  name: {
+    en: string;
+    ar: string;
+  };
+  latitude: number;
+  longitude: number;
+  city: string;
+}
 
 @Component({
   selector: 'app-donation',
@@ -30,7 +39,7 @@ export class DonationComponent implements OnInit {
   city: string="";
   message: string="";
   errorMessage: string="";
-  hospitals: string[] = ['Hospital 1', 'Hospital 2', 'Hospital 3'];
+  // hospitals: string[] = ['Hospital 1', 'Hospital 2', 'Hospital 3'];
   email=sessionStorage.getItem("Email");
   donationForm: FormGroup = this.formBuilder.group({
     hospitalCenter: ['', Validators.required],
@@ -39,6 +48,11 @@ export class DonationComponent implements OnInit {
     nationalId:['']
   });
 
+
+  hospitals: Hospital[] = [];
+  error: string | null = null;
+  loading: boolean = true; // Loading state
+  userCity:string='';
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -46,9 +60,16 @@ export class DonationComponent implements OnInit {
     private _DonationRegesisterService:DonationRegesisterService,
     private datePipe: DatePipe,
     private profileService: ProfileService,
-    private languageService: LanguageService )
+    private languageService: LanguageService,
+    private geolocationService: GeolocationService, )
     {
     this.loginSuccess = this.authService.isLoggedIn$;
+    this.languageService.currentLanguage$.subscribe(language => {
+      this.currentLanguage = language;
+      if (this.userCity) {
+        this.fetchHospitals();
+      }
+    });
     }
 
 
@@ -58,11 +79,15 @@ export class DonationComponent implements OnInit {
         next: (r) => {
           console.log("response of profile info: ",r);
           this.personalNationalId = r.nationalID;
+          this.userCity=r.city;
+          console.log(this.userCity);
+          this.fetchHospitals();
         }
       });
     } else {
       console.error("Email is null");
     }
+
     // Initialize form with validators
 
     // this._LoginProfileService.getData().subscribe(data => {
@@ -244,11 +269,41 @@ markAllFieldsAsTouched(formGroup: FormGroup): void {
 
 
 // language
-switchLanguage(language: string) {
-  this.languageService.setLanguage(language);
+switchLanguage(language: 'en' | 'ar') {
+  this.currentLanguage = language;
 }
+
 applyArabicClass(): boolean {
   return this.currentLanguage === 'ar';
+}
+
+// nearest hospital
+fetchHospitals(): void {
+  console.log(this.userCity);
+  if (this.userCity) {
+    this.geolocationService.getHospitalsByCity(this.userCity, this.currentLanguage as 'en' | 'ar')
+      .subscribe(
+        data => {
+          console.log(this.userCity);
+          this.hospitals = data;
+          console.log(this.hospitals);
+          this.loading = false; // Data is loaded
+        },
+        error => {
+          this.errorMessage = error.message;
+          this.loading = false; // Error occurred, stop loading
+        }
+      );
+  } else {
+    if(this.currentLanguage=='ar'){
+      this.errorMessage = 'موقعك غير متوفر حاول مره أخرى';
+      this.loading = false;
+    }else{
+      this.errorMessage = 'your city not available.';
+      this.loading = false;
+    }
+
+  }
 }
 
 

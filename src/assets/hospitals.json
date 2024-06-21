@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "en": "Cairo University Hospitals",
+      "ar": "مستشفيات جامعة القاهرة"
+    },
+    "latitude": 30.0264,
+    "longitude": 31.2086,
+    "city": "Cairo"
+  },
+  {
+    "id": 2,
+    "name": {
+      "en": "El Demerdash Hospital",
+      "ar": "مستشفى الدمرداش"
+    },
+    "latitude": 30.0665,
+    "longitude": 31.2769,
+    "city": "Cairo"
+  },
+  {
+    "id": 3,
+    "name": {
+      "en": "El Kasr El Aini Hospital",
+      "ar": "مستشفى القصر العيني"
+    },
+    "latitude": 30.0305,
+    "longitude": 31.2288,
+    "city": "Cairo"
+  },
+  {
+    "id": 4,
+    "name": {
+      "en": "Ain Shams University Hospitals",
+      "ar": "مستشفيات جامعة عين شمس"
+    },
+    "latitude": 30.0768,
+    "longitude": 31.2859,
+    "city": "Cairo"
+  },
+  {
+    "id": 5,
+    "name": {
+      "en": "National Blood Transfusion Center",
+      "ar": "المركز القومي لنقل الدم"
+    },
+    "latitude": 30.0626,
+    "longitude": 31.2240,
+    "city": "Cairo"
+  },
+  {
+    "id": 6,
+    "name": {
+      "en": "Alexandria University Hospitals",
+      "ar": "مستشفيات جامعة الإسكندرية"
+    },
+    "latitude": 31.2001,
+    "longitude": 29.9187,
+    "city": "Alexandria"
+  },
+  {
+    "id": 7,
+    "name": {
+      "en": "Alexandria Blood Transfusion Center",
+      "ar": "مركز الإسكندرية لنقل الدم"
+    },
+    "latitude": 31.2156,
+    "longitude": 29.9553,
+    "city": "Alexandria"
+  },
+  {
+    "id": 8,
+    "name": {
+      "en": "Tanta University Hospitals",
+      "ar": "مستشفيات جامعة طنطا"
+    },
+    "latitude": 30.7936,
+    "longitude": 31.0018,
+    "city": "Tanta"
+  },
+  {
+    "id": 9,
+    "name": {
+      "en": "Tanta Blood Transfusion Center",
+      "ar": "مركز طنطا لنقل الدم"
+    },
+    "latitude": 30.7967,
+    "longitude": 31.0023,
+    "city": "Tanta"
+  },
+  {
+    "id": 10,
+    "name": {
+      "en": "Assiut University Hospitals",
+      "ar": "مستشفيات جامعة أسيوط"
+    },
+    "latitude": 27.1865,
+    "longitude": 31.1702,
+    "city": "Assiut"
+  },
+  {
+    "id": 11,
+    "name": {
+      "en": "Assiut Blood Transfusion Center",
+      "ar": "مركز أسيوط لنقل الدم"
+    },
+    "latitude": 27.1783,
+    "longitude": 31.1868,
+    "city": "Assiut"
+  },
+  {
+    "id": 12,
+    "name": {
+      "en": "Mansoura University Hospitals",
+      "ar": "مستشفيات جامعة المنصورة"
+    },
+    "latitude": 31.0409,
+    "longitude": 31.3785,
+    "city": "Mansoura"
+  },
+  {
+    "id": 13,
+    "name": {
+      "en": "Mansoura Blood Transfusion Center",
+      "ar": "مركز المنصورة لنقل الدم"
+    },
+    "latitude": 31.0446,
+    "longitude": 31.3788,
+    "city": "Mansoura"
+  },
+  {
+    "id": 14,
+    "name": {
+      "en": "Zagazig University Hospitals",
+      "ar": "مستشفيات جامعة الزقازيق"
+    },
+    "latitude": 30.5877,
+    "longitude": 31.5020,
+    "city": "Zagazig"
+  },
+  {
+    "id": 15,
+    "name": {
+      "en": "Zagazig Blood Transfusion Center",
+      "ar": "مركز الزقازيق لنقل الدم"
+    },
+    "latitude": 30.5898,
+    "longitude": 31.5021,
+    "city": "Zagazig"
+  },
+  {
+    "id": 16,
+    "name": {
+      "en": "Al Galaa Military Hospital",
+      "ar": "مستشفى الجلاء العسكري"
+    },
+    "latitude": 30.0895,
+    "longitude": 31.2473,
+    "city": "Cairo"
+  },
+  {
+    "id": 17,
+    "name": {
+      "en": "Sheikh Zayed Specialized Hospital",
+      "ar": "مستشفى الشيخ زايد التخصصي"
+    },
+    "latitude": 30.0223,
+    "longitude": 31.0134,
+    "city": "Giza"
+  },
+  {
+    "id": 18,
+    "name": {
+      "en": "Giza Blood Transfusion Center",
+      "ar": "مركز الجيزة لنقل الدم"
+    },
+    "latitude": 30.0131,
+    "longitude": 31.2088,
+    "city": "Giza"
+  },
+  {
+    "id": 19,
+    "name": {
+      "en": "Sohag University Hospitals",
+      "ar": "مستشفيات جامعة سوهاج"
+    },
+    "latitude": 26.5583,
+    "longitude": 31.6951,
+    "city": "Sohag"
+  },
+  {
+    "id": 20,
+    "name": {
+      "en": "Sohag Blood Transfusion Center",
+      "ar": "مركز سوهاج لنقل الدم"
+    },
+    "latitude": 26.5628,
+    "longitude": 31.6944,
+    "city": "Sohag"
+  }
+]

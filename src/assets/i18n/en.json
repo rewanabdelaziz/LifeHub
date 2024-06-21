@@ -65,5 +65,6 @@
   "WashedRBCS":"WashedRBCS",
   "WashedRBCSOVERview":"Washing away bad blood with clean blood.",
 
-  "CREATEACCOUNT":"Create Account"
+  "CREATEACCOUNT":"Create Account",
+  "LOADING_MESSAGE":"Please waiting for seconds, we searching about your nearest hospitals"
 }

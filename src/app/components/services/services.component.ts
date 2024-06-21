@@ -5,7 +5,18 @@ import { finalize, map } from 'rxjs';
 import { BloodFiltrationService } from 'src/app/services/blood-filtration.service';
 import { BloodTestsService } from 'src/app/services/blood-tests.service';
 import { LanguageService } from 'src/app/services/language.service';
-
+import { GeolocationService } from 'src/app/services/geolocation.service';
+import { ProfileService } from 'src/app/services/profile.service';
+interface Hospital {
+  id: number;
+  name: {
+    en: string;
+    ar: string;
+  };
+  latitude: number;
+  longitude: number;
+  city: string;
+}
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -25,11 +36,14 @@ export class ServicesComponent implements OnInit{
 
   // loginSuccess: Boolean = false;
 
-
+  hospitals: Hospital[] = [];
+  error: string | null = null;
+  loading: boolean = true; // Loading state
+  userCity:string='';
   value = sessionStorage.getItem("Log In") !== null;
 
-
-
+  email=sessionStorage.getItem("Email");
+  personalNationalId :string="";
   washedRbcsForm!: FormGroup;
 
   bloodFiltrationForm!: FormGroup;
@@ -43,14 +57,34 @@ export class ServicesComponent implements OnInit{
               private http: HttpClient, private zone: NgZone,
               private bloodFiltrationService: BloodFiltrationService,
               private _BloodTestsService:BloodTestsService,
-              private languageService: LanguageService) {
+              private languageService: LanguageService,
+              private profileService: ProfileService,
+              private geolocationService: GeolocationService,) {
 
-
+                this.languageService.currentLanguage$.subscribe(language => {
+                  this.currentLanguage = language;
+                  if (this.userCity) {
+                    this.fetchHospitals();
+                  }
+                });
 
   }
 
 
   ngOnInit(): void  {
+    if (this.email) {
+      this.profileService.GetProfileInfo(this.email).subscribe({
+        next: (r) => {
+          console.log("response of profile info: ",r);
+          this.personalNationalId = r.nationalID;
+          this.userCity=r.city;
+          console.log(this.userCity);
+          this.fetchHospitals();
+        }
+      });
+    } else {
+      console.error("Email is null");
+    }
     // language
   this.languageService.currentLanguage$.subscribe(language => {
     this.currentLanguage=language;
@@ -66,12 +100,14 @@ export class ServicesComponent implements OnInit{
 
 
 
+
+
     this.bloodFiltrationForm = this.formBuilder.group({
     hospitalCenter: ['', Validators.required],
     bloodType: ['', Validators.required],
     testType: ['', Validators.required],
     date: ['', Validators.required],
-    nationalId: ['', Validators.required],
+    nationalId: ['', ],
     // ImageFile: [null] // Ensure this control is required
     });
 
@@ -81,7 +117,7 @@ export class ServicesComponent implements OnInit{
       typeOfTest: ['' , Validators.required],
       date: ['' , Validators.required],
       bloodType: ['' , Validators.required],
-      nationalId: ['' , Validators.required],
+      nationalId: ['' , ],
       // ImageFile: [null] // Ensure this control is required
     });
 
@@ -166,9 +202,9 @@ submitForm() {
 
 
 
-onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
+// onFileSelected(event: any) {
+//     this.selectedFile = event.target.files[0];
+//   }
 
 
 
@@ -193,6 +229,7 @@ onFileSelected(event: any) {
     //   return;
     // }
 // console.log("form before:",this.bloodFiltrationForm.value);
+this.bloodFiltrationForm.value.nationalId=this.personalNationalId;
     if (this.bloodFiltrationForm.valid) {
 //       const formData = new FormData();
 // formData.append('hospitalCenter', this.bloodFiltrationForm.get('hospitalCenter')!.value);
@@ -282,7 +319,7 @@ onFileSelected(event: any) {
     //     }, 2000);
     //   return;
     // }
-
+    this.bloodTestsForm.value.nationalId=this.personalNationalId;
     if (this.bloodTestsForm.valid) {
     //   const formData = new FormData();
     // formData.append('hospitalCenter', this.bloodTestsForm.get('hospitalCenter')!.value);
@@ -395,12 +432,41 @@ onFileSelected(event: any) {
 
 
 
-  switchLanguage(language: string) {
-    this.languageService.setLanguage(language);
-    console.log(this.applyArabicClass());
+  switchLanguage(language: 'en' | 'ar') {
+    this.currentLanguage = language;
   }
+
   applyArabicClass(): boolean {
     return this.currentLanguage === 'ar';
+  }
+
+  // nearest hospital
+  fetchHospitals(): void {
+    console.log(this.userCity);
+    if (this.userCity) {
+      this.geolocationService.getHospitalsByCity(this.userCity, this.currentLanguage as 'en' | 'ar')
+        .subscribe(
+          data => {
+            console.log(this.userCity);
+            this.hospitals = data;
+            console.log(this.hospitals);
+            this.loading = false; // Data is loaded
+          },
+          error => {
+            this.errorMessage = error.message;
+            this.loading = false; // Error occurred, stop loading
+          }
+        );
+    } else {
+      if(this.currentLanguage=='ar'){
+        this.errorMessage = 'موقعك غير متوفر حاول مره أخرى';
+        this.loading = false;
+      }else{
+        this.errorMessage = 'your city not available.';
+        this.loading = false;
+      }
+
+    }
   }
 
 
