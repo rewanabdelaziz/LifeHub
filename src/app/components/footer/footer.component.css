@@ -72,3 +72,23 @@ background-color: #FAFAFA;
   direction: rtl;
   font-family: 'Arial', sans-serif;
 }
+
+/* Align Arabic content to the right */
+.arabic-content {
+  direction: rtl;
+}
+
+/* Adjust text alignment within specific elements */
+.arabic-content .fw-bold,
+.arabic-content .lead,
+.arabic-content .fw-semibold {
+  text-align: right;
+}
+
+/* Adjust icon alignment */
+.arabic-content .icon2,
+.arabic-content .icon3 {
+  margin-left: 10px;
+  margin-right: 0;
+}
+

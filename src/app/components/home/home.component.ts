@@ -5,10 +5,12 @@ import { Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { InViewDirective } from 'src/app/directives/in-view.directive';
 import { LanguageService } from 'src/app/services/language.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+
 })
 export class HomeComponent implements OnInit, OnDestroy {
 

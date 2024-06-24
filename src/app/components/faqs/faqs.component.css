@@ -1,0 +1,112 @@
+.custom-card {
+  /* background-color: #002855; */
+  /* background-color: var(--main-color); */
+  background-color:#FFF2F3;
+  color: black;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  overflow: visible;
+}
+
+.custom-card .card-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.custom-button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  color: black;
+  font-size: 1.2rem;
+  border: none;
+  background: none;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.custom-button:hover {
+  text-decoration: none;
+}
+
+.plus-circle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  /* background-color: #f4a261; */
+  /* background-color: #0c28a2; */
+  background-color: var(--main-color);
+  color: white;
+  font-size: 1.8rem;
+  z-index: 1;
+}
+
+
+.card2 .plus-circle{
+
+    background-color: var(--plasma);
+
+
+}
+.card3 .plus-circle{
+
+    background-color: var(--main-color);
+
+
+}
+
+.plus-circle::before {
+  content: '+';
+  position: absolute;
+  color: white;
+  font-size: 1.8rem;
+}
+
+.plus-circle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: transparent;
+  box-shadow: 4px -4px 6px #8c7851, 4px 4px 6px #8c7851, -4px 4px 6px #8c7851;
+  z-index: -1;
+}
+
+.collapse .card-body {
+  background-color: transparent;
+  color: gray;
+  border-radius: 10px;
+  border: white;
+  padding: 15px;
+}
+
+.show {
+  display: block !important;
+}
+
+.collapse {
+  display: none;
+}
+#blood{
+  color: var(--main-color);
+}
+#Plasma{
+  color: var(--plasma);
+}
+.arabic-content {
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
+
+
+

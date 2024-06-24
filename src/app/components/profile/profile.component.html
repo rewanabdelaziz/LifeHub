@@ -1,6 +1,6 @@
 <!-- <app-auth-nav ></app-auth-nav> -->
 <app-nav-bar></app-nav-bar>
-<section id="Profile" class="container mt-5 w-75" *ngIf="isLoggedIn || value">
+<section id="Profile" class="container mt-5 w-75" *ngIf="isLoggedIn || value" >
   <div class="container w-75 p-5">
     <div class="header container ms-3">
       <svg width="44" height="51" viewBox="0 0 44 51" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -16,7 +16,7 @@
       <!-- <h2 class="gradient-text mt-3 ms-3 h3">Health Hub</h2> -->
     </div>
 
-    <div class="container bg-light shadow-lg mt-4 w-90">
+    <div class="container bg-light shadow-lg mt-4 w-90" >
       <div class="text-center border-bottom mb-4">
         <!-- <img src="https://vectorified.com/images/person-icon-white-29.png" class="w-25" alt=""> -->
         <!-- <img src="http://www.clker.com/cliparts/g/c/W/l/H/m/people-icon-hi.png" class="w-25" alt=""> -->
@@ -30,37 +30,49 @@
 
       <div class="mb-4 profileButtons px-5 text-center">
         <button (click)="showPersonalInfo()" [class.button1]="isPersonalInfoVisible" [class.button2]="!isPersonalInfoVisible" class="btnLeft">
-          Personal Info
+          {{ 'PersonalInfo' | translate }}
         </button>
         <button (click)="showMedicalInfo()" [class.button1]="!isPersonalInfoVisible" [class.button2]="isPersonalInfoVisible" class="btnRight">
-          Medical Info
+          {{ 'MedicalInfo' | translate }}
         </button>
       </div>
 
-      <div class="container personalInfo pb-3" *ngIf="isPersonalInfoVisible">
+     <div class="container personalInfo pb-3" *ngIf="isPersonalInfoVisible" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <!-- Personal Info -->
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'PersonalEmail' | translate }}:
+    {{ personalEmail }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'PersonalPhone' | translate }}:
+    {{ personalPhone }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'PersonalNationalId' | translate }}:
+    {{ personalNationalId }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'PersonalNearestHospital' | translate }}:
+    {{ personalNearestHospital }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'PersonalGender' | translate }}:
+    {{ personalGender }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'PersonalBirthDate' | translate }}:
+    {{ personalBirthDate | date: 'mediumDate' }}</p>
+</div>
 
+<div class="container medicalInfo" *ngIf="!isPersonalInfoVisible" [ngClass]="{ 'arabic-content': applyArabicClass() }">
+  <!-- Medical Info -->
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'BloodTypeLabel' | translate:{ bloodType: bloodType } }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'LastDonateLabel' | translate:{ dateOfDonate: dateOfDonate } }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'PlasmaDonateLabel' | translate:{ plasma_count: plasma_count } }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'BloodDonateLabel' | translate:{ blood_count: blood_count } }}</p>
+  <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 "
+     [ngClass]="{ 'arabic-content': applyArabicClass() }">{{ 'TotalDonateLabel' | translate:{ sum: sum } }}</p>
+</div>
 
-        <p class="fs-5 bg-white fw-normal rounded-3      mb-3 text-muted lead p-2 ">{{personalEmail}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3      mb-3 text-muted lead p-2 ">{{personalPhone}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalNationalId}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalNearestHospital}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalGender}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3     mb-3 text-muted lead p-2 ">{{personalBirthDate}}</p>
-      </div>
-
-      <div class="container medicalInfo" *ngIf="!isPersonalInfoVisible">
-        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">Blood Type : {{bloodType}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">Last date of Donate: {{dateOfDonate}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">number of Plasma Donate: {{plasma_count}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">number of blood Donate: {{blood_count}}</p>
-        <p class="fs-5 bg-white fw-normal rounded-3 mb-3 text-muted lead p-2 ">Total number of donation: {{sum}}</p>
-        <!--  -->
-        <!-- <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ bloodType }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ dateOfDonate }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ sum }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ blood_count }}" type="text"><br>
-        <input class="form-control fs-5  mb-3 text-muted lead" placeholder="{{ plasma_count }}" type="text"><br> -->
-      </div>
     </div>
   </div>
 </section>

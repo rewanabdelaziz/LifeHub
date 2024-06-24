@@ -1,0 +1,457 @@
+<app-nav-bar></app-nav-bar>
+<div class="custom-card mt-5 pt-5 container m-auto text-black   shadow-lg" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <div class="card-header fs-1 ms-5 mb-3 d-flex justify-content-center text-black">
+    <p [innerHTML]="'bloodDonation.header' | translate"></p>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <!-- First collapsible section -->
+      <div class="col-12">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseOne')"
+          [attr.aria-expanded]="!isCollapsed('collapseOne')" aria-controls="collapseOne">
+          {{ 'bloodDonation.sections.0.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseOne')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseOne') }" id="collapseOne">
+          <div class="card card-body fs-5">
+            <!-- Content for the first item goes here -->
+            <p>{{ 'bloodDonation.sections.0.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second collapsible section -->
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseTwo')"
+          [attr.aria-expanded]="!isCollapsed('collapseTwo')" aria-controls="collapseTwo">
+          {{ 'bloodDonation.sections.1.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseTwo')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseTwo') }" id="collapseTwo">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodDonation.sections.1.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseThree')"
+          [attr.aria-expanded]="!isCollapsed('collapseThree')" aria-controls="collapseThree">
+          {{ 'bloodDonation.sections.2.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseThree')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseThree') }" id="collapseThree">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodDonation.sections.2.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseFour')"
+          [attr.aria-expanded]="!isCollapsed('collapseFour')" aria-controls="collapseFour">
+          {{ 'bloodDonation.sections.3.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseFour')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseFour') }" id="collapseFour">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodDonation.sections.3.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseFive')"
+          [attr.aria-expanded]="!isCollapsed('collapseFive')" aria-controls="collapseFive">
+          {{ 'bloodDonation.sections.4.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseFive')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseFive') }" id="collapseFive">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodDonation.sections.4.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseSix')"
+          [attr.aria-expanded]="!isCollapsed('collapseSix')" aria-controls="collapseSix">
+          {{ 'bloodDonation.sections.5.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseSix')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseSix') }" id="collapseSix">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodDonation.sections.5.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseSeven')"
+          [attr.aria-expanded]="!isCollapsed('collapseSeven')" aria-controls="collapseSeven">
+          {{ 'bloodDonation.sections.6.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseSeven')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseSeven') }" id="collapseSeven">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodDonation.sections.6.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseEight')"
+          [attr.aria-expanded]="!isCollapsed('collapseEight')" aria-controls="collapseEight">
+          {{ 'bloodDonation.sections.7.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseEight')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseEight') }" id="collapseEight">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodDonation.sections.7.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+
+
+
+<div class="custom-card mt-5 pt-5 container m-auto text-black card2 shadow-lg" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <div class="card-header fs-1 ms-5 mb-3 d-flex justify-content-center text-black">
+    <p [innerHTML]="'plasmaDonation.header' | translate"></p>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <!-- First collapsible section -->
+      <div class="col-12">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse1')"
+          [attr.aria-expanded]="!isCollapsed('collapse1')" aria-controls="collapse1">
+          {{ 'plasmaDonation.sections.0.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse1')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse1') }" id="collapse1">
+          <div class="card card-body fs-5">
+            <!-- Content for the first item goes here -->
+            <p>{{ 'plasmaDonation.sections.0.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second collapsible section -->
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse2')"
+          [attr.aria-expanded]="!isCollapsed('collapse2')" aria-controls="collapse2">
+          {{ 'plasmaDonation.sections.1.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse2')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse2') }" id="collapse2">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.1.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse3')"
+          [attr.aria-expanded]="!isCollapsed('collapse3')" aria-controls="collapse3">
+          {{ 'plasmaDonation.sections.2.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse3')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse3') }" id="collapse3">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.2.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse4')"
+          [attr.aria-expanded]="!isCollapsed('collapse4')" aria-controls="collapse4">
+          {{ 'plasmaDonation.sections.3.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse4')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse4') }" id="collapse4">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.3.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse5')"
+          [attr.aria-expanded]="!isCollapsed('collapse5')" aria-controls="collapse5">
+          {{ 'plasmaDonation.sections.4.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse5')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse5') }" id="collapse5">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.4.answer'| translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse6')"
+          [attr.aria-expanded]="!isCollapsed('collapse6')" aria-controls="collapse6">
+          {{ 'plasmaDonation.sections.5.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse6')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse6') }" id="collapse6">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.5.answer'| translate }}.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse7')"
+          [attr.aria-expanded]="!isCollapsed('collapse7')" aria-controls="collapse7">
+          {{ 'plasmaDonation.sections.6.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse7')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse7') }" id="collapse7">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.6.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse8')"
+          [attr.aria-expanded]="!isCollapsed('collapse8')" aria-controls="collapse8">
+          {{ 'plasmaDonation.sections.7.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse8')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse8') }" id="collapse8">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.7.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse9')"
+          [attr.aria-expanded]="!isCollapsed('collapse9')" aria-controls="collapse9">
+          {{ 'plasmaDonation.sections.8.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse9')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse9') }" id="collapse9">
+          <div class="card card-body fs-5">
+            <p>{{ 'plasmaDonation.sections.8.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </div>
+</div>
+
+
+
+<div class="custom-card mt-5 pt-5 container m-auto text-black .card3 shadow-lg" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <div class="card-header fs-1 ms-5 mb-3 d-flex justify-content-center text-black">
+    <p [innerHTML]="'bloodTests.header' | translate"></p>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <!-- First collapsible section -->
+      <div class="col-12">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse01')"
+          [attr.aria-expanded]="!isCollapsed('collapse01')" aria-controls="collapse01">
+          {{ 'bloodTests.sections.0.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse01')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse01') }" id="collapse01">
+          <div class="card card-body fs-5">
+            <!-- Content for the first item goes here -->
+            <p>{{ 'bloodTests.sections.0.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second collapsible section -->
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse02')"
+          [attr.aria-expanded]="!isCollapsed('collapse02')" aria-controls="collapse02">
+          {{ 'bloodTests.sections.1.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse02')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse02') }" id="collapse02">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.1.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse03')"
+          [attr.aria-expanded]="!isCollapsed('collapse03')" aria-controls="collapse03">
+          {{ 'bloodTests.sections.2.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse03')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse03') }" id="collapse03">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.2.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse04')"
+          [attr.aria-expanded]="!isCollapsed('collapse04')" aria-controls="collapse04">
+          {{ 'bloodTests.sections.3.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse04')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse04') }" id="collapse04">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.3.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse05')"
+          [attr.aria-expanded]="!isCollapsed('collapse05')" aria-controls="collapse05">
+          {{ 'bloodTests.sections.4.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse05')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse05') }" id="collapse05">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.4.answer'| translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse06')"
+          [attr.aria-expanded]="!isCollapsed('collapse06')" aria-controls="collapse06">
+          {{ 'bloodTests.sections.5.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse06')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse06') }" id="collapse06">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.5.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse07')"
+          [attr.aria-expanded]="!isCollapsed('collapse07')" aria-controls="collapse07">
+          {{ 'bloodTests.sections.6.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse07')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse07') }" id="collapse07">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.6.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse08')"
+          [attr.aria-expanded]="!isCollapsed('collapse08')" aria-controls="collapse08">
+          {{ 'bloodTests.sections.7.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse08')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse08') }" id="collapse08">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.7.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mt-3">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse09')"
+          [attr.aria-expanded]="!isCollapsed('collapse09')" aria-controls="collapse09">
+          {{ 'bloodTests.sections.8.question'| translate }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse09')}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse09') }" id="collapse09">
+          <div class="card card-body fs-5">
+            <p>{{ 'bloodTests.sections.8.answer'| translate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </div>
+</div>
+
+
+
+<div class="custom-card mt-5 pt-5 container m-auto text-black .card3 shadow-lg" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <div class="card-header fs-1 ms-5 mb-3 d-flex justify-content-center text-black">
+    <p [innerHTML]="'bloodFiltration.header' | translate"></p>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12" *ngFor="let section of 'bloodFiltration.sections' | translate; let i = index">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapse00' + i)"
+          [attr.aria-expanded]="!isCollapsed('collapse00' + i)" [attr.aria-controls]="'collapse00' + i">
+          {{ section.question }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapse00' + i)}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapse00' + i) }" [id]="'collapse00' + i">
+          <div class="card card-body fs-5">
+            <p>{{ section.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="custom-card mt-5 pt-5 container m-auto text-black .card3 shadow-lg" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <div class="card-header fs-1 ms-5 mb-3 d-flex justify-content-center text-black">
+    <p [innerHTML]="'washedRBCs.header' | translate"></p>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12" *ngFor="let section of 'washedRBCs.sections' | translate; let i = index">
+        <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseI' + i)"
+          [attr.aria-expanded]="!isCollapsed('collapseI' + i)" [attr.aria-controls]="'collapseI' + i">
+          {{ section.question }}
+          <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseI' + i)}"></span>
+        </button>
+        <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseI' + i) }" [id]="'collapseI' + i">
+          <div class="card card-body fs-5">
+            <p>{{ section.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

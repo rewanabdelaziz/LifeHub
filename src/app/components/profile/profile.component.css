@@ -193,6 +193,19 @@ span, .ProfileInfo {
 
 
 
+.personalInfo p,
+.medicalInfo p {
+  padding: 10px; /* Adjust padding as needed */
+  margin: 10px 0; /* Adjust margin as needed */
+  font-size: 1.25rem; /* Adjust font size as needed */
+}
+.arabic-content {
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
+
+
+
 
 
 

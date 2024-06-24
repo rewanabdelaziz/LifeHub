@@ -12,8 +12,8 @@ import { VerificationService } from 'src/app/services/verification.service';
   selector: 'app-forgetting-password',
   templateUrl: './forgetting-password.component.html',
   styleUrls: ["./forgetting-password.component.css"],
-  standalone: true,
-  imports:[CommonModule,ReactiveFormsModule],
+  standalone: false,
+
 
 })
 export class ForgettingPasswordComponent  {

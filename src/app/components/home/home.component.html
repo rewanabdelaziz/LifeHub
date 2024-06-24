@@ -3,10 +3,10 @@
 <app-nav-bar></app-nav-bar>
 <div class="home "  [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="left-section ">
-    <h3>{{ 'WELCOME' | translate }}</h3>
+    <h3 class="fs-2">{{ 'WELCOME' | translate }}</h3>
     <h1>{{ 'OUR_BLOOD_COMMUNITY' | translate }}</h1>
     <h4>{{ 'GOAL' | translate }}</h4>
-    <a routerLink="/login" class="login">{{ 'JOIN_US' | translate }}</a>
+    <a routerLink="/login" class="login text-center fs-5">{{ 'JOIN_US' | translate }}</a>
     <!-- <a href="more" class="more">Learn More</a> -->
   </div>
   <div class="right-section">
@@ -268,8 +268,8 @@
 
 <!-- numbers section -->
 
-<section class="mt-5">
-  <h4 class="text-center h1 fw-bold "><span id="address">LifeBlood </span>Family Today</h4>
+<section class="mt-5  py-5" [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <h4 class="text-center h1 fw-bold " [innerHTML]=" 'LifeBloodFamily' | translate "></h4>
   <div class=" mt-5 mb-5  d-flex align-content-center  text-center m-auto ">
 
     <div class="d-flex justify-content-center cantain mt-5 ">
@@ -278,7 +278,7 @@
           <div class="bg-light shadow-lg card border-0 px-5 pb-1 layer text-center  ">
             <i class="icon1 fa-solid fa-hand-holding-droplet fs-1 my-4"></i>
             <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('donors')">{{currentDonors}}</span>
-            <p class="fw-bold text-muted  lead">Happy Donors</p>
+            <p class="fw-bold text-muted  lead">{{ 'HappyDonors' | translate }}</p>
           </div>
         </div>
         <div class="col-md  col-sm-6     px-2  text-center ">
@@ -286,21 +286,21 @@
             <i class="icon1 group fa-solid fa-user-group fs-1 my-4"></i>
             <span class="d-block h2 fw-bold mb-3" appInView
               (inView)="onInView('recipients')">{{currentRecipients}}</span>
-            <p class="fw-bold text-muted  lead">Happy Recipints</p>
+            <p class="fw-bold text-muted  lead">{{ 'HappyRecipints' | translate }}</p>
           </div>
         </div>
         <div class="col-md  col-sm-6     px-2   text-center ">
           <div class=" bg-light shadow-lg card border-0 pb-1 px-5 layer  text-center ">
             <i class="icon1 fa-regular fa-clipboard fs-1 my-4"></i>
             <span class="d-block h2 fw-bold mb-3" appInView (inView)="onInView('registers')">{{currentRegisters}}</span>
-            <p class="fw-bold text-muted  lead">Total Register</p>
+            <p class="fw-bold text-muted  lead">{{ 'TotalRegister' | translate }}</p>
           </div>
         </div>
         <div class="col-md  col-sm-6     px-2   text-center ">
           <div class="bg-light shadow-lg card border-0 pb-1  px-5 layer  text-center ">
             <i class="icon1 fa-solid fa-droplet fs-1 my-4"></i>
             <span class="d-block h2 fw-bold mb-3">{{currentBanks}}</span>
-            <p class="fw-bold text-muted  lead">Blood Bank</p>
+            <p class="fw-bold text-muted  lead">{{ 'BloodBank' | translate }}</p>
           </div>
         </div>
       </div>
