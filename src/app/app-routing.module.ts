@@ -12,6 +12,7 @@ import { RequestDonationComponent } from './components/request-donation/request-
 import { ServicesComponent } from './components/services/services.component';
 import { AuthGuard } from './auth.guard';
 import { ReportComponent } from './components/report/report.component';
+import { FAQsComponent } from './components/faqs/faqs.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:"full" },
   {path :'home'  , component : HomeComponent },
@@ -22,9 +23,11 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent},
   {path: "donation",component:DonationComponent},
   {path:"nav-bar", component:NavBarComponent},
+  {path: "faqs",component:FAQsComponent},
   {path: "requestDonation",component:RequestDonationComponent},
   {path: "service",component:ServicesComponent,canActivate: [AuthGuard] },
   {path: "report",component:ReportComponent,canActivate: [AuthGuard]},
+
 
 ];
 

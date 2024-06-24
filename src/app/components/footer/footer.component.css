@@ -1,94 +1,76 @@
+.custom-footer {
+  background-color: #FFF2F3;
+  color: black;
+  padding: 30px 0;
+  font-family: Arial, sans-serif;
+}
 
+.footer-section {
+  display: flex;
+  align-items: center;
+}
 
-span{
+.footer-section h4 {
+  font-weight: bold;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.custom-hr {
+  width: 50px; /* Adjust the width to make it shorter */
+  height: 4px; /* Adjust the height to make it larger */
+  border: none;
+  background-color: var(--main-color); /* Color of the hr */
+  margin: 0;
+}
+
+.custom-footer p,
+.custom-footer ul,
+.custom-footer form {
+  color: black;
+}
+
+.custom-footer ul {
+  padding: 0;
+}
+
+.custom-footer ul li {
+  list-style: none;
+}
+
+.custom-footer ul li a {
+  color: black;
+  text-decoration: none;
+}
+
+.custom-footer ul li a:hover {
   color: var(--main-color);
 }
 
-.col-3 .layer{
-border-radius: 10px;
-border: 1px;
-background-color: #FAFAFA;
-
+.form-group input {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 10px;
 }
-.icon1,#address{
+
+.btn-warning {
+  background-color: var(--main-color);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+}
+
+.btn-warning:hover {
+  background-color: var(--main-color);
+}
+
+.fa-2x {
+  margin: 0 15px;
+  color: black;
+}
+
+.fa-2x:hover {
   color: var(--main-color);
-}
-.icon2 ,.icon3{
-  color: #96BB7C;
-}
-.top{
-  top: -50%;
-}
-
-.w-65{
-  width: 65%;
-}
-.w-10 {
-  width: 15%;
-}
-
-
-.icon2 ,.icon3{
-  /* color: #96BB7C; */
-   /* color: #CC3745; */
-    color: var(--main-color);
-}
-.top{
-  top: -50%;
-}
-
-.w-65{
-  width: 65%;
-}
-.w-10 {
-  width: 15%;
-}
-
-@media (max-width: 768px) and (min-width:0px){
-
-
-  i{
-    margin-right: 10px;
-  }
-
-}
-
-
-@media (max-width: 575px) and (min-width:0px){
-  h5,p,i{
-
-    text-align: center;
-  }
-
-  .centerText{
-    align-items: center;
-  }
-
-
-}
-
-
-.arabic-content{
-  direction: rtl;
-  font-family: 'Arial', sans-serif;
-}
-
-/* Align Arabic content to the right */
-.arabic-content {
-  direction: rtl;
-}
-
-/* Adjust text alignment within specific elements */
-.arabic-content .fw-bold,
-.arabic-content .lead,
-.arabic-content .fw-semibold {
-  text-align: right;
-}
-
-/* Adjust icon alignment */
-.arabic-content .icon2,
-.arabic-content .icon3 {
-  margin-left: 10px;
-  margin-right: 0;
 }
 

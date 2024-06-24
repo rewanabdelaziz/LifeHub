@@ -1,68 +1,69 @@
-<footer class=" text-start container    mt-5 p-5" [ngClass]="{ 'arabic-content': applyArabicClass() }">
-  <div class="row">
-    <!-- Company Info -->
-    <div class="col-md col-sm-6 mb-5">
-      <h5 class="fw-bold">{{ 'ComponyInfo' | translate }}</h5> <br>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'AboutUs' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'Carrier' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'WeAreHiring' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'Blog' | translate }}</p>
-    </div>
-
-    <!-- Legal -->
-    <div class="col-md col-sm-6 mb-5">
-      <h5 class="fw-bold">{{ 'Legal' | translate }}</h5><br>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'AboutUs' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'Carrier' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'WeAreHiring' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'Blog' | translate }}</p>
-    </div>
-
-    <!-- Features -->
-    <div class="col-md col-sm-6 mb-5">
-      <h5 class="fw-bold">{{ 'Features' | translate }}</h5><br>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'BusinessMark' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'UserAnalytic' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'LiveChat' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'UnlimitedSup' | translate }}</p>
-    </div>
-
-    <!-- Resources -->
-    <div class="col-md col-sm-6 mb-5">
-      <h5 class="fw-bold">{{ 'Resources' | translate }}</h5><br>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'IOS&Android' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'WatchADemo' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'Customers' | translate }}</p>
-      <p class="fw-semibold lead text-muted text-black-50 fw-light">{{ 'API' | translate }}</p>
-    </div>
-
-    <!-- Get In Touch -->
-    <div class="col-md col-sm-6 mb-5">
-      <h5 class="fw-bold">{{ 'GetInTouch' | translate }}</h5><br>
-      <div class="d-flex align-items-start">
-        <i class="icon2 fa-solid fa-phone fs-5"></i>
-        <p class="fw-bold text-black-50 ms-1 fw-light">(480)555-0103</p>
+<div class="custom-footer mt-4">
+  <div class="container">
+    <div class="row">
+      <!-- About Section -->
+      <div class="col-md-3 px-5">
+        <div class="footer-section">
+          <h4>ABOUT</h4>
+          <hr class="custom-hr">
+        </div>
+        <p>LifeHub, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going
+          through the cites of the word in classical literature, discovered the undoubtable source.</p>
       </div>
-      <div class="d-flex align-items-start">
-        <i class="icon2 fa-solid fa-location-dot fs-5"></i>
-        <p class="fw-bold text-black-50 ms-1 fw-light">{{ 'OurAddress' | translate }}</p>
+
+      <!-- Updates News Section -->
+      <div class="col-md-3 px-5">
+        <div class="footer-section">
+          <h4>UPDATES NEWS</h4>
+          <hr class="custom-hr">
+        </div>
+        <p>Which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be
+          sure there isn't anything.</p>
       </div>
-      <div class="d-flex align-items-start">
-        <i class="icon2 fa-solid fa-envelope fs-5"></i>
-        <p class="fw-bold text-black-50 ms-1 fw-light">debra.holt&#64;example.com</p>
+
+      <!-- Donation Section -->
+      <div class="col-md-3 px-5">
+        <div class="footer-section  d-flex justify-content-center">
+          <h4>DONATION</h4>
+          <hr class="custom-hr">
+        </div>
+        <ul class="list-unstyled">
+          <li class="ms-4"><a routerLink="/home">Home</a></li>
+          <li class="ms-4"><a routerLink="/faqs">FAQs</a></li>
+          <li class="ms-4"><a routerLink="/service">Services</a></li>
+          <li class="ms-4"><a routerLink="/home">Project</a></li>
+          <li class="ms-4"><a routerLink="/home">Blood Overview</a></li>
+          <li class="ms-4"><a routerLink="/report">Liver Test</a></li>
+        </ul>
       </div>
+
+      <!-- Newsletter Section -->
+      <div class="col-md-3 px-5">
+        <div class="footer-section">
+          <h4>NEWSLETTER</h4>
+          <hr class="custom-hr">
+        </div>
+        <form>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email">
+          </div>
+          <button type="submit" class="btn btn-warning mt-2">SUBSCRIBE</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col text-center">
+        <a href="http://localhost:4200/home"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="http://localhost:4200/home"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="http://localhost:4200/home"><i class="fab fa-linkedin fa-2x"></i></a>
+        <a href="http://localhost:4200/home"><i class="fab fa-instagram fa-2x"></i></a>
+      </div>
+    </div><br>
+
+
+    <div class="d-flex justify-content-center">
+      <p>© 2024 All Rights Reserved. Design by <span class="BloodTitle">Vampires</span></p>
     </div>
   </div>
-
-  <!-- Footer Bottom -->
-  <div class="d-flex justify-content-between container mt-5">
-    <div class="w-50">
-      <p class="lead text-muted fw-bolder"> Made With Love By <span>Vampires</span></p>
-    </div>
-    <div class="w-10 d-flex justify-content-between">
-      <i class="fs-3 icon3 fa-brands fa-facebook"></i>
-      <i class="fs-3 icon3 fa-brands fa-instagram"></i>
-      <i class="fs-3 icon3 fa-brands fa-twitter"></i>
-    </div>
-  </div>
-</footer>
+</div>
