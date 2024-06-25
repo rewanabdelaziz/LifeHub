@@ -7,9 +7,10 @@
 .w-65{
   width: 65%;
 }
-.arabic-content{
+.arabic-content {
   direction: rtl;
-  font-family: 'Arial', sans-serif;
+  font-family: "Lateef", serif;
+  font-size: x-large !important;
 }
 #AgreeOnConditions{
   width: 90%;

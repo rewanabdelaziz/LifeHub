@@ -1,12 +1,12 @@
 <!-- <app-nav-bar *ngIf="value==false"></app-nav-bar> -->
 <!-- <app-auth-nav *ngIf="value"></app-auth-nav> -->
 <app-nav-bar></app-nav-bar>
-<div class="home "  [ngClass]="{ 'arabic-content': applyArabicClass()}">
-  <div class="left-section ">
-    <h3 class="fs-2">{{ 'WELCOME' | translate }}</h3>
-    <h1>{{ 'OUR_BLOOD_COMMUNITY' | translate }}</h1>
-    <h4>{{ 'GOAL' | translate }}</h4>
-    <a routerLink="/login" class="login text-center fs-5">{{ 'JOIN_US' | translate }}</a>
+<div #homeComponent class="home "  [ngClass]="{ 'arabic-content': applyArabicClass()}">
+  <div class="left-section">
+    <h3 [ngClass]="{'visible': isVisible}" [@heartbeatAnimation] class="animation-target fs-2 ms-3">{{ 'WELCOME' | translate }}</h3>
+    <h1  class="animation-target" [ngClass]="{'visible': isVisible}" [@heartbeatAnimation]>{{ 'OUR_BLOOD_COMMUNITY' | translate }}</h1>
+    <h4 class="animation-target" [ngClass]="{'visible': isVisible}" [@heartbeatAnimation]>{{ 'GOAL' | translate }}</h4>
+    <a [ngClass]="{'visible': isVisible}" [@heartbeatAnimation] routerLink="/login" class="animation-target ms-3 login text-center fs-5 ">{{ 'JOIN_US' | translate }}</a>
     <!-- <a href="more" class="more">Learn More</a> -->
   </div>
   <div class="right-section">
@@ -204,16 +204,16 @@
 
 
 <!-- Overview section -->
-<div class="overview d-flex justify-content-around " [ngClass]="{ 'arabic-content': applyArabicClass()}">
+<div class="overview d-flex justify-content-around " id="overvieww" [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="left-overview col-md-5">
     <hr>
-    <h1>{{ 'BLOOD OVERVIEW' | translate }}</h1>
-    <p class="lead text-muted">{{ 'OVERVIEW' | translate }} </p>
+    <h1 id="heading" [ngClass]="{'slide-in-left': headingAnimation}">{{ 'BLOOD OVERVIEW' | translate }}</h1>
+    <p  id="paragraph3" [ngClass]="{'slide-in-right': paragraph3Animation}" class=" lead text-muted">{{ 'OVERVIEW' | translate }} </p>
       <!-- <a id="TypesOfBlood"  href="">Types of blood <span id="arrow">></span> </a> -->
   </div>
 
 
-  <div class="right-overview col-md-6 d-flex">
+  <div class="right-overview col-md-6 d-flex ">
     <div class="blood col-md-3  shadow ">
 
       <div class="icon">
@@ -225,7 +225,7 @@
       </div>
       <hr>
       <h3>{{ 'BLOOD' | translate }}</h3>
-      <p class="lead text-muted fs-6" >{{ 'BLOOD SCRIPT' | translate }}</p>
+      <p id="paragraph1" [ngClass]="{'slide-in-top': paragraph1Animation}" class=" lead text-muted fs-6" >{{ 'BLOOD SCRIPT' | translate }}</p>
     </div>
     <div class="plasma col-md-3  shadow">
       <div class="icon bg-warning">
@@ -237,7 +237,7 @@
       </div>
       <hr>
       <h3>{{ 'PLASMA' | translate }}</h3>
-      <p class="lead text-muted fs-6">{{ 'PLASMA SCRIPT' | translate }}</p>
+      <p id="paragraph2" [ngClass]="{'slide-in-top': paragraph2Animation}" class=" lead text-muted fs-6">{{ 'PLASMA SCRIPT' | translate }}</p>
     </div>
   </div>
 </div>
@@ -255,7 +255,7 @@
       <div class="donate col-md-5">
         <hr>
         <h1>{{ 'WHY DONATE' | translate }}</h1>
-        <p class="lead text-muted fs-5">{{ 'REASON OF DONATE' | translate }}</p>
+        <p  class="lead text-muted fs-5">{{ 'REASON OF DONATE' | translate }}</p>
         <a href="">{{ 'DONATE NOW' | translate }}</a>
       </div>
     </div>

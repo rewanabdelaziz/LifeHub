@@ -1,8 +1,16 @@
+/* Common styles */
+.left-section h1{
+  font-family: "DM Serif Display", serif !important;
+  /* font-weight: 400; */
+  font-style: normal;
+}
+
+
 .custom-footer {
   background-color: #FFF2F3;
   color: black;
   padding: 30px 0;
-  font-family: Arial, sans-serif;
+
 }
 
 .footer-section {
@@ -74,3 +82,54 @@
   color: var(--main-color);
 }
 
+/* Arabic content */
+.arabic-content {
+  direction: rtl;
+  font-family: "Lateef", serif;
+}
+
+/* Hide hr in Arabic content */
+.arabic-content .custom-hr {
+  display: none;
+}
+
+
+.arabic-content .section{
+    font-size: x-large;
+
+}
+
+/* Adjust text alignment within specific elements */
+.arabic-content .fw-bold,
+.arabic-content .lead,
+.arabic-content .fw-semibold {
+  text-align: right;
+}
+
+/* Adjust icon alignment */
+.arabic-content .icon2,
+.arabic-content .icon3 {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+
+
+@media (max-width: 768px) {
+
+
+  .footer-section h4 {
+    text-align: left;
+  }
+
+
+
+  .custom-footer form {
+    text-align: left;
+  }
+
+
+  .section{
+    margin-bottom: 10px;
+  }
+}

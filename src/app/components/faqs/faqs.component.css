@@ -105,7 +105,8 @@
 }
 .arabic-content {
   direction: rtl;
-  font-family: 'Arial', sans-serif;
+  font-family: "Lateef", serif;
+  font-size: x-large !important;
 }
 
 

@@ -7,7 +7,19 @@
 }
 .arabic-content {
   direction: rtl;
-  font-family: 'Arial', sans-serif;
+  font-family: "Lateef", serif;
+  font-size: x-large !important;
+
+}
+
+.arabic-content  p{
+
+  font-size: x-large;
+}
+
+
+.arabic-content .left-section a,.arabic-content .left-section h3{
+  margin-right: 20px;
 }
 
 .left-section, .right-section{
@@ -31,6 +43,8 @@
   padding-left: 20px;
   padding-right: 20px;
 }
+
+
 
 .left-section h4{
   width: 400px;
@@ -308,6 +322,99 @@ height: 197px;
   }
 
 }
+
+
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 1s ease forwards;
+}
+
+.slide-in-top {
+  animation: slideInFromTop 1s ease forwards;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 1s ease forwards;
+}
+
+
+.animation-target {
+  opacity: 0;
+}
+
+.visible {
+  animation: heartbeat 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heartbeat {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.donate.animated .hidden {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
+
 
 
 

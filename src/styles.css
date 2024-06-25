@@ -3,6 +3,11 @@
 body{
   /* margin: 0px; */
   width: 100%;
+  font-family: "Playfair Display", serif !important;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  font-style: normal;
+
 }
 :root {
   --main-color:  #BA1816;

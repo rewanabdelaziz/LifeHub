@@ -1,18 +1,56 @@
-import { Component, HostListener, OnInit, ElementRef, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, HostListener, OnInit, ElementRef, OnDestroy, ChangeDetectorRef, ViewChild, AfterViewInit, QueryList, ViewChildren } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
 import { HomeDataService } from 'src/app/services/home-data.service';
 import { Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { InViewDirective } from 'src/app/directives/in-view.directive';
 import { LanguageService } from 'src/app/services/language.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+ animations: [
+    trigger('heartbeatAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.5)' }),
+        animate('500ms', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+    ]),
 
+   trigger('slideInFromRight', [
+      transition(':enter', [
+        style({ transform: 'translateX(100%)', opacity: 0 }),
+        animate('500ms ease-out', style({ transform: 'translateX(0)', opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  isVisible = false;
+
+  @ViewChild('homeComponent') homeComponent!: ElementRef;
+  @ViewChild('donateSection') donateSection!: ElementRef;
+
+
+
+
+
+
+    paragraph1Animation = false;
+  paragraph2Animation = false;
+  paragraph3Animation = false;
+  paragraph4Animation = false;
+  headingAnimation = false;
+
+
+
+
+
+
+   showParagraph = false;
 
   bloodBankValue: number = 0;
   loginSuccess;
@@ -39,7 +77,73 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loginSuccess = this.authService.isLoggedIn$;
   }
 
+
+
+
+
+    ngAfterViewInit() {
+    this.calculateTriggerHeight();
+    // Listen for scroll events
+      window.addEventListener('scroll', this.onScroll.bind(this), true);
+
+
+
+  }
+
+  calculateTriggerHeight() {
+    const height = this.homeComponent.nativeElement.offsetHeight;
+    // Use height as the trigger point for animations
+    const triggerHeight = height; // Use the height of the home component
+    console.log('Height of home component:', triggerHeight);
+
+    // Adjust animations based on triggerHeight if needed
+  }
+
+  onScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    // Trigger animations when scroll reaches the calculated trigger height
+    if (scrollPosition >= this.homeComponent.nativeElement.offsetTop && !this.paragraph1Animation) {
+      this.paragraph1Animation = true;
+    }
+    if (scrollPosition >= this.homeComponent.nativeElement.offsetTop && !this.paragraph2Animation) {
+      this.paragraph2Animation = true;
+    }
+    if (scrollPosition >= this.homeComponent.nativeElement.offsetTop && !this.paragraph3Animation) {
+      this.paragraph3Animation = true;
+    }
+    if (scrollPosition >= this.homeComponent.nativeElement.offsetTop && !this.headingAnimation) {
+      this.headingAnimation = true;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   ngOnInit(): void {
+
+
+
+    setTimeout(() => {
+      this.isVisible = true;
+    }, 2500); // تأخير لبدء الحركة بعد 1 ثانية (1000 مللي ثانية)
+
+
+
+
+
+
+
+
     // Subscribe to language changes if needed language
     this.languageService.currentLanguage$.subscribe(language => {
       this.currentLanguage=language;

@@ -379,7 +379,41 @@
             "NO": "NO",
             "SUBMIT": "Submit"
           },
-  "LOG_OUT":"log Out"
+  "LOG_OUT":"log Out",
+
+
+  "footer": {
+    "sections": {
+      "about": {
+        "title": "ABOUT",
+        "content": "LifeHub, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source."
+      },
+      "updates_news": {
+        "title": "UPDATES NEWS",
+        "content": "Which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything."
+      },
+      "donation": {
+        "title": "DONATION",
+        "links": {
+          "home": "Home",
+          "faqs": "FAQs",
+          "services": "Services",
+          "project": "Project",
+          "blood_overview": "Blood Overview",
+          "liver_test": "Liver Test"
+        }
+      },
+      "newsletter": {
+        "title": "NEWSLETTER",
+        "form": {
+          "placeholder": "Email",
+          "button": "SUBSCRIBE"
+        }
+      }
+    },
+    "rights_reserved": "© 2024 All Rights Reserved. Design by Vampires"
+  }
+
 
 
 

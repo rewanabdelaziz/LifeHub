@@ -6,9 +6,10 @@
 .btnLeft{
   border-radius: 15px 0px 0px 15px;
 }
-.arabic-content{
+.arabic-content {
   direction: rtl;
-  font-family: 'Arial', sans-serif;
+  font-family: "Lateef", serif;
+  font-size: x-large !important;
 }
 .btnRight{
   border-radius: 0px 15px 15px 0px;

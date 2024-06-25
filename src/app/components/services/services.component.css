@@ -98,7 +98,8 @@ h3{
 
 .arabic-content {
   direction: rtl;
-  font-family: 'Arial', sans-serif;
+  font-family: "Lateef", serif;
+  font-size: x-large !important;
 }
 .donation-container button{
   padding: 5px 15px 5px 15px;

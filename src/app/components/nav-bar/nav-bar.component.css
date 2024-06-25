@@ -217,3 +217,10 @@ ul li a.active::after {
     padding-right: 5px;
   }
 }
+
+
+.arabic-content {
+  direction: rtl;
+  font-family: "Lateef", serif;
+  font-size: x-large !important;
+}
