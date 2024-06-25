@@ -11,7 +11,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
- animations: [
+  animations: [
     trigger('heartbeatAnimation', [
       transition(':enter', [
         style({ opacity: 0, transform: 'scale(0.5)' }),
@@ -19,27 +19,38 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       ]),
     ]),
 
-   trigger('slideInFromRight', [
+    trigger('slideInFromRight', [
       transition(':enter', [
         style({ transform: 'translateX(100%)', opacity: 0 }),
         animate('500ms ease-out', style({ transform: 'translateX(0)', opacity: 1 })),
       ]),
     ]),
+
+    trigger('slideInFromLeft', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate('0.5s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ])
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   isVisible = false;
+  donateAnimationTriggered = false;
 
-  @ViewChild('homeComponent') homeComponent!: ElementRef;
   @ViewChild('donateSection') donateSection!: ElementRef;
 
+  animate = false;
+  @ViewChild('homeComponent') homeComponent!: ElementRef;
 
 
 
 
 
-    paragraph1Animation = false;
+
+
+  paragraph1Animation = false;
   paragraph2Animation = false;
   paragraph3Animation = false;
   paragraph4Animation = false;
@@ -50,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
 
-   showParagraph = false;
+  showParagraph = false;
 
   bloodBankValue: number = 0;
   loginSuccess;
@@ -62,8 +73,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentRecipients: number = 0;
   currentDonors: number = 0;
   currentRegisters: number = 0;
-  currentBanks:number=0;
-  currentLanguage:string="";
+  currentBanks: number = 0;
+  currentLanguage: string = "";
   private destroy$: Subject<void> = new Subject<void>();
   private scrollSubject: Subject<void> = new Subject<void>();
 
@@ -81,13 +92,65 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
 
-    ngAfterViewInit() {
+  ngAfterViewInit() {
     this.calculateTriggerHeight();
     // Listen for scroll events
-      window.addEventListener('scroll', this.onScroll.bind(this), true);
+    window.addEventListener('scroll', this.onScroll.bind(this), true);
 
 
 
+
+    const options = {
+      root: null, // Use the viewport as the root
+      rootMargin: '0px', // No margin
+      threshold: 0.5 // Trigger when half of the element is visible
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.donateAnimationTriggered) {
+          this.donateAnimationTriggered = true;
+        }
+      });
+    }, options);
+
+    observer.observe(this.donateSection.nativeElement);
+
+
+
+
+
+
+    }
+
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(): void {
+    const donateElement = this.el.nativeElement.querySelector('.donate');
+
+    if (!donateElement) {
+      return;
+    }
+
+    const homeElement = this.el.nativeElement.querySelector('.home');
+    const overviewElement = this.el.nativeElement.querySelector('.overview');
+
+    if (!homeElement || !overviewElement) {
+      return;
+    }
+
+    const homeOffsetTop = homeElement.offsetTop;
+    const overviewOffsetTop = overviewElement.offsetTop;
+    const donateOffsetTop = donateElement.offsetTop;
+    const windowHeight = window.innerHeight;
+
+    // Calculate the trigger point
+    const triggerOffset = homeOffsetTop + overviewOffsetTop;
+
+    // Check if scroll position is past the trigger point
+    if (window.scrollY > triggerOffset && !this.donateAnimationTriggered) {
+      this.donateAnimationTriggered = true;
+    }
   }
 
   calculateTriggerHeight() {
@@ -130,6 +193,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   ngOnInit(): void {
+
 
 
 

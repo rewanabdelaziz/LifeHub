@@ -74,19 +74,20 @@ export class FAQsComponent {
 
 
 
-        collapse001: true, // Initially show content when the component loads
+        collapse000: true, // Initially show content when the component loads
+    collapse001: true, // Initially show content when the component loads
     collapse002: true, // Initially show content when the component loads
     collapse003: true, // Initially show content when the component loads
     collapse004: true, // Initially show content when the component loads
     collapse005: true, // Initially show content when the component loads
     collapse006: true, // Initially show content when the component loads
-    collapse007: true, // Initially show content when the component loads
-        collapse008: true, // Initially show content when the component loads
+        collapse007: true, // Initially show content when the component loads
 
 
 
 
-        collapseI1: true, // Initially show content when the component loads
+        collapseI0: true, // Initially show content when the component loads
+    collapseI1: true, // Initially show content when the component loads
     collapseI2: true, // Initially show content when the component loads
     collapseI3: true, // Initially show content when the component loads
     collapseI4: true, // Initially show content when the component loads
@@ -94,7 +95,6 @@ export class FAQsComponent {
     collapseI6: true, // Initially show content when the component loads
     collapseI7: true, // Initially show content when the component loads
     collapseI8: true, // Initially show content when the component loads
-    collapseI9: true, // Initially show content when the component loads
 
 
 

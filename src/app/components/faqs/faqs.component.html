@@ -430,9 +430,6 @@
 </div>
 
 
-
-
-
 <div class="custom-card mt-5 pt-5 container m-auto text-black .card3 shadow-lg" [ngClass]="{ 'arabic-content': applyArabicClass()}">
   <div class="card-header fs-1 ms-5 mb-3 d-flex justify-content-center text-black">
     <p [innerHTML]="'washedRBCs.header' | translate"></p>
@@ -442,12 +439,12 @@
       <div class="col-12" *ngFor="let section of 'washedRBCs.sections' | translate; let i = index">
         <button class="btn-link custom-button fs-3" type="button" (click)="toggleCollapse('collapseI' + i)"
           [attr.aria-expanded]="!isCollapsed('collapseI' + i)" [attr.aria-controls]="'collapseI' + i">
-          {{ section.question }}
+          {{ section.question |translate }}
           <span class="plus-circle" [ngClass]="{'minus': !isCollapsed('collapseI' + i)}"></span>
         </button>
         <div [ngClass]="{ 'collapse': true, 'show': !isCollapsed('collapseI' + i) }" [id]="'collapseI' + i">
           <div class="card card-body fs-5">
-            <p>{{ section.answer }}</p>
+            <p>{{ section.answer |translate }}</p>
           </div>
         </div>
       </div>

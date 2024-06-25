@@ -1,33 +1,88 @@
-#SignUpButton{
+/* Common styles */
+.custom-container {
+  background-color: #FFF2F3; /* Light background color */
+  padding: 30px; /* Padding around the container */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  font-family: Arial, sans-serif; /* Default font */
+}
+
+/* Center the container vertically and horizontally */
+.custom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure it fills the screen vertically */
+}
+
+/* Form container */
+.form-container {
+  max-width: 100%; /* Maximum width of the form */
+}
+
+/* Form inputs */
+.form-control {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-align: start; /* Start text alignment for all inputs */
+}
+
+/* Button styles */
+#SignUpButton {
   background-color: var(--main-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
 }
-#loginLink,#register ,#AgreeOnConditions a{
+
+#SignUpButton:hover {
+  background-color: #5E0404; /* Darken the color on hover */
+}
+
+/* Links and labels */
+#loginLink,
+#register,
+#AgreeOnConditions a {
   color: var(--main-color);
+  text-decoration: none;
 }
-.w-65{
-  width: 65%;
+
+#loginLink:hover,
+#register:hover,
+#AgreeOnConditions a:hover {
+  text-decoration: underline;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-container {
+    width: 100%; /* Full width on smaller screens */
+    padding: 0 10px; /* Padding on the sides */
+  }
+
+  .form-control {
+    width: 100%;
+  }
+}
+
+.w-60{
+  width: 60%;
+}
+
+/* Arabic-specific styles */
 .arabic-content {
-  direction: rtl;
-  font-family: "Lateef", serif;
+  direction: rtl; /* Right-to-left direction for Arabic */
+  font-family: "Lateef", serif; /* Use appropriate Arabic font */
   font-size: x-large !important;
 }
-#AgreeOnConditions{
-  width: 90%;
-  vertical-align: -6px;
-}
-.gradient-text {
-  background: linear-gradient(180deg, #EA4444 19.27%, #5E0404 74.48%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.header{
-  display: flex;
-}
-.header img{
-  width: 70px;
-}
-.error-message , .createAccount{
-  color: var(--main-color);
+
+/* Adjust alignment of specific elements */
+.arabic-content .form-control {
+  text-align: right; /* Right-align text within form controls */
 }
