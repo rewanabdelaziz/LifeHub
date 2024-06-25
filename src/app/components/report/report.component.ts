@@ -41,16 +41,16 @@ export class ReportComponent {
 
         this.http.post('http://localhost:5000/predict', payload).subscribe(
           (response: any) => {
-            console.log(response.svm_result);
+            console.log(response);
 
             if(this.applyArabicClass()){
-              if(response.svm_result=="Positive outcome for patient test (likely to have the disease)"){
+              if(response=="Positive outcome for patient test (likely to have the disease)"){
                 this.result="نتيجة ايجابية (لديك مشكلة يرجى مراجعة الطبيب)"
-              }else if(response.svm_result== "Negative outcome for patient test (unlikely to have the disease)"){
+              }else if(response== "Negative outcome for patient test (unlikely to have the disease)"){
                 this.result='نتيجة سلبية (ليس لديك أمراض)'
               }
             }else{
-              this.result = response.svm_result;
+              this.result = response.result;
             }
           },
           (error) => {

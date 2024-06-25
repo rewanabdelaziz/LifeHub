@@ -46,7 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavBarComponent,
     FAQsComponent,
     ForgettingPasswordComponent,
-    LoaderComponent
+    LoaderComponent,
 
 
     ],

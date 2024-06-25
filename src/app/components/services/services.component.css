@@ -33,8 +33,6 @@ span{
 }
 
 
-
-
 .w-45{
 
   width: 45%;
@@ -85,7 +83,12 @@ h3{
   z-index: -1;
 }
 
-
+.labelGroup{
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
 @media(max-width:575px){
 
   img{
@@ -93,7 +96,27 @@ h3{
   }
 }
 
-
+.arabic-content {
+  direction: rtl;
+  font-family: 'Arial', sans-serif;
+}
+.donation-container button{
+  padding: 5px 15px 5px 15px;
+  border: 1px solid var(--main-color);
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 15px;
+}
+.donation-container{
+  color:rgb(128, 128, 128);
+}
+.donation-container label{
+  color: black;
+}
+.donation-container h2{
+  color: var(--main-color);
+  margin-bottom: 50px;
+}
 
 
 

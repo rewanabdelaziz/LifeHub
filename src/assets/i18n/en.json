@@ -17,7 +17,7 @@
   "BLOOD":"Blood",
   "BLOOD SCRIPT":"Blood donation evolved significantly with Karl Landsteiner's discovery of blood types in 1901, the use of anticoagulants and storage methods during the World Wars, and the identification of the Rh factor in 1940. The mid-20th century saw the establishment of blood banks and donor programs, improving safety and accessibility.",
   "PLASMA":"Plasma",
-  "PLASMA SCRIPT":"Plasma donation began gaining importance during World War II when it was used to treat wounded soldiers. The development of plasmapheresis in the 1960s allowed for the separation and collection of plasma, which led to more efficient and widespread plasma donation practices. Today, plasma is crucial for producing therapies for various medical conditions, including immune deficiencies and clotting disorders.",
+  "PLASMA SCRIPT":"Plasma donation began gaining importance during World War II when it was used to treat wounded soldiers. The development of plasmapheresis in the 1960s allowed for the separation and collection of plasma, which led to more efficient and widespread plasma donation practices. Today, plasma is crucial.",
   "WHY DONATE":"Why Donate?",
   "REASON OF DONATE":"Donating blood is an act of pure altruism. It's a chance to save lives, offer hope, and make a profound difference in the world. Your donation can provide the lifeline someone desperately needs during a medical crisis. Join us in this noble mission and be the reason behind a smile, a recovery, and a second chance at life.",
   "DONATE NOW":"Donate Now >",
@@ -356,8 +356,30 @@
               "answer": "Washed RBC transfusions are less common than regular blood transfusions and are reserved for patients with specific medical conditions or histories of severe transfusion reactions."
             }
           ]
-        }
+        },
 
+          "FORM": {
+            "DonationForm":"Donation Form",
+            "HEALTH_STATUS": "Do you feel healthy and well today?",
+            "BLOOD_DONATION": "Have you ever donated blood or any of its derivatives?",
+            "HEALTH_PROBLEMS": "Do you have any health problems?",
+            "MEDICATIONS": "Are you taking any medications (e.g., antibiotics, antivirals, antifungals)?",
+            "VACCINATIONS": "Have you had any vaccinations in the last two months?",
+            "RECENT_TRAVEL": "Have you traveled abroad recently?",
+            "SURGERIES": "Have you had any surgeries, cosmetic surgeries, or fractures?",
+            "HEPATITIS_EXPOSURE": "Is any family member infected or have you been in contact with a patient with viral hepatitis?",
+            "BLOOD_TRANSFUSION": "Have you (or your spouse) received a blood transfusion or any of its derivatives?",
+            "COVID_EXPOSURE": "Have you been infected with COVID-19 or been in contact with a COVID-19 patient?",
+            "PREGNANCY_STATUS": "For women: Are you (pregnant, breastfeeding, or have you been pregnant)?",
+            "CHRONIC_DISEASES": "Do you currently or have you ever suffered from heart disease, rheumatic fever, hypertension, asthma, kidney disease, or thyroid disease?",
+            "REGULAR_DONATION": "Do you want to donate regularly and be contacted when your blood type is needed?",
+            "ASPIRIN_INTAKE": "Have you taken aspirin or painkillers in the past week?",
+            "HEAVY_MEALS": "Have you eaten heavy meals today?",
+            "YES": "yes",
+            "NO": "NO",
+            "SUBMIT": "Submit"
+          },
+  "LOG_OUT":"log Out"
 
 
 

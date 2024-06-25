@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/services/language.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -15,7 +16,8 @@ export class NavBarComponent implements OnInit{
   constructor(private authService: AuthService,
               private _ProfileServiceService:ProfileService,
               private translate: TranslateService,
-              private languageService: LanguageService
+              private languageService: LanguageService,
+              private router: Router,
   ){
     this.loginSuccess = this.authService.isLoggedIn;
     // this.translate.setDefaultLang('en');
@@ -59,5 +61,10 @@ export class NavBarComponent implements OnInit{
   applyArabicClass(): boolean {
     return this.currentLanguage === 'ar';
   }
-
+  logOut(): void {
+    sessionStorage.clear();
+    this.router.navigate(['/home']);
+    console.log('Session storage cleared');
+    this.isLoggedIn=false;
+  }
 }

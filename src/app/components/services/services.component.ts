@@ -27,7 +27,6 @@ export class ServicesComponent implements OnInit{
 
   message: string="";
   errorMessage: string = "";
-
   num1: Boolean = false;
   num2: Boolean = false;
   num3: Boolean = false;
@@ -45,10 +44,10 @@ export class ServicesComponent implements OnInit{
   email=sessionStorage.getItem("Email");
   personalNationalId :string="";
   washedRbcsForm!: FormGroup;
-
+  donationForm!: FormGroup;
   bloodFiltrationForm!: FormGroup;
   bloodTestsForm!: FormGroup;
-
+  donationC=false;
 
   selectedFile: File | null = null;
 
@@ -96,6 +95,24 @@ export class ServicesComponent implements OnInit{
       bloodType: [''],
       hasBloodBag: [false],
       // hasNoBloodBag: [false]
+    });
+
+    this.donationForm = this.formBuilder.group({
+      healthStatus: [false, Validators.required],
+      bloodDonation: [false, Validators.required],
+      healthProblems: [false, Validators.required],
+      medications: [false, Validators.required],
+      vaccinations: [false, Validators.required],
+      recentTravel: [false, Validators.required],
+      surgeries: [false, Validators.required],
+      hepatitisExposure: [false, Validators.required],
+      bloodTransfusion: [false, Validators.required],
+      covidExposure: [false, Validators.required],
+      pregnancyStatus: [false,Validators.required],
+      chronicDiseases: [false, Validators.required],
+      regularDonation: [false, Validators.required],
+      aspirinIntake: [false, Validators.required],
+      heavyMeals: [false, Validators.required]
     });
 
 
@@ -386,7 +403,23 @@ this.bloodFiltrationForm.value.nationalId=this.personalNationalId;
 
 
 
+  onSubmit(): void {
+    if (this.donationForm.invalid) {
+      console.log(this.donationForm.value);
+      if(this.applyArabicClass()){
+        this.errorMessage='من فضلك تأكد من ادخال كل الحقول'
+      }else{
+        this.errorMessage = 'please fill all fields';
+      }
+      return; // Exit early if the form is invalid
+    }
+    if (this.donationForm.valid) {
+      console.log(this.donationForm.value);
+      this.showService6()
+      // sessionStorage.setItem('DonationForm','True');
+    }
 
+  }
 
 
 
@@ -400,6 +433,7 @@ this.bloodFiltrationForm.value.nationalId=this.personalNationalId;
     this.num3 = false;
     this.num4 = false;
     this.num5 = false;
+    this.donationC=false;
   }
   showService2() {
     this.num1 = false;
@@ -407,6 +441,7 @@ this.bloodFiltrationForm.value.nationalId=this.personalNationalId;
     this.num3 = false;
     this.num4 = false;
     this.num5 = false;
+    this.donationC=false;
   }
   showService3() {
     this.num1 = false;
@@ -414,6 +449,7 @@ this.bloodFiltrationForm.value.nationalId=this.personalNationalId;
     this.num3 = true;
     this.num4 = false;
     this.num5 = false;
+    this.donationC=false;
   }
   showService4() {
     this.num1 = false;
@@ -421,6 +457,7 @@ this.bloodFiltrationForm.value.nationalId=this.personalNationalId;
     this.num3 = false;
     this.num4 = true;
     this.num5 = false;
+    this.donationC=false;
   }
   showService5() {
     this.num1 = false;
@@ -428,6 +465,16 @@ this.bloodFiltrationForm.value.nationalId=this.personalNationalId;
     this.num3 = false;
     this.num4 = false;
     this.num5 = true;
+    this.donationC=false;
+  }
+  showService6() {
+    this.num1 = false;
+    this.num2 = false;
+    this.num3 = false;
+    this.num4 = false;
+    this.num5 = false;
+    this.donationC=true;
+    console.log("donationC: ",this.donationC)
   }
 
 
