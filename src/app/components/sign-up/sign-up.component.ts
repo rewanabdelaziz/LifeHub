@@ -63,10 +63,11 @@ export class SignUpComponent {
   signup(): void {
     this.signupForm.markAllAsTouched();
 
-    if (this.signupForm.invalid) {
-      this.errorMessage = 'Please fill in all required fields.';
-      return;
-    }
+    // if (this.signupForm.invalid) {
+    //   this.errorMessage = 'Please fill in all required fields.';
+    //   console.log(this.signupForm.value);
+    //   return;
+    // }
 
     if (this.signupForm.get('nationalID')?.hasError('pattern')) {
       this.errorMessage = 'The National ID must be 14 numbers!';

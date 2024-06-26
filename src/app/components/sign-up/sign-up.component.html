@@ -34,12 +34,15 @@
           [placeholder]="!applyArabicClass() ? 'Confirm Password *' : 'تأكيد كلمة المرور *'"
           autocomplete="current-password"><br>
 
+          <label class="my-3 text-muted fw-bold" for="">{{ 'nameOfBloodBank' | translate }}</label><br>
         <input class="form-control border-0 p-2" type="text" formControlName="userName"
-          [placeholder]="!applyArabicClass() ? 'User Name *' : 'اسم المستخدم *'"><br>
+          [placeholder]="!applyArabicClass() ? 'User Name *' : 'اسم المستخدم *'">
+          <br>
 
+          <label class="my-3 text-muted fw-bold" for="">{{ 'NearestBloodDonationCenter' | translate }}</label>
         <input class="form-control border-0 p-2" type="text" formControlName="BloodBank"
           [placeholder]="!applyArabicClass() ? 'Blood Bank *' : 'بنك الدم *'">
-        <label class="my-3 text-muted fw-bold" for="">{{ 'nameOfBloodBank' | translate }}</label><br>
+          <br>
 
         <select name="location" id="location" required class="form-control border-0 p-2" formControlName="city">
           <option value="" disabled selected>{{ 'location' | translate }}</option>
@@ -47,7 +50,7 @@
           <option value="Alex">{{ 'Cairo' | translate }}</option>
           <option value="Tanta">{{ 'Tanta' | translate }}</option>
         </select>
-        <label class="my-3 text-muted fw-bold" for="">{{ 'NearestBloodDonationCenter' | translate }}</label><br>
+        <br>
 
         <input class="mb-3 p-2 form-control border-0" required type="date" formControlName="birthDate">
 

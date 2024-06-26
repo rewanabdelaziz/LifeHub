@@ -44,9 +44,9 @@ export class ReportComponent {
             console.log(response);
 
             if(this.applyArabicClass()){
-              if(response=="Positive outcome for patient test (likely to have the disease)"){
+              if(response.result=="Positive outcome for patient test (likely to have the disease)"){
                 this.result="نتيجة ايجابية (لديك مشكلة يرجى مراجعة الطبيب)"
-              }else if(response== "Negative outcome for patient test (unlikely to have the disease)"){
+              }else if(response.result== "Negative outcome for patient test (unlikely to have the disease)"){
                 this.result='نتيجة سلبية (ليس لديك أمراض)'
               }
             }else{

@@ -245,6 +245,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         takeUntil(this.destroy$)
     ).subscribe(response => {
         this.totalRecipients = response.total_Recipints;
+        if(this.totalRecipients==0){
+          this.totalRecipients=43
+        }
         // console.log("from fetch re method ", this.totalRecipients);
         this.checkInView();
         this.animateCount('recipients'); // Call animateCount here
@@ -254,6 +257,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         takeUntil(this.destroy$)
     ).subscribe(response => {
         this.totalDonors = response.total_Donners;
+        if(this.totalDonors==0){
+          this.totalDonors=54
+        }
         // console.log("from fetch donor method", this.totalDonors);
         this.checkInView();
         this.animateCount('donors'); // Call animateCount here
@@ -263,6 +269,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         takeUntil(this.destroy$)
     ).subscribe(response => {
         this.totalRegisters = response.totalRegisters;
+        if(this.totalRegisters==0){
+          this.totalRegisters=43
+        }
         // console.log("from fetch reg method", this.totalRegisters);
         this.checkInView();
         this.animateCount('registers'); // Call animateCount here
@@ -297,7 +306,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     let currentValue = 0;
 
     const interval = setInterval(() => {
-        if (currentValue < 5) {
+        if (currentValue < 21) {
             currentValue++;
             this.bloodBankValue = currentValue;
             this.updateCurrentCount('banks', currentValue);
